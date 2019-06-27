@@ -136,7 +136,7 @@ class Postnet(nn.Module):
                          padding=int((hparams.postnet_kernel_size - 1) / 2),
                          dilation=1, w_init_gain='linear'),
                 nn.BatchNorm1d(hparams.n_mel_channels))
-            )
+        )
 
     def forward(self, x):
         for i in range(len(self.convolutions) - 1):
@@ -151,6 +151,7 @@ class Encoder(nn.Module):
         - Three 1-d convolution banks
         - Bidirectional LSTM
     """
+
     def __init__(self, hparams):
         super(Encoder, self).__init__()
 
@@ -199,6 +200,26 @@ class Encoder(nn.Module):
         outputs, _ = self.lstm(x)
 
         return outputs
+
+
+class LatentModel(nn.Module):
+    def __init__(self, hparams):
+        super(LatentModel, self).__init__()
+        convolutions = []
+        for _ in range(hparams.latent_n_convolutions):
+            conv_layer = nn.Sequential(
+                ConvNorm(hparams.latent_embedding_dim,
+                         hparams.latent_embedding_dim,
+                         kernel_size=hparams.latent_kernel_size, stride=1,
+                         padding=int((hparams.latent_kernel_size - 1) / 2),
+                         dilation=1, w_init_gain='relu'),
+                nn.BatchNorm1d(hparams.latent_embedding_dim))
+            convolutions.append(conv_layer)
+        self.convolutions = nn.ModuleList(convolutions)
+
+        self.lstm = nn.LSTM(hparams.latent_embedding_dim,
+                            int(hparams.latent_embedding_dim / 2), 1,
+                            batch_first=True, bidirectional=True)
 
 
 class Decoder(nn.Module):
@@ -303,7 +324,7 @@ class Decoder(nn.Module):
         decoder_inputs = decoder_inputs.transpose(1, 2)
         decoder_inputs = decoder_inputs.view(
             decoder_inputs.size(0),
-            int(decoder_inputs.size(1)/self.n_frames_per_step), -1)
+            int(decoder_inputs.size(1) / self.n_frames_per_step), -1)
         # (B, T_out, n_mel_channels) -> (T_out, B, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(0, 1)
         return decoder_inputs
@@ -472,7 +493,7 @@ class Tacotron2(nn.Module):
 
     def parse_batch(self, batch):
         text_padded, input_lengths, mel_padded, gate_padded, \
-            output_lengths = batch
+        output_lengths = batch
         text_padded = to_gpu(text_padded).long()
         input_lengths = to_gpu(input_lengths).long()
         max_len = torch.max(input_lengths.data).item()

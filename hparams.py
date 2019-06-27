@@ -54,6 +54,11 @@ def create_hparams(hparams_string=None, verbose=False):
         encoder_n_convolutions=3,
         encoder_embedding_dim=512,
 
+        # Latent model parameters
+        latent_kernel_size=3,
+        latent_n_convolutions=2,
+        latent_embedding_dim=512,
+
         # Decoder parameters
         n_frames_per_step=1,  # currently only 1 is supported
         decoder_rnn_dim=1024,
