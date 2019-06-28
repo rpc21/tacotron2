@@ -221,6 +221,10 @@ class LatentModel(nn.Module):
                             int(hparams.latent_embedding_dim / 2), 1,
                             batch_first=True, bidirectional=True)
 
+        self.mean_pool = nn.AvgPool1d(hparams.latent_kernel_size, stride=1)
+
+        self.linear_projection = LinearNorm(hparams.latent_embedding_dim - hparams.latent_kernel_size + 1, 16)
+
 
 class Decoder(nn.Module):
     def __init__(self, hparams):
