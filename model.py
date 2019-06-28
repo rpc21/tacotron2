@@ -1,3 +1,5 @@
+import pdb
+
 from math import sqrt
 import torch
 from torch.autograd import Variable
@@ -221,9 +223,44 @@ class LatentModel(nn.Module):
                             int(hparams.latent_embedding_dim / 2), 1,
                             batch_first=True, bidirectional=True)
 
+        pdb.set_trace()
+        print(self.lstm)
+
         self.mean_pool = nn.AvgPool1d(hparams.latent_kernel_size, stride=1)
+        pdb.set_trace()
+        print(self.mean_pool)
 
         self.linear_projection = LinearNorm(hparams.latent_embedding_dim - hparams.latent_kernel_size + 1, 16)
+        pdb.set_trace()
+        print(self.linear_projection)
+
+    def forward(self, x):
+        print(x)
+        print(x.shape)
+        print("The above is the input to the forward function (x) and its shape")
+        pdb.set_trace()
+        for conv in self.convolutions:
+            x = F.dropout(F.relu(conv(x)), 0.5, self.training)
+            print(x)
+            print(x.shape)
+            print("The above is x, the after convolution")
+            pdb.set_trace()
+        out = self.lstm(x)
+        print(out)
+        print(out.shape)
+        print("The above is the output of the lstm")
+        pdb.set_trace()
+        out = self.mean_pool(out)
+        print(out)
+        print(out.shape)
+        print("Above is the output of the mean pooling")
+        pdb.set_trace()
+        out = self.linear_projection.forward(out)
+        print(out)
+        print(out.shape)
+        print("Above is the output of the linear projection and is what is returned from the forward function")
+        pdb.set_trace()
+        return out
 
 
 class Decoder(nn.Module):
@@ -491,6 +528,7 @@ class Tacotron2(nn.Module):
         std = sqrt(2.0 / (hparams.n_symbols + hparams.symbols_embedding_dim))
         val = sqrt(3.0) * std  # uniform bounds for std
         self.embedding.weight.data.uniform_(-val, val)
+        self.latent_model = LatentModel(hparams)
         self.encoder = Encoder(hparams)
         self.decoder = Decoder(hparams)
         self.postnet = Postnet(hparams)
@@ -525,9 +563,22 @@ class Tacotron2(nn.Module):
         text_inputs, text_lengths, mels, max_len, output_lengths = inputs
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
+        pdb.set_trace()
+        print(mels)
+        print('About to call self.latent_model(mels), get info about mels')
+
+        latent_output = self.latent_model(mels)
+
+        print('Just called latent_output=self.latent_model(mels), check latent_output variables properties')
+        pdb.set_trace()
+
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
 
         encoder_outputs = self.encoder(embedded_inputs, text_lengths)
+
+        print('About to call self.decoder, check the shape of encoder_outputs, mels, text_lengths to figure out concat')
+        print('Also look again at latent_output properties')
+        pdb.set_trace()
 
         mel_outputs, gate_outputs, alignments = self.decoder(
             encoder_outputs, mels, memory_lengths=text_lengths)
