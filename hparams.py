@@ -9,14 +9,14 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         # Experiment Parameters        #
         ################################
-        epochs=500,
-        iters_per_checkpoint=1000,
+        epochs=10, #500
+        iters_per_checkpoint=10, #1000
         seed=1234,
         dynamic_loss_scaling=True,
         fp16_run=False,
         distributed_run=False,
         dist_backend="nccl",
-        dist_url="tcp://localhost:34322",
+        dist_url="tcp://localhost:34323",
         cudnn_enabled=True,
         cudnn_benchmark=False,
         ignore_layers=['embedding.weight'],
@@ -26,8 +26,10 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         load_mel_from_disk=False,
 #        training_files='filelists/ljs_audio_text_train_filelist.txt',
-        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
-        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
+#        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
+        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_small.txt',
+#        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
+        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
         text_cleaners=['english_cleaners'],
 
         ################################
