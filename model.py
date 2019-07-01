@@ -223,43 +223,46 @@ class LatentModel(nn.Module):
                             int(hparams.latent_embedding_dim / 2), 1,
                             batch_first=True, bidirectional=True)
 
-        pdb.set_trace()
-        print(self.lstm)
+#        pdb.set_trace()
+#        print(self.lstm)
 
         self.mean_pool = nn.AvgPool1d(hparams.latent_kernel_size, stride=1)
-        pdb.set_trace()
-        print(self.mean_pool)
+#        pdb.set_trace()
+#        print(self.mean_pool)
 
-        self.linear_projection = LinearNorm(hparams.latent_embedding_dim - hparams.latent_kernel_size + 1, 16)
-        pdb.set_trace()
-        print(self.linear_projection)
+        self.linear_projection = LinearNorm(hparams.latent_embedding_dim - hparams.latent_kernel_size + 1, hparams.latent_out_dim)
+#        pdb.set_trace()
+#        print(self.linear_projection)
 
     def forward(self, x):
-        print(x)
-        print(x.shape)
-        print("The above is the input to the forward function (x) and its shape")
-        pdb.set_trace()
+#        print(x)
+#        print(x.shape)
+#        print("The above is the input to the forward function (x) and its shape")
+ #       pdb.set_trace()
+#        pdb.set_trace()
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
-            print(x)
-            print(x.shape)
-            print("The above is x, the after convolution")
-            pdb.set_trace()
-        out = self.lstm(x)
-        print(out)
-        print(out.shape)
-        print("The above is the output of the lstm")
-        pdb.set_trace()
+#            print(x)
+#            print(x.shape)
+#            print("The above is x, the after convolution")
+#            pdb.set_trace()
+        x = x.transpose(1,2)
+#        pdb.set_trace()
+        out, _ = self.lstm(x)
+#        print(out)
+#        print(out.shape)
+#        print("The above is the output of the lstm")
+#        pdb.set_trace()
         out = self.mean_pool(out)
-        print(out)
-        print(out.shape)
-        print("Above is the output of the mean pooling")
-        pdb.set_trace()
+#        print(out)
+#        print(out.shape)
+#        print("Above is the output of the mean pooling")
+#        pdb.set_trace()
         out = self.linear_projection.forward(out)
-        print(out)
-        print(out.shape)
-        print("Above is the output of the linear projection and is what is returned from the forward function")
-        pdb.set_trace()
+#        print(out)
+#        print(out.shape)
+#        print("Above is the output of the linear projection and is what is returned from the forward function")
+#        pdb.set_trace()
         return out
 
 
@@ -276,9 +279,10 @@ class Decoder(nn.Module):
         self.gate_threshold = hparams.gate_threshold
         self.p_attention_dropout = hparams.p_attention_dropout
         self.p_decoder_dropout = hparams.p_decoder_dropout
+        self.latent_output_dim = hparams.latent_out_dim
 
         self.prenet = Prenet(
-            hparams.n_mel_channels * hparams.n_frames_per_step,
+            hparams.n_mel_channels * hparams.n_frames_per_step + hparams.latent_out_dim,
             [hparams.prenet_dim, hparams.prenet_dim])
 
         self.attention_rnn = nn.LSTMCell(
@@ -314,7 +318,7 @@ class Decoder(nn.Module):
         """
         B = memory.size(0)
         decoder_input = Variable(memory.data.new(
-            B, self.n_mel_channels * self.n_frames_per_step).zero_())
+            B, self.n_mel_channels * self.n_frames_per_step + self.latent_output_dim).zero_())
         return decoder_input
 
     def initialize_decoder_states(self, memory, mask):
@@ -350,7 +354,7 @@ class Decoder(nn.Module):
         self.processed_memory = self.attention_layer.memory_layer(memory)
         self.mask = mask
 
-    def parse_decoder_inputs(self, decoder_inputs):
+    def parse_decoder_inputs(self, decoder_inputs, latent_outputs):
         """ Prepares decoder inputs, i.e. mel outputs
         PARAMS
         ------
@@ -361,6 +365,7 @@ class Decoder(nn.Module):
         inputs: processed decoder inputs
 
         """
+        latent_outputs = latent_outputs.permute(1,0,2)
         # (B, n_mel_channels, T_out) -> (B, T_out, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(1, 2)
         decoder_inputs = decoder_inputs.view(
@@ -368,6 +373,7 @@ class Decoder(nn.Module):
             int(decoder_inputs.size(1) / self.n_frames_per_step), -1)
         # (B, T_out, n_mel_channels) -> (T_out, B, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(0, 1)
+        decoder_inputs = torch.cat((decoder_inputs, latent_outputs), dim=2)
         return decoder_inputs
 
     def parse_decoder_outputs(self, mel_outputs, gate_outputs, alignments):
@@ -440,7 +446,7 @@ class Decoder(nn.Module):
         gate_prediction = self.gate_layer(decoder_hidden_attention_context)
         return decoder_output, gate_prediction, self.attention_weights
 
-    def forward(self, memory, decoder_inputs, memory_lengths):
+    def forward(self, memory, decoder_inputs, latent_outputs, memory_lengths):
         """ Decoder forward pass for training
         PARAMS
         ------
@@ -456,10 +462,13 @@ class Decoder(nn.Module):
         """
 
         decoder_input = self.get_go_frame(memory).unsqueeze(0)
-        decoder_inputs = self.parse_decoder_inputs(decoder_inputs)
+#        pdb.set_trace()
+        decoder_inputs = self.parse_decoder_inputs(decoder_inputs, latent_outputs)
+#        pdb.set_trace()
         decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
+#        pdb.set_trace()
         decoder_inputs = self.prenet(decoder_inputs)
-
+#        pdb.set_trace()
         self.initialize_decoder_states(
             memory, mask=~get_mask_from_lengths(memory_lengths))
 
@@ -565,25 +574,25 @@ class Tacotron2(nn.Module):
         text_inputs, text_lengths, mels, max_len, output_lengths, latent_mels = inputs
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
-        pdb.set_trace()
-        print(latent_mels)
-        print('About to call self.latent_model(mels), get info about mels')
+#        pdb.set_trace()
+ #       print(latent_mels)
+  #      print('About to call self.latent_model(mels), get info about mels')
 
-        latent_output = self.latent_model(mels)
+        latent_output = self.latent_model(latent_mels)
 
-        print('Just called latent_output=self.latent_model(mels), check latent_output variables properties')
-        pdb.set_trace()
+#        print('Just called latent_output=self.latent_model(mels), check latent_output variables properties')
+ #       pdb.set_trace()
 
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
 
         encoder_outputs = self.encoder(embedded_inputs, text_lengths)
 
-        print('About to call self.decoder, check the shape of encoder_outputs, mels, text_lengths to figure out concat')
-        print('Also look again at latent_output properties')
-        pdb.set_trace()
+#        print('About to call self.decoder, check the shape of encoder_outputs, mels, text_lengths to figure out concat')
+#        print('Also look again at latent_output properties')
+#        pdb.set_trace()
 
         mel_outputs, gate_outputs, alignments = self.decoder(
-            encoder_outputs, mels, memory_lengths=text_lengths)
+            encoder_outputs, mels, latent_output, memory_lengths=text_lengths)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet
