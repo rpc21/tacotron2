@@ -204,9 +204,11 @@ class Encoder(nn.Module):
         return outputs
 
 
-class LatentModel(nn.Module):
+class GMVAE(nn.Module):
     def __init__(self, hparams):
-        super(LatentModel, self).__init__()
+        super(GMVAE, self).__init__()
+        self.latent_embedding_dim = hparams.latent_embedding_dim
+
         convolutions = []
         for _ in range(hparams.latent_n_convolutions):
             conv_layer = nn.Sequential(
@@ -225,16 +227,42 @@ class LatentModel(nn.Module):
 
         self.mean_pool = nn.AvgPool1d(hparams.latent_kernel_size, stride=1)
 
-        self.linear_projection = LinearNorm(hparams.latent_embedding_dim - hparams.latent_kernel_size + 1, hparams.latent_out_dim)
+        mean_pool_out_size = hparams.latent_embedding_dim - hparams.latent_kernel_size + 1
 
-    def forward(self, x):
+        self.linear_projection = LinearNorm(mean_pool_out_size, int(mean_pool_out_size / 2))
+
+        self.linear_projection_mean = LinearNorm(int(mean_pool_out_size / 2), hparams.latent_out_dim)
+
+        self.linear_projection_variance = LinearNorm(int(mean_pool_out_size / 2), hparams.latent_out_dim)
+
+        self.fc3 = nn.Linear(hparams.latent_out_dim, int(mean_pool_out_size / 2))
+
+        self.fc4 = nn.Linear(int(mean_pool_out_size / 2), hparams.latent_embedding_dim)
+
+    def vae_encode(self, x):
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
-        x = x.transpose(1,2)
+        x = x.transpose(1, 2)
         out, _ = self.lstm(x)
         out = self.mean_pool(out)
-        out = self.linear_projection.forward(out)
-        return out
+        mean = self.linear_projection_mean.forward(out)
+        variance = self.linear_projection_variance(out)
+        return mean, variance
+
+    def reparameterize(self, mu, logvar):
+        std = torch.exp(0.5 * logvar)
+        eps = torch.randn_like(std)
+        return mu + eps * std
+
+    def decode(self, z):
+        h3 = F.relu(self.fc3(z))
+        return torch.sigmoid(self.fc4(h3))
+
+    def forward(self, x):
+        mu, logvar = self.vae_encode(x)
+        z = self.reparameterize(mu, logvar)
+        return self.decode(z), mu, logvar
+
 
 
 class Decoder(nn.Module):
@@ -336,7 +364,7 @@ class Decoder(nn.Module):
         inputs: processed decoder inputs
 
         """
-        latent_outputs = latent_outputs.permute(1,0,2)
+        latent_outputs = latent_outputs.permute(1, 0, 2)
         # (B, n_mel_channels, T_out) -> (B, T_out, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(1, 2)
         decoder_inputs = decoder_inputs.view(
@@ -504,7 +532,7 @@ class Tacotron2(nn.Module):
         std = sqrt(2.0 / (hparams.n_symbols + hparams.symbols_embedding_dim))
         val = sqrt(3.0) * std  # uniform bounds for std
         self.embedding.weight.data.uniform_(-val, val)
-        self.latent_model = LatentModel(hparams)
+        self.latent_model = GMVAE(hparams)
         self.encoder = Encoder(hparams)
         self.decoder = Decoder(hparams)
         self.postnet = Postnet(hparams)

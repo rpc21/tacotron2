@@ -10,9 +10,9 @@ import torch.distributed as dist
 from torch.utils.data.distributed import DistributedSampler
 from torch.utils.data import DataLoader
 
-from model import Tacotron2
+from model import Tacotron2, GMVAE
 from data_utils import TextMelLoader, TextMelCollate
-from loss_function import Tacotron2Loss
+from loss_function import Tacotron2Loss, GMVAELoss
 from logger import Tacotron2Logger
 from hparams import create_hparams
 
@@ -104,7 +104,7 @@ def load_checkpoint(checkpoint_path, model, optimizer):
     optimizer.load_state_dict(checkpoint_dict['optimizer'])
     learning_rate = checkpoint_dict['learning_rate']
     iteration = checkpoint_dict['iteration']
-    print("Loaded checkpoint '{}' from iteration {}" .format(
+    print("Loaded checkpoint '{}' from iteration {}".format(
         checkpoint_path, iteration))
     return model, optimizer, learning_rate, iteration
 
@@ -144,6 +144,116 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
     if rank == 0:
         print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
         logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
+
+
+def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n_gpus, rank, group_name, hparams):
+    """Training and validation logging results to tensorboard and stdout
+
+       Params
+       ------
+       output_directory (string): directory to save checkpoints
+       log_directory (string) directory to save tensorboard logs
+       checkpoint_path(string): checkpoint path
+       n_gpus (int): number of gpus
+       rank (int): rank of current gpu
+       hparams (object): comma separated list of "name=value" pairs.
+       """
+    if hparams.distributed_run:
+        init_distributed(hparams, n_gpus, rank, group_name)
+
+    torch.manual_seed(hparams.seed)
+    torch.cuda.manual_seed(hparams.seed)
+
+    # model = load_model(hparams)
+    model = GMVAE(hparams)
+    learning_rate = hparams.learning_rate
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate,
+                                 weight_decay=hparams.weight_decay)
+
+    if hparams.fp16_run:
+        from apex import amp
+        model, optimizer = amp.initialize(
+            model, optimizer, opt_level='O2')
+
+    if hparams.distributed_run:
+        model = apply_gradient_allreduce(model)
+
+    # criterion = Tacotron2Loss()
+    criterion = GMVAELoss()
+
+    logger = prepare_directories_and_logger(
+        output_directory, log_directory, rank)
+
+    train_loader, valset, collate_fn = prepare_dataloaders(hparams)
+
+    # Load checkpoint if one exists
+    iteration = 0
+    epoch_offset = 0
+    if checkpoint_path is not None:
+        if warm_start:
+            model = warm_start_model(
+                checkpoint_path, model, hparams.ignore_layers)
+        else:
+            model, optimizer, _learning_rate, iteration = load_checkpoint(
+                checkpoint_path, model, optimizer)
+            if hparams.use_saved_learning_rate:
+                learning_rate = _learning_rate
+            iteration += 1  # next iteration is iteration + 1
+            epoch_offset = max(0, int(iteration / len(train_loader)))
+
+    model.train()
+    is_overflow = False
+    # ================ MAIN TRAINNIG LOOP! ===================
+    for epoch in range(epoch_offset, hparams.epochs):
+        print("Epoch: {}".format(epoch))
+        for i, batch in enumerate(train_loader):
+            start = time.perf_counter()
+            for param_group in optimizer.param_groups:
+                param_group['lr'] = learning_rate
+
+            model.zero_grad()
+            x, y = model.parse_batch(batch)
+            recon, mu, logvar = model(x)
+
+            loss = criterion(recon, x, mu, logvar)
+            if hparams.distributed_run:
+                reduced_loss = reduce_tensor(loss.data, n_gpus).item()
+            else:
+                reduced_loss = loss.item()
+            if hparams.fp16_run:
+                with amp.scale_loss(loss, optimizer) as scaled_loss:
+                    scaled_loss.backward()
+            else:
+                loss.backward()
+
+            if hparams.fp16_run:
+                grad_norm = torch.nn.utils.clip_grad_norm_(
+                    amp.master_params(optimizer), hparams.grad_clip_thresh)
+                is_overflow = math.isnan(grad_norm)
+            else:
+                grad_norm = torch.nn.utils.clip_grad_norm_(
+                    model.parameters(), hparams.grad_clip_thresh)
+
+            optimizer.step()
+
+            if not is_overflow and rank == 0:
+                duration = time.perf_counter() - start
+                print("Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it".format(
+                    iteration, reduced_loss, grad_norm, duration))
+                logger.log_training(
+                    reduced_loss, grad_norm, learning_rate, duration, iteration)
+
+            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0):
+                validate(model, criterion, valset, iteration,
+                         hparams.batch_size, n_gpus, collate_fn, logger,
+                         hparams.distributed_run, rank)
+                if rank == 0:
+                    checkpoint_path = os.path.join(
+                        output_directory, "checkpoint_{}".format(iteration))
+                    save_checkpoint(model, optimizer, learning_rate, iteration,
+                                    checkpoint_path)
+
+            iteration += 1
 
 
 def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
@@ -286,5 +396,7 @@ if __name__ == '__main__':
     print("cuDNN Enabled:", hparams.cudnn_enabled)
     print("cuDNN Benchmark:", hparams.cudnn_benchmark)
 
-    train(args.output_directory, args.log_directory, args.checkpoint_path,
+    # train(args.output_directory, args.log_directory, args.checkpoint_path,
+    #       args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
           args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
