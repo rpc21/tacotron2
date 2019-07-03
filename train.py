@@ -165,7 +165,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
     torch.cuda.manual_seed(hparams.seed)
 
     # model = load_model(hparams)
-    model = GMVAE(hparams)
+    model = GMVAE(hparams).cuda()
     learning_rate = hparams.learning_rate
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate,
                                  weight_decay=hparams.weight_decay)

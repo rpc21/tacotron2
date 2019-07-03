@@ -239,12 +239,31 @@ class GMVAE(nn.Module):
 
         self.fc4 = nn.Linear(int(mean_pool_out_size / 2), hparams.latent_embedding_dim)
 
-    def vae_encode(self, x):
+    def parse_batch(self, batch):
+        text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
+        text_padded = to_gpu(text_padded).long()
+        input_lengths = to_gpu(input_lengths).long()
+        max_len = torch.max(input_lengths.data).item()
+        mel_padded = to_gpu(mel_padded).float()
+        gate_padded = to_gpu(gate_padded).float()
+        output_lengths = to_gpu(output_lengths).long()
+        mel_padded_512 = to_gpu(mel_padded_512).float()
+        gate_padded_512 = to_gpu(gate_padded_512).float()
+        output_lengths_512 = to_gpu(output_lengths_512).long()
+
+        return (
+            (text_padded, input_lengths, mel_padded, max_len, output_lengths, mel_padded_512),
+            (mel_padded, gate_padded))
+
+
+    def vae_encode(self, inputs):
+        _, _, _, _, _, x = inputs
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
         x = x.transpose(1, 2)
         out, _ = self.lstm(x)
         out = self.mean_pool(out)
+        out = self.linear_projection.forward(out)
         mean = self.linear_projection_mean.forward(out)
         variance = self.linear_projection_variance(out)
         return mean, variance
