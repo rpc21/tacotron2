@@ -32,7 +32,7 @@ class GMVAELoss(nn.Module):
 
 
 def elbo_loss_function(recon_x, x, mu, logvar):
-    BCE = binary_cross_entropy(recon_x, x.view(-1, 784), reduction='sum')
+    BCE = binary_cross_entropy(recon_x, x[-1], reduction='sum')
 
     # see Appendix B from VAE paper:
     # Kingma and Welling. Auto-Encoding Variational Bayes. ICLR, 2014
