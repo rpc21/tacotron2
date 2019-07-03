@@ -1,6 +1,7 @@
 from torch import nn
 import torch
-import torch.functional as F
+from torch.nn.functional import binary_cross_entropy
+
 
 class Tacotron2Loss(nn.Module):
     def __init__(self):
@@ -31,7 +32,7 @@ class GMVAELoss(nn.Module):
 
 
 def elbo_loss_function(recon_x, x, mu, logvar):
-    BCE = F.binary_cross_entropy(recon_x, x.view(-1, 784), reduction='sum')
+    BCE = binary_cross_entropy(recon_x, x.view(-1, 784), reduction='sum')
 
     # see Appendix B from VAE paper:
     # Kingma and Welling. Auto-Encoding Variational Bayes. ICLR, 2014
