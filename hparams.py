@@ -9,8 +9,8 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         # Experiment Parameters        #
         ################################
-        epochs=10, #500
-        iters_per_checkpoint=10, #1000
+        epochs=50, #500
+        iters_per_checkpoint=1000,
         seed=1234,
         dynamic_loss_scaling=True,
         fp16_run=False,
@@ -27,9 +27,10 @@ def create_hparams(hparams_string=None, verbose=False):
         load_mel_from_disk=False,
 #        training_files='filelists/ljs_audio_text_train_filelist.txt',
 #        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
-        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_small.txt',
-#        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
-        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
+        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100_1056784_subset.txt',
+#        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_small.txt',
+        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
+#        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
         text_cleaners=['english_cleaners'],
 
         ################################
@@ -91,7 +92,7 @@ def create_hparams(hparams_string=None, verbose=False):
         learning_rate=1e-3,
         weight_decay=1e-6,
         grad_clip_thresh=1.0,
-        batch_size=8,
+        batch_size=32,  #8,
         mask_padding=True  # set model's padded outputs to padded values
     )
 

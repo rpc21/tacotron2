@@ -265,7 +265,7 @@ class GMVAE(nn.Module):
         out = self.mean_pool(out)
         out = self.linear_projection.forward(out)
         mean = self.linear_projection_mean.forward(out)
-        variance = self.linear_projection_variance(out)
+        variance = self.linear_projection_variance.forward(out)
         return mean, variance
 
     def reparameterize(self, mu, logvar):
