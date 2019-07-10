@@ -227,17 +227,17 @@ class GMVAE(nn.Module):
 
         self.mean_pool = nn.AvgPool1d(hparams.latent_kernel_size, stride=1)
 
-        mean_pool_out_size = hparams.latent_embedding_dim - hparams.latent_kernel_size + 1
+        self.mean_pool_out_size = hparams.latent_embedding_dim - hparams.latent_kernel_size + 1
 
-        self.linear_projection = LinearNorm(mean_pool_out_size, int(mean_pool_out_size / 2))
+        self.linear_projection = LinearNorm(self.mean_pool_out_size, int(self.mean_pool_out_size / 2))
 
-        self.linear_projection_mean = LinearNorm(int(mean_pool_out_size / 2), hparams.latent_out_dim)
+        self.linear_projection_mean = LinearNorm(int(self.mean_pool_out_size / 2), hparams.latent_out_dim)
 
-        self.linear_projection_variance = LinearNorm(int(mean_pool_out_size / 2), hparams.latent_out_dim)
+        self.linear_projection_variance = LinearNorm(int(self.mean_pool_out_size / 2), hparams.latent_out_dim)
 
-        self.fc3 = nn.Linear(hparams.latent_out_dim, int(mean_pool_out_size / 2))
+        self.fc3 = nn.Linear(hparams.latent_out_dim, int(self.mean_pool_out_size / 2))
 
-        self.fc4 = nn.Linear(int(mean_pool_out_size / 2), hparams.latent_embedding_dim)
+        self.fc4 = nn.Linear(int(self.mean_pool_out_size / 2), self.mean_pool_out_size)
 
     def parse_batch(self, batch):
         text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
@@ -258,15 +258,31 @@ class GMVAE(nn.Module):
 
     def vae_encode(self, inputs):
         _, _, _, _, _, x = inputs
+       # print('x shape:', x.shape)
+        #pdb.set_trace()
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
         x = x.transpose(1, 2)
+        print('Just finished convs')
+        #pdb.set_trace()
         out, _ = self.lstm(x)
+        print('Just finished lstm', out.shape)
+        #pdb.set_trace()
         out = self.mean_pool(out)
+        x_after_mean = out
+        print('After mean pool', out.shape)
+        #pdb.set_trace()
         out = self.linear_projection.forward(out)
+        print('After linear 1', out.shape)
+        #pdb.set_trace()
         mean = self.linear_projection_mean.forward(out)
         variance = self.linear_projection_variance.forward(out)
-        return mean, variance
+#        mean = torch.mean(torch.mean(self.linear_projection_mean.forward(out),dim=1), dim=0)
+#        variance = torch.mean(torch.mean(self.linear_projection_variance.forward(out),dim=1), dim=0)
+        print('mean', mean.shape)
+        print('variance', variance.shape)
+        #pdb.set_trace()
+        return mean, variance, x_after_mean
 
     def reparameterize(self, mu, logvar):
         std = torch.exp(0.5 * logvar)
@@ -274,13 +290,19 @@ class GMVAE(nn.Module):
         return mu + eps * std
 
     def decode(self, z):
+        print('shape to be decoded', z.shape)
         h3 = F.relu(self.fc3(z))
+        print('shape of the recons',h3.shape)
+#        pdb.set_trace()
         return torch.sigmoid(self.fc4(h3))
 
     def forward(self, x):
-        mu, logvar = self.vae_encode(x)
+        mu, logvar, x_after_mean = self.vae_encode(x)
         z = self.reparameterize(mu, logvar)
-        return self.decode(z), mu, logvar
+        print('mu shape:', mu.shape)
+        print('logvar shape:', logvar.shape)
+ #       pdb.set_trace()
+        return self.decode(z), mu, logvar, x_after_mean
 
 
 

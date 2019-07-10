@@ -1,6 +1,6 @@
 from torch import nn
 import torch
-from torch.nn.functional import binary_cross_entropy
+from torch.nn.functional import binary_cross_entropy, sigmoid, binary_cross_entropy_with_logits
 import pdb
 
 
@@ -33,22 +33,35 @@ class GMVAELoss(nn.Module):
 
 
 def elbo_loss_function(recon_x, x, mu, logvar):
-#    pdb.set_trace()
-#    BCE = binary_cross_entropy(recon_x.transpose(1,2), x[-1], reduction='sum')
+#    print('shape of recon_x:', recon_x.transpose(1,2).shape)
+ #   print('shape of x:', x[-1].shape)
+  #  print('shape of mu:', mu.shape)
+   # print('shape of logvar:', logvar.shape)
+    val=torch.max(x[-1])
+    x=x[-1]/val
+    val1=(recon_x.transpose(1,2)).max()
+    recon_x=recon_x.transpose(1,2)/val1
+    x_mean=x.mean()
+    x_std=x.std()
+    x_n=(x- x_mean)/x_std
+    recon_x_mean=recon_x.mean()
+    recon_x_std=recon_x.std()
+    recon_x_n=(recon_x-recon_x_mean)/recon_x_std
+    pdb.set_trace()
+    with torch.no_grad():
+        y = x_n
+        BCE = binary_cross_entropy(recon_x_n, y, reduction='sum')
 #    print("BCE:", BCE)
     # see Appendix B from VAE paper:
     # Kingma and Welling. Auto-Encoding Variational Bayes. ICLR, 2014
     # https://arxiv.org/abs/1312.6114
     # 0.5 * sum(1 + log(sigma^2) - mu^2 - sigma^2)
 #    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-    BCE1=nn.MSELoss()
-    BCE=BCE1(recon_x.transpose(1,2),x[-1])
+#    BCE1=nn.MSELoss()
+#    BCE=BCE1(recon_x.transpose(1,2),x[-1])
     # see Appendix B from VAE paper:
     # Kingma and Welling. Auto-Encoding Variational Bayes. ICLR, 2014
     # https://arxiv.org/abs/1312.6114
     # 0.5 * sum(1 + log(sigma^2) - mu^2 - sigma^2)
     KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-    return 128*BCE + KLD
-
-
-    return loss(recon_x, x)
+    return BCE + KLD

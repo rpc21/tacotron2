@@ -44,7 +44,7 @@ class TextMelLoader(torch.utils.data.Dataset):
 
     def get_mel(self, filename, stft):
         try:
-            melspec = torch.from_numpy(np.load(filename[:-4] + '_' + stft.n_mel_channels + '.npy'))
+            melspec = torch.from_numpy(np.load(filename[:-4] + '_' + str(stft.n_mel_channels) + '.npy'))
             assert melspec.size(0) == self.stft.n_mel_channels, (
                 'Mel dimension mismatch: given {}, expected {}'.format(
                     melspec.size(0), self.stft.n_mel_channels))
@@ -58,8 +58,8 @@ class TextMelLoader(torch.utils.data.Dataset):
             audio_norm = torch.autograd.Variable(audio_norm, requires_grad=False)
             melspec = stft.mel_spectrogram(audio_norm)
             melspec = torch.squeeze(melspec, 0)
-            with open(filename[:-4] + '_' + stft.n_mel_channels + '.npy', 'wb+') as f:
-                np.save(melspec.numpy(), f)
+            with open(filename[:-4] + '_' + str(stft.n_mel_channels) + '.npy', 'wb+') as f:
+                np.save(f, melspec.numpy())
         return melspec
 
     def get_text(self, text):

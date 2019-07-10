@@ -213,9 +213,9 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
 
             model.zero_grad()
             x, y = model.parse_batch(batch)
-            recon, mu, logvar = model(x)
+            recon, mu, logvar, x_after_mean = model(x)
 
-            loss = criterion(recon, x, mu, logvar)
+            loss = criterion(recon, x_after_mean, mu, logvar)
             if hparams.distributed_run:
                 reduced_loss = reduce_tensor(loss.data, n_gpus).item()
             else:
