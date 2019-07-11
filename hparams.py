@@ -9,7 +9,7 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         # Experiment Parameters        #
         ################################
-        epochs=50, #500
+        epochs=200, #500
         iters_per_checkpoint=1000,
         seed=1234,
         dynamic_loss_scaling=True,
@@ -26,11 +26,11 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         load_mel_from_disk=True, #False,
 #        training_files='filelists/ljs_audio_text_train_filelist.txt',
-#        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
-        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100_1028_subset.txt',
+        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
+#        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100_1028_subset.txt',
 #        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_small.txt',
-#        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
-        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
+        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
+#        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
         text_cleaners=['english_cleaners'],
 
         ################################

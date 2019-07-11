@@ -263,24 +263,24 @@ class GMVAE(nn.Module):
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
         x = x.transpose(1, 2)
-        print('Just finished convs')
+#        print('Just finished convs')
         #pdb.set_trace()
         out, _ = self.lstm(x)
-        print('Just finished lstm', out.shape)
+ #       print('Just finished lstm', out.shape)
         #pdb.set_trace()
         out = self.mean_pool(out)
         x_after_mean = out
-        print('After mean pool', out.shape)
+  #      print('After mean pool', out.shape)
         #pdb.set_trace()
         out = self.linear_projection.forward(out)
-        print('After linear 1', out.shape)
+   #     print('After linear 1', out.shape)
         #pdb.set_trace()
         mean = self.linear_projection_mean.forward(out)
         variance = self.linear_projection_variance.forward(out)
 #        mean = torch.mean(torch.mean(self.linear_projection_mean.forward(out),dim=1), dim=0)
 #        variance = torch.mean(torch.mean(self.linear_projection_variance.forward(out),dim=1), dim=0)
-        print('mean', mean.shape)
-        print('variance', variance.shape)
+    #    print('mean', mean.shape)
+     #   print('variance', variance.shape)
         #pdb.set_trace()
         return mean, variance, x_after_mean
 
@@ -290,17 +290,17 @@ class GMVAE(nn.Module):
         return mu + eps * std
 
     def decode(self, z):
-        print('shape to be decoded', z.shape)
+      #  print('shape to be decoded', z.shape)
         h3 = F.relu(self.fc3(z))
-        print('shape of the recons',h3.shape)
+       # print('shape of the recons',h3.shape)
 #        pdb.set_trace()
         return torch.sigmoid(self.fc4(h3))
 
     def forward(self, x):
         mu, logvar, x_after_mean = self.vae_encode(x)
         z = self.reparameterize(mu, logvar)
-        print('mu shape:', mu.shape)
-        print('logvar shape:', logvar.shape)
+        #print('mu shape:', mu.shape)
+        #print('logvar shape:', logvar.shape)
  #       pdb.set_trace()
         return self.decode(z), mu, logvar, x_after_mean
 
