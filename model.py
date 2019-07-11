@@ -308,8 +308,8 @@ class GMVAE(nn.Module):
 
     def generate_sample(self, x):
         mu, logvar, _ = self.vae_encode(x)
-        pdb.set_trace()
-        return Normal(mu, logvar.exp())
+#        pdb.set_trace()
+        return Normal(mu, logvar.exp()).sample()
 
 
 
@@ -437,11 +437,14 @@ class Decoder(nn.Module):
         gate_outpust: gate output energies
         alignments:
         """
+#        print('check alignments, gate_outputs, mel_outputs')
+#        pdb.set_trace()
         # (T_out, B) -> (B, T_out)
         alignments = torch.stack(alignments).transpose(0, 1)
         # (T_out, B) -> (B, T_out)
-        gate_outputs = torch.stack(gate_outputs).transpose(0, 1)
-        gate_outputs = gate_outputs.contiguous()
+#        gate_outputs = torch.stack(gate_outputs).transpose(0, 1)
+#        pdb.set_trace()
+        gate_outputs = torch.stack(gate_outputs).view(len(gate_outputs),-1).transpose(0,-1).contiguous()
         # (T_out, B, n_mel_channels) -> (B, T_out, n_mel_channels)
         mel_outputs = torch.stack(mel_outputs).transpose(0, 1).contiguous()
         # decouple frames per step
@@ -622,7 +625,7 @@ class Tacotron2(nn.Module):
         text_inputs, text_lengths, mels, max_len, output_lengths, latent_mels = inputs
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
-        latent_sample = self.latent_model.generate_sample(latent_mels)
+        latent_sample = self.latent_model.generate_sample(inputs)
 
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
 

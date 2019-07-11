@@ -396,7 +396,7 @@ if __name__ == '__main__':
     print("cuDNN Enabled:", hparams.cudnn_enabled)
     print("cuDNN Benchmark:", hparams.cudnn_benchmark)
 
-    # train(args.output_directory, args.log_directory, args.checkpoint_path,
-    #       args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
-    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
-          args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+    train(args.output_directory, args.log_directory, args.checkpoint_path,
+           args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+#    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
+ #         args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
