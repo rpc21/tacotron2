@@ -4,6 +4,7 @@ from math import sqrt
 import torch
 from torch.autograd import Variable
 from torch import nn
+from torch.distributions import Normal
 from torch.nn import functional as F
 from layers import ConvNorm, LinearNorm
 from utils import to_gpu, get_mask_from_lengths
@@ -305,6 +306,12 @@ class GMVAE(nn.Module):
         return self.decode(z), mu, logvar, x_after_mean
 
 
+    def generate_sample(self, x):
+        mu, logvar, _ = self.vae_encode(x)
+        pdb.set_trace()
+        return Normal(mu, logvar.exp())
+
+
 
 class Decoder(nn.Module):
     def __init__(self, hparams):
@@ -573,13 +580,20 @@ class Tacotron2(nn.Module):
         std = sqrt(2.0 / (hparams.n_symbols + hparams.symbols_embedding_dim))
         val = sqrt(3.0) * std  # uniform bounds for std
         self.embedding.weight.data.uniform_(-val, val)
-        self.latent_model = GMVAE(hparams)
+        self.latent_model = self.load_latent_model(hparams)
         self.encoder = Encoder(hparams)
         self.decoder = Decoder(hparams)
         self.postnet = Postnet(hparams)
 
+
+    def load_latent_model(self, hparams):
+        checkpoint = torch.load(hparams.latent_model_checkpoint)
+        model = GMVAE(hparams)
+        model.load_state_dict(checkpoint['state_dict'])
+        return model
+
     def parse_batch(self, batch):
-        text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
+        text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, _, _ = batch
         text_padded = to_gpu(text_padded).long()
         input_lengths = to_gpu(input_lengths).long()
         max_len = torch.max(input_lengths.data).item()
@@ -587,8 +601,6 @@ class Tacotron2(nn.Module):
         gate_padded = to_gpu(gate_padded).float()
         output_lengths = to_gpu(output_lengths).long()
         mel_padded_512 = to_gpu(mel_padded_512).float()
-        gate_padded_512 = to_gpu(gate_padded_512).float()
-        output_lengths_512 = to_gpu(output_lengths_512).long()
 
         return (
             (text_padded, input_lengths, mel_padded, max_len, output_lengths, mel_padded_512),
@@ -610,14 +622,14 @@ class Tacotron2(nn.Module):
         text_inputs, text_lengths, mels, max_len, output_lengths, latent_mels = inputs
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
-        latent_output = self.latent_model(latent_mels)
+        latent_sample = self.latent_model.generate_sample(latent_mels)
 
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
 
         encoder_outputs = self.encoder(embedded_inputs, text_lengths)
 
         mel_outputs, gate_outputs, alignments = self.decoder(
-            encoder_outputs, mels, latent_output, memory_lengths=text_lengths)
+            encoder_outputs, mels, latent_sample, memory_lengths=text_lengths)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet
