@@ -146,6 +146,35 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
         logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
 
 
+def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
+             collate_fn, logger, distributed_run, rank):
+    """Handles all the validation scoring and printing"""
+    model.eval()
+    with torch.no_grad():
+        val_sampler = DistributedSampler(valset) if distributed_run else None
+        val_loader = DataLoader(valset, sampler=val_sampler, num_workers=1,
+                                shuffle=False, batch_size=batch_size,
+                                pin_memory=False, collate_fn=collate_fn)
+
+        val_loss = 0.0
+        for i, batch in enumerate(val_loader):
+            x, y = model.parse_batch(batch)
+            recon, mu, logvar, x_after_mean = model(x)
+
+            loss = criterion(recon, x_after_mean, mu, logvar)
+            if distributed_run:
+                reduced_val_loss = reduce_tensor(loss.data, n_gpus).item()
+            else:
+                reduced_val_loss = loss.item()
+            val_loss += reduced_val_loss
+        val_loss = val_loss / (i + 1)
+
+    model.train()
+    if rank == 0:
+        print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
+        logger.log_validation(reduced_val_loss, model, y, recon, iteration)
+
+
 def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n_gpus, rank, group_name, hparams):
     """Training and validation logging results to tensorboard and stdout
 
@@ -202,6 +231,8 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
             epoch_offset = max(0, int(iteration / len(train_loader)))
 
     model.train()
+    print('===========================Number of parameters===================================')
+    print(str(sum(p.numel() for p in model.parameters() if p.requires_grad)))
     is_overflow = False
     # ================ MAIN TRAINNIG LOOP! ===================
     for epoch in range(epoch_offset, hparams.epochs):
@@ -244,9 +275,9 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
             if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0):
-                # validate(model, criterion, valset, iteration,
-                #          hparams.batch_size, n_gpus, collate_fn, logger,
-                #          hparams.distributed_run, rank)
+                validate_latent(model, criterion, valset, iteration,
+                         hparams.batch_size, n_gpus, collate_fn, logger,
+                         hparams.distributed_run, rank)
                 if rank == 0:
                     checkpoint_path = os.path.join(
                         output_directory, "checkpoint_{}".format(iteration))
@@ -396,7 +427,7 @@ if __name__ == '__main__':
     print("cuDNN Enabled:", hparams.cudnn_enabled)
     print("cuDNN Benchmark:", hparams.cudnn_benchmark)
 
-    train(args.output_directory, args.log_directory, args.checkpoint_path,
-           args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
-#    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
- #         args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+    # train(args.output_directory, args.log_directory, args.checkpoint_path,
+    #        args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
+         args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
