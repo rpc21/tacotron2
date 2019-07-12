@@ -172,7 +172,7 @@ def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
     model.train()
     if rank == 0:
         print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
-        logger.log_validation(reduced_val_loss, model, y, recon, iteration)
+#        logger.log_validation(reduced_val_loss, model, y, recon, iteration)
 
 
 def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n_gpus, rank, group_name, hparams):
@@ -383,7 +383,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
-            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0):
+            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0) and iteration > 0:
                 validate(model, criterion, valset, iteration,
                          hparams.batch_size, n_gpus, collate_fn, logger,
                          hparams.distributed_run, rank)
@@ -414,6 +414,7 @@ if __name__ == '__main__':
                         required=False, help='Distributed group name')
     parser.add_argument('--hparams', type=str,
                         required=False, help='comma separated name=value pairs')
+    parser.add_argument('--latent', type=int, default=1, required=False, help='0 if want to train tacotron')
 
     args = parser.parse_args()
     hparams = create_hparams(args.hparams)
@@ -427,7 +428,11 @@ if __name__ == '__main__':
     print("cuDNN Enabled:", hparams.cudnn_enabled)
     print("cuDNN Benchmark:", hparams.cudnn_benchmark)
 
-    # train(args.output_directory, args.log_directory, args.checkpoint_path,
-    #        args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
-    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
-         args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+#    if args.latent==1:
+#    hparams.batch_size = 1
+    train(args.output_directory, args.log_directory, args.checkpoint_path,
+            args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+#    else:
+#    hparams.batch_size = 8
+#    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
+ #        args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
