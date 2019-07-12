@@ -343,6 +343,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
     model.train()
     is_overflow = False
+    skipped = 0
     # ================ MAIN TRAINNIG LOOP! ===================
     for epoch in range(epoch_offset, hparams.epochs):
         print("Epoch: {}".format(epoch))
@@ -353,7 +354,13 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
             model.zero_grad()
             x, y = model.parse_batch(batch)
-            y_pred = model(x)
+            try:
+                y_pred = model(x)
+            except ValueError:
+                skipped += 1
+                print('Skipped an iteration due to value error, you have now skipped {} iterations'.format(skipped))
+                iteration += 1
+                continue
 
             loss = criterion(y_pred, y)
             if hparams.distributed_run:
