@@ -206,10 +206,10 @@ class Encoder(nn.Module):
 
 
 class GMVAE(nn.Module):
-    def __init__(self, hparams):
+    def __init__(self, hparams, supervised=False):
         super(GMVAE, self).__init__()
         self.latent_embedding_dim = hparams.latent_embedding_dim
-
+        self.supervised = supervised
         convolutions = []
         for _ in range(hparams.latent_n_convolutions):
             conv_layer = nn.Sequential(
@@ -241,7 +241,10 @@ class GMVAE(nn.Module):
         self.fc4 = nn.Linear(int(self.mean_pool_out_size / 2), self.mean_pool_out_size)
 
     def parse_batch(self, batch):
-        text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
+        if self.supervised:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512, labels = batch
+        else:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
         text_padded = to_gpu(text_padded).long()
         input_lengths = to_gpu(input_lengths).long()
         max_len = torch.max(input_lengths.data).item()
