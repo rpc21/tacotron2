@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import wave
+import pdb
 
 PATH_TO_DATA = '/scratch/speech/IEMOCAP_full_release/'
 
@@ -12,12 +13,15 @@ def print_list(list_to_print):
 
 
 def get_text(session, dialog, utterance):
-	path = PATH_TO_DATA + 'Session{}/dialog/transcriptions/{}'.format(session, dialog[:-3] + '.txt')
+	path = PATH_TO_DATA + '{}/dialog/transcriptions/{}'.format(session, dialog + '.txt')
 	with open(path, 'r') as f:
 		for line in f:
-			descriptor, text = line.strip().split(': ')
-			if descriptor.split()[0] == dialog:
-				return text
+			descriptor, text = line.strip().split(':')
+			#pdb.set_trace()
+			if descriptor.split()[0] == utterance[:-4]:
+#				print(text.strip())
+				return text.strip()
+	print('FAILURE')
 	return ''
 
 
@@ -45,15 +49,17 @@ def process_text_files():
 					elif line.strip() == '':
 						get_next_line = True
 			for utterance in lines:
-				audio_paths.append(audio_path + utterance[1][:14] + '/' + utterance[1] + '.wav')
+				audio_paths.append(audio_path + utterance[1][:-5] + '/' + utterance[1] + '.wav')
 				categorical_emotion.append(utterance[2])
-				print(utterance)
+				#print(utterance)
 				scores = utterance[3][1:-1].split(', ')
 				average_valence.append(float(scores[0]))
 				average_activation.append(float(scores[1]))
 				average_dominance.append(float(scores[2]))
 	for audio_path in audio_paths:
-		_, scratch, release, session, sentence, wav, dialog, utterance = audio_path.split('/')
+		#pdb.set_trace()
+#		print(audio_path)
+		_, scratch, speech, release, session, sentence, wav, dialog, utterance = audio_path.split('/')
 		corresponding_text.append(get_text(session, dialog, utterance))
 	return pd.DataFrame(
 		list(zip(audio_paths, corresponding_text, categorical_emotion, average_valence, average_activation, average_dominance)),
