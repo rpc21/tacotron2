@@ -1,4 +1,5 @@
 import os
+import pickle
 import numpy as np
 import pandas as pd
 import wave
@@ -55,6 +56,14 @@ def process_text_files():
 	for audio_path in audio_paths:
 		_, scratch, release, session, sentence, wav, dialog, utterance = audio_path.split('/')
 		corresponding_text.append(get_text(session, dialog, utterance))
+	data = {
+		'filename': audio_paths,
+		'text': corresponding_text,
+		'label': categorical_emotion
+	}
+	with open('home/rpc21/tacotron2/preprocessing/IEMOCAP.pkl', 'wb') as f:
+		pickle.dump(data, f)
+		print('Pickled!')
 	return pd.DataFrame(
 		list(zip(audio_paths, corresponding_text, categorical_emotion, average_valence, average_activation, average_dominance)),
 		columns=['file', 'text', 'emotion', 'valence', 'activation', 'dominance'])
