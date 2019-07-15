@@ -67,7 +67,7 @@ def process_text_files():
 		'text': corresponding_text,
 		'label': categorical_emotion
 	}
-	with open('home/rpc21/tacotron2/preprocessing/IEMOCAP.pkl', 'wb') as f:
+	with open('/home/rpc21/tacotron2/preprocessing/IEMOCAP.pkl', 'wb') as f:
 		pickle.dump(data, f)
 		print('Pickled!')
 	return pd.DataFrame(
