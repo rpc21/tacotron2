@@ -273,7 +273,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
-            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0):
+            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0) and iteration > 0:
                 validate_latent(model, criterion, valset, iteration,
                          hparams.batch_size, n_gpus, collate_fn, logger,
                          hparams.distributed_run, rank)
@@ -436,9 +436,9 @@ if __name__ == '__main__':
 
 #    if args.latent==1:
 #    hparams.batch_size = 1
-    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
-            args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+#    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
+ #           args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
 #    else:
 #    hparams.batch_size = 8
-#    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
- #        args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
+    train(args.output_directory, args.log_directory, args.checkpoint_path,
+         args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)

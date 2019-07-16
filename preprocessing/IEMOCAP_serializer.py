@@ -5,7 +5,7 @@ import pandas as pd
 import wave
 import pdb
 
-PATH_TO_DATA = '/scratch/speech/IEMOCAP_full_release/'
+PATH_TO_DATA = '/scratch/speech/datasets/IEMOCAP_full_release/'
 
 
 def print_list(list_to_print):
@@ -60,14 +60,14 @@ def process_text_files():
 	for audio_path in audio_paths:
 		#pdb.set_trace()
 #		print(audio_path)
-		_, scratch, speech, release, session, sentence, wav, dialog, utterance = audio_path.split('/')
+		_, scratch, speech, datasets, release, session, sentence, wav, dialog, utterance = audio_path.split('/')
 		corresponding_text.append(get_text(session, dialog, utterance))
 	data = {
 		'filename': audio_paths,
 		'text': corresponding_text,
 		'label': categorical_emotion
 	}
-	with open('/home/rpc21/tacotron2/preprocessing/IEMOCAP.pkl', 'wb') as f:
+	with open('/scratch/speech/datasets/IEMOCAP.pkl', 'wb') as f:
 		pickle.dump(data, f)
 		print('Pickled!')
 	return pd.DataFrame(
@@ -77,5 +77,5 @@ def process_text_files():
 
 if __name__ == '__main__':
 	df = process_text_files()
-	df.to_csv('/scratch/rpc21/Speech-Emotion-Analysis/src/preprocessing/audio_paths_labels_TTS.csv',index=False)
+#	df.to_csv('/scratch/rpc21/Speech-Emotion-Analysis/src/preprocessing/audio_paths_labels_TTS.csv',index=False)
 	# print('wrote to csv')
