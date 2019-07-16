@@ -575,7 +575,7 @@ class Decoder(nn.Module):
 
 
 class Tacotron2(nn.Module):
-    def __init__(self, hparams):
+    def __init__(self, hparams, supervised=False):
         super(Tacotron2, self).__init__()
         self.mask_padding = hparams.mask_padding
         self.fp16_run = hparams.fp16_run
@@ -586,15 +586,15 @@ class Tacotron2(nn.Module):
         std = sqrt(2.0 / (hparams.n_symbols + hparams.symbols_embedding_dim))
         val = sqrt(3.0) * std  # uniform bounds for std
         self.embedding.weight.data.uniform_(-val, val)
-        self.latent_model = self.load_latent_model(hparams)
+        self.latent_model = self.load_latent_model(hparams, True)
         self.encoder = Encoder(hparams)
         self.decoder = Decoder(hparams)
         self.postnet = Postnet(hparams)
 
 
-    def load_latent_model(self, hparams):
+    def load_latent_model(self, hparams, supervised=False):
         checkpoint = torch.load(hparams.latent_model_checkpoint)
-        model = GMVAE(hparams)
+        model = GMVAE(hparams, supervised)
         model.load_state_dict(checkpoint['state_dict'])
         return model
 

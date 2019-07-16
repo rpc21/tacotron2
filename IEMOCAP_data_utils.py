@@ -18,7 +18,7 @@ class IEMOCAPLoader(torch.utils.data.Dataset):
     """
 
     def __init__(self, audiopaths_and_text, hparams):
-        filenames, text, labels = self.load_filepaths_and_text()
+        filenames, text, labels = self.load_filepaths_and_text(audiopaths_and_text)
         self.audiopaths_and_text = [[x,y] for x,y in zip(filenames, text)]
         self.labels = labels
         #self.audiopaths_and_text, self.labels = load_filepaths_and_text(audiopaths_and_text)
@@ -37,13 +37,14 @@ class IEMOCAPLoader(torch.utils.data.Dataset):
         random.seed(1234)
         random.shuffle(self.audiopaths_and_text)
 
-    def load_filepaths_and_text(self):
-        with open('/scratch/speech/datasets/IEMOCAP.pkl','rb') as f:
+    def load_filepaths_and_text(self, path):
+        with open(path,'rb') as f:
             data = pickle.load(f)
         return data['filename'], data['text'], data['label']
 
     def get_mel_text_label(self, audiopath_and_text, label):
         # separate filename and text
+#        pdb.set_trace()
         audiopath, text = audiopath_and_text[0], audiopath_and_text[1]
         text = self.get_text(text)
         mel_80 = self.get_mel(audiopath, self.stft_80)
