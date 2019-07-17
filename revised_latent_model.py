@@ -53,79 +53,79 @@ class GMVAE_revised(nn.Module):
         self.fc4 = nn.Linear(int(hparams.latent_embedding_dim / 2), hparams.latent_embedding_dim)
 
 
-def parse_batch(self, batch):
-    if self.supervised:
-        text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512, labels = batch
-    else:
-        text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
-    text_padded = to_gpu(text_padded).long()
-    input_lengths = to_gpu(input_lengths).long()
-    max_len = torch.max(input_lengths.data).item()
-    mel_padded = to_gpu(mel_padded).float()
-    gate_padded = to_gpu(gate_padded).float()
-    output_lengths = to_gpu(output_lengths).long()
-    mel_padded_512 = to_gpu(mel_padded_512).float()
-    gate_padded_512 = to_gpu(gate_padded_512).float()
-    output_lengths_512 = to_gpu(output_lengths_512).long()
+    def parse_batch(self, batch):
+        if self.supervised:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512, labels = batch
+        else:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
+        text_padded = to_gpu(text_padded).long()
+        input_lengths = to_gpu(input_lengths).long()
+        max_len = torch.max(input_lengths.data).item()
+        mel_padded = to_gpu(mel_padded).float()
+        gate_padded = to_gpu(gate_padded).float()
+        output_lengths = to_gpu(output_lengths).long()
+        mel_padded_512 = to_gpu(mel_padded_512).float()
+        gate_padded_512 = to_gpu(gate_padded_512).float()
+        output_lengths_512 = to_gpu(output_lengths_512).long()
 
-    return (
-        (text_padded, input_lengths, mel_padded, max_len, output_lengths, mel_padded),
-        (mel_padded, gate_padded))
-
-
-def vae_encode(self, inputs):
-    _, _, _, _, _, x = inputs
-    # print('x shape:', x.shape)
-    # pdb.set_trace()
-    for conv in self.convolutions:
-        x = F.dropout(F.relu(conv(x)), 0.5, self.training)
-    x = x.transpose(1, 2)
-    #        print('Just finished convs')
-    # pdb.set_trace()
-    out, _ = self.lstm(x)
-    #       print('Just finished lstm', out.shape)
-    # pdb.set_trace()
-    out = torch.mean(out, dim=1)
-    x_after_mean = out
-    print('After mean pool', out.shape)
-    pdb.set_trace()
-    out = self.linear_projection.forward(out)
-    #     print('After linear 1', out.shape)
-    # pdb.set_trace()
-    mean = self.linear_projection_mean.forward(out)
-    variance = self.linear_projection_variance.forward(out)
-    #        mean = torch.mean(torch.mean(self.linear_projection_mean.forward(out),dim=1), dim=0)
-    #        variance = torch.mean(torch.mean(self.linear_projection_variance.forward(out),dim=1), dim=0)
-    #    print('mean', mean.shape)
-    #   print('variance', variance.shape)
-    # pdb.set_trace()
-    return mean, variance, x_after_mean
+        return (
+            (text_padded, input_lengths, mel_padded, max_len, output_lengths, mel_padded),
+            (mel_padded, gate_padded))
 
 
-def reparameterize(self, mu, logvar):
-    std = torch.exp(0.5 * logvar)
-    eps = torch.randn_like(std)
-    return mu + eps * std
+    def vae_encode(self, inputs):
+        _, _, _, _, _, x = inputs
+        # print('x shape:', x.shape)
+        # pdb.set_trace()
+        for conv in self.convolutions:
+            x = F.dropout(F.relu(conv(x)), 0.5, self.training)
+        x = x.transpose(1, 2)
+        #        print('Just finished convs')
+        # pdb.set_trace()
+        out, _ = self.lstm(x)
+        #       print('Just finished lstm', out.shape)
+        # pdb.set_trace()
+        out = torch.mean(out, dim=1)
+        x_after_mean = out
+        print('After mean pool', out.shape)
+        pdb.set_trace()
+        out = self.linear_projection.forward(out)
+        #     print('After linear 1', out.shape)
+        # pdb.set_trace()
+        mean = self.linear_projection_mean.forward(out)
+        variance = self.linear_projection_variance.forward(out)
+        #        mean = torch.mean(torch.mean(self.linear_projection_mean.forward(out),dim=1), dim=0)
+        #        variance = torch.mean(torch.mean(self.linear_projection_variance.forward(out),dim=1), dim=0)
+        #    print('mean', mean.shape)
+        #   print('variance', variance.shape)
+        # pdb.set_trace()
+        return mean, variance, x_after_mean
 
 
-def decode(self, z):
-    #  print('shape to be decoded', z.shape)
-    h3 = F.relu(self.fc3(z))
-    # print('shape of the recons',h3.shape)
-    #        pdb.set_trace()
-    return torch.sigmoid(self.fc4(h3))
+    def reparameterize(self, mu, logvar):
+        std = torch.exp(0.5 * logvar)
+        eps = torch.randn_like(std)
+        return mu + eps * std
 
 
-def forward(self, x):
-    mu, logvar, x_after_mean = self.vae_encode(x)
-    z = self.reparameterize(mu, logvar)
-    # print('mu shape:', mu.shape)
-    # print('logvar shape:', logvar.shape)
-    #       pdb.set_trace()
-    return self.decode(z), mu, logvar, x_after_mean
+    def decode(self, z):
+        #  print('shape to be decoded', z.shape)
+        h3 = F.relu(self.fc3(z))
+        # print('shape of the recons',h3.shape)
+        #        pdb.set_trace()
+        return torch.sigmoid(self.fc4(h3))
 
 
-def generate_sample(self, x):
-    mu, logvar, _ = self.vae_encode(x)
-    #        pdb.set_trace()
-    return Normal(mu, logvar.exp()).sample()
+    def forward(self, x):
+        mu, logvar, x_after_mean = self.vae_encode(x)
+        z = self.reparameterize(mu, logvar)
+        # print('mu shape:', mu.shape)
+        # print('logvar shape:', logvar.shape)
+        #       pdb.set_trace()
+        return self.decode(z), mu, logvar, x_after_mean
+
+    
+    def generate_sample(self, x):
+        mu, logvar, _ = self.vae_encode(x)
+        #        pdb.set_trace()
+        return Normal(mu, logvar.exp()).sample()
