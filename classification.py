@@ -15,6 +15,7 @@ from IEMOCAP_data_utils import IEMOCAPLoader, TextMelCollate
 from loss_function import Tacotron2Loss, GMVAELoss
 from logger import Tacotron2Logger
 from hparams import create_hparams
+from revised_latent_model import GMVAE_revised
 
 
 def reduce_tensor(tensor, n_gpus):
@@ -193,7 +194,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
     torch.cuda.manual_seed(hparams.seed)
 
     # model = load_model(hparams)
-    model = GMVAE(hparams, True).cuda()
+    model = GMVAE_revised(hparams, True).cuda()
     learning_rate = hparams.learning_rate
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate,
                                  weight_decay=hparams.weight_decay)
@@ -440,5 +441,5 @@ if __name__ == '__main__':
  #           args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
 #    else:
 #    hparams.batch_size = 8
-    train(args.output_directory, args.log_directory, args.checkpoint_path,
+    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
          args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
