@@ -518,8 +518,11 @@ class Decoder(nn.Module):
         """
 
         decoder_input = self.get_go_frame(memory).unsqueeze(0)
+        pdb.set_trace()
         decoder_inputs = self.parse_decoder_inputs(decoder_inputs, latent_outputs)
+        pdb.set_trace()
         decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
+        pdb.set_trace()
         decoder_inputs = self.prenet(decoder_inputs)
         self.initialize_decoder_states(
             memory, mask=~get_mask_from_lengths(memory_lengths))
@@ -552,6 +555,7 @@ class Decoder(nn.Module):
         """
         decoder_input = self.get_go_frame(memory)
 
+        pdb.set_trace()
         self.initialize_decoder_states(memory, mask=None)
 
         mel_outputs, gate_outputs, alignments = [], [], []
@@ -656,6 +660,7 @@ class Tacotron2(nn.Module):
             d = pickle.load(f)
         mu = d['mean']
         logvar = d['logvar']
+        pdb.set_trace()
         sample = Normal(mu, logvar.exp()).sample((1, x[2].shape[2])).squeeze(dim=0)
         pdb.set_trace()
         return sample
@@ -663,10 +668,10 @@ class Tacotron2(nn.Module):
     def inference(self, inputs):
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
-        decoder_inputs = self.latent_inference(encoder_outputs)
+#        decoder_inputs = self.latent_inference(encoder_outputs)
 
         mel_outputs, gate_outputs, alignments = self.decoder_enhanced.inference(
-            decoder_inputs)
+            encoder_outputs)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet

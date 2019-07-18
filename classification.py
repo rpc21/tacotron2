@@ -2,6 +2,7 @@ import os
 import time
 import argparse
 import math
+import numpy as np
 from numpy import finfo
 
 import torch
@@ -16,6 +17,7 @@ from loss_function import Tacotron2Loss, GMVAELoss
 from logger import Tacotron2Logger
 from hparams import create_hparams
 from revised_latent_model import GMVAE_revised
+from text import text_to_sequence
 
 
 def reduce_tensor(tensor, n_gpus):
@@ -358,8 +360,11 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
             x, y = model.parse_batch(batch)
 
             #### Just for testing purposes
-            model.eval()
-            outputs = model.inference()
+#            model.eval()
+#            text = "Waveglow is really awesome!"
+#            sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
+#            sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
+#            outputs = model.inference(sequence)
             ###################################################
             try:
                 y_pred = model(x)
