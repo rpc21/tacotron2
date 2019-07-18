@@ -591,7 +591,7 @@ class Tacotron2(nn.Module):
         self.embedding.weight.data.uniform_(-val, val)
         self.latent_model = self.load_latent_model(hparams, supervised)
         self.encoder = Encoder(hparams)
-        self.decoder = Decoder(hparams)
+        self.decoder_enhanced = Decoder(hparams)
         self.postnet = Postnet(hparams)
 
 
@@ -640,7 +640,7 @@ class Tacotron2(nn.Module):
 
         encoder_outputs = self.encoder(embedded_inputs, text_lengths)
 
-        mel_outputs, gate_outputs, alignments = self.decoder(
+        mel_outputs, gate_outputs, alignments = self.decoder_enhanced(
             encoder_outputs, mels, latent_sample, memory_lengths=text_lengths)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
@@ -653,7 +653,7 @@ class Tacotron2(nn.Module):
     def inference(self, inputs):
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
-        mel_outputs, gate_outputs, alignments = self.decoder.inference(
+        mel_outputs, gate_outputs, alignments = self.decoder_enhanced.inference(
             encoder_outputs)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
