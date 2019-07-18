@@ -555,15 +555,17 @@ class Decoder(nn.Module):
         """
         decoder_input = self.get_go_frame(memory)
         pdb.set_trace()
-        sample = distribution.sample()
-        decoder_inputs = torch.cat((torch.zeros([1,80],dtype=sample.dtype), sample.view((1,-1))),dim=1)
-        decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
+        sample = distribution.sample().cuda()
+        decoder_inputs = torch.cat((torch.zeros([1,80],dtype=sample.dtype).cuda(), sample.view((1,-1))),dim=1)
+#        decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
         self.initialize_decoder_states(memory, mask=None)
 
         mel_outputs, gate_outputs, alignments = [], [], []
         while True:
-            decoder_input = self.prenet(decoder_input)
-            mel_output, gate_output, alignment = self.decode(decoder_input)
+            pdb.set_trace()
+            decoder_inputs = self.prenet(decoder_inputs)
+            pdb.set_trace()
+            mel_output, gate_output, alignment = self.decode(decoder_inputs)
 
             mel_outputs += [mel_output.squeeze(1)]
             gate_outputs += [gate_output]
@@ -575,7 +577,7 @@ class Decoder(nn.Module):
                 print("Warning! Reached max decoder steps")
                 break
 
-            decoder_input = mel_output
+            decoder_inputs = mel_output
 
         mel_outputs, gate_outputs, alignments = self.parse_decoder_outputs(
             mel_outputs, gate_outputs, alignments)
@@ -661,9 +663,8 @@ class Tacotron2(nn.Module):
     def latent_inference(self):
         with open('/scratch/speech/output/IEMOCAP/fru/means_and_variances.pkl','rb') as f:
             d = pickle.load(f)
-        mu = d['mean']
-        logvar = d['logvar']
-        pdb.set_trace()
+        mu = d['mean'].cuda()
+        logvar = d['logvar'].cuda()
         return Normal(mu, logvar.exp())
 
 

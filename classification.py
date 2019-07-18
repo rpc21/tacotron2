@@ -360,11 +360,11 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
             x, y = model.parse_batch(batch)
 
             #### Just for testing purposes
-#            model.eval()
-#            text = "Waveglow is really awesome!"
-#            sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
-#            sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
-#            outputs = model.inference(sequence)
+            model.eval()
+            text = "Waveglow is really awesome!"
+            sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
+            sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
+            outputs = model.inference(sequence)
             ###################################################
             try:
                 y_pred = model(x)
