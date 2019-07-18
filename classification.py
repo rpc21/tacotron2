@@ -2,6 +2,7 @@ import os
 import time
 import argparse
 import math
+import wavio
 import numpy as np
 from numpy import finfo
 
@@ -122,8 +123,42 @@ def save_checkpoint(model, optimizer, learning_rate, iteration, filepath):
                 'learning_rate': learning_rate}, filepath)
 
 
+def make_inferences(model, iteration, hparams, output_directory):
+    waveglow_path = '/scratch/speech/waveglow_256channels.pt'
+    waveglow = torch.load(waveglow_path)['model']
+    for m in waveglow.modules():
+        if 'Conv' in str(type(m)):
+            setattr(m, 'padding_mode', 'zeros')
+    waveglow.cuda().eval().half()
+    for k in waveglow.convinv:
+        k.float()
+    model.eval()
+    sentences = [
+        "Waveglow is really awesome!",
+        "Data plus is super fun",
+        "This is a test sentence",
+        "This code keeps breaking",
+        "Decrease already loss function",
+        "This is a much longer text file to see if the length of the sentence causes it to break",
+        "Word"
+    ]
+    for i, text in enumerate(sentences):
+        #### Just for testing purposes
+        text = "Waveglow is really awesome!"
+        sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
+        sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
+        mel_outputs, mel_outputs_postnet, _, alignments = model.inference(sequence)
+        with torch.no_grad():
+            audio = waveglow.infer(mel_outputs_postnet, sigma=0.666)
+        wavio.write(output_directory + 'checkpoint_{}/sentence_{}.wav'.format(iteration, i), audio[0].data.cpu().numpy(), rate=float(hparams.sampling_rate))
+        ###################################################
+
+    print('generated samples')
+    model.train()
+
+
 def validate(model, criterion, valset, iteration, batch_size, n_gpus,
-             collate_fn, logger, distributed_run, rank):
+             collate_fn, logger, distributed_run, rank, hparams, output_directory=None):
     """Handles all the validation scoring and printing"""
     model.eval()
     with torch.no_grad():
@@ -143,6 +178,9 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
                 reduced_val_loss = loss.item()
             val_loss += reduced_val_loss
         val_loss = val_loss / (i + 1)
+
+    print('Making inferences')
+    make_inferences(model, iteration, hparams, output_directory)
 
     model.train()
     if rank == 0:
@@ -359,13 +397,6 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
             model.zero_grad()
             x, y = model.parse_batch(batch)
 
-            #### Just for testing purposes
-            model.eval()
-            text = "Waveglow is really awesome!"
-            sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
-            sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
-            outputs = model.inference(sequence)
-            ###################################################
             try:
                 y_pred = model(x)
             except ValueError:
