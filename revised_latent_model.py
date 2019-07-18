@@ -74,7 +74,7 @@ class GMVAE_revised(nn.Module):
 
 
     def vae_encode(self, inputs):
-        _, _, _, _, _, x = inputs
+        _, _, x, _, _, _ = inputs
 #        print('x shape:', x.shape)
 #        pdb.set_trace()
         for conv in self.convolutions:

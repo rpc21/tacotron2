@@ -7,8 +7,7 @@ from sklearn.model_selection import train_test_split
 PATH_TO_DATA = '/scratch/speech/datasets/IEMOCAP.pkl'
 
 ENCODING = {
-    'sad': torch.tensor([1,0]),
-    'hap': torch.tensor([0,1])
+    'fru': torch.tensor([1]),
 }
 
 if __name__=='__main__':
@@ -29,7 +28,7 @@ if __name__=='__main__':
         'label': label_train
     }
 
-    with open('/scratch/speech/datasets/IEMOCAP_happy_sad_train.pkl','wb') as f:
+    with open('/scratch/speech/datasets/IEMOCAP_fru_train.pkl','wb') as f:
         pickle.dump(train,f)
 
     val = {
@@ -38,6 +37,6 @@ if __name__=='__main__':
         'label': label_val
     }
 
-    with open('/scratch/speech/datasets/IEMOCAP_happy_sad_val.pkl','wb') as f:
+    with open('/scratch/speech/datasets/IEMOCAP_fru_val.pkl','wb') as f:
         pickle.dump(val,f)
 

@@ -8,7 +8,7 @@ from torch.distributions import Normal
 from torch.nn import functional as F
 from layers import ConvNorm, LinearNorm
 from utils import to_gpu, get_mask_from_lengths
-
+from revised_latent_model import GMVAE_revised
 
 class LocationLayer(nn.Module):
     def __init__(self, attention_n_filters, attention_kernel_size,
@@ -586,7 +586,7 @@ class Tacotron2(nn.Module):
         std = sqrt(2.0 / (hparams.n_symbols + hparams.symbols_embedding_dim))
         val = sqrt(3.0) * std  # uniform bounds for std
         self.embedding.weight.data.uniform_(-val, val)
-        self.latent_model = self.load_latent_model(hparams, True)
+        self.latent_model = self.load_latent_model(hparams, supervised)
         self.encoder = Encoder(hparams)
         self.decoder = Decoder(hparams)
         self.postnet = Postnet(hparams)
@@ -594,7 +594,7 @@ class Tacotron2(nn.Module):
 
     def load_latent_model(self, hparams, supervised=False):
         checkpoint = torch.load(hparams.latent_model_checkpoint)
-        model = GMVAE(hparams, supervised)
+        model = GMVAE_revised(hparams, supervised)
         model.load_state_dict(checkpoint['state_dict'])
         return model
 

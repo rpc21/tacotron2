@@ -441,5 +441,5 @@ if __name__ == '__main__':
  #           args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
 #    else:
 #    hparams.batch_size = 8
-    train_latent(args.output_directory, args.log_directory, args.checkpoint_path,
+    train(args.output_directory, args.log_directory, args.checkpoint_path,
          args.warm_start, args.n_gpus, args.rank, args.group_name, hparams)
