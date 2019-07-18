@@ -518,11 +518,11 @@ class Decoder(nn.Module):
         """
 
         decoder_input = self.get_go_frame(memory).unsqueeze(0)
-        pdb.set_trace()
+#        pdb.set_trace()
         decoder_inputs = self.parse_decoder_inputs(decoder_inputs, latent_outputs)
-        pdb.set_trace()
+#        pdb.set_trace()
         decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
-        pdb.set_trace()
+#        pdb.set_trace()
         decoder_inputs = self.prenet(decoder_inputs)
         self.initialize_decoder_states(
             memory, mask=~get_mask_from_lengths(memory_lengths))
@@ -560,11 +560,11 @@ class Decoder(nn.Module):
 
         mel_outputs, gate_outputs, alignments = [], [], []
         while True:
-            pdb.set_trace()
+#            pdb.set_trace()
             sample = distribution.sample().cuda()
             decoder_input = torch.cat((decoder_input, sample.view((1, -1))), dim=1)
             decoder_input = self.prenet(decoder_input)
-            pdb.set_trace()
+#            pdb.set_trace()
             mel_output, gate_output, alignment = self.decode(decoder_input)
 
             mel_outputs += [mel_output.squeeze(1)]

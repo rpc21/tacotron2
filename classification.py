@@ -158,7 +158,7 @@ def make_inferences(model, iteration, hparams, output_directory):
 
 
 def validate(model, criterion, valset, iteration, batch_size, n_gpus,
-             collate_fn, logger, distributed_run, rank, hparams, output_directory=None):
+             collate_fn, logger, distributed_run, rank, hparams=None, output_directory=None):
     """Handles all the validation scoring and printing"""
     model.eval()
     with torch.no_grad():
@@ -436,7 +436,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
             if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0) and iteration > 0:
                 validate(model, criterion, valset, iteration,
                          hparams.batch_size, n_gpus, collate_fn, logger,
-                         hparams.distributed_run, rank)
+                         hparams.distributed_run, rank, hparams=hparams, output_directory=output_directory)
                 if rank == 0:
                     checkpoint_path = os.path.join(
                         output_directory, "checkpoint_{}".format(iteration))
