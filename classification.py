@@ -341,6 +341,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
             iteration += 1  # next iteration is iteration + 1
             epoch_offset = max(0, int(iteration / len(train_loader)))
 
+
     model.train()
     is_overflow = False
     skipped = 0
@@ -354,6 +355,11 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
             model.zero_grad()
             x, y = model.parse_batch(batch)
+
+            #### Just for testing purposes
+            model.eval()
+            outputs = model.inference()
+            ###################################################
             try:
                 y_pred = model(x)
             except ValueError:
