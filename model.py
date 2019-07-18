@@ -541,7 +541,7 @@ class Decoder(nn.Module):
 
         return mel_outputs, gate_outputs, alignments
 
-    def inference(self, memory):
+    def inference(self, memory, distribution):
         """ Decoder inference
         PARAMS
         ------
@@ -554,8 +554,10 @@ class Decoder(nn.Module):
         alignments: sequence of attention weights from the decoder
         """
         decoder_input = self.get_go_frame(memory)
-
         pdb.set_trace()
+        sample = distribution.sample()
+        decoder_inputs = torch.cat((torch.zeros([1,80],dtype=sample.dtype), sample.view((1,-1))),dim=1)
+        decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
         self.initialize_decoder_states(memory, mask=None)
 
         mel_outputs, gate_outputs, alignments = [], [], []
@@ -655,23 +657,24 @@ class Tacotron2(nn.Module):
             [mel_outputs, mel_outputs_postnet, gate_outputs, alignments],
             output_lengths)
 
-    def latent_inference(self, x):
+
+    def latent_inference(self):
         with open('/scratch/speech/output/IEMOCAP/fru/means_and_variances.pkl','rb') as f:
             d = pickle.load(f)
         mu = d['mean']
         logvar = d['logvar']
         pdb.set_trace()
-        sample = Normal(mu, logvar.exp()).sample((1, x[2].shape[2])).squeeze(dim=0)
-        pdb.set_trace()
-        return sample
+        return Normal(mu, logvar.exp())
+
 
     def inference(self, inputs):
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
-#        decoder_inputs = self.latent_inference(encoder_outputs)
+        distribution = self.latent_inference()
 
         mel_outputs, gate_outputs, alignments = self.decoder_enhanced.inference(
-            encoder_outputs)
+            encoder_outputs, distribution)
+
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet
