@@ -42,13 +42,13 @@ class GMVAE_revised(nn.Module):
         #
         # self.mean_pool_out_size = hparams.latent_embedding_dim - hparams.latent_kernel_size + 1
 
-        self.linear_projection = LinearNorm(hparams.latent_embedding_dim, int(hparams.latent_embedding_dim / 2))
+        self.linear_projection = LinearNorm(hparams.latent_embedding_dim + n_label, int(hparams.latent_embedding_dim / 2))
 
         self.linear_projection_mean = LinearNorm(int(hparams.latent_embedding_dim / 2), hparams.latent_out_dim)
 
         self.linear_projection_variance = LinearNorm(int(hparams.latent_embedding_dim / 2), hparams.latent_out_dim)
 
-        self.fc3 = nn.Linear(hparams.latent_out_dim, int(hparams.latent_embedding_dim / 2))
+        self.fc3 = nn.Linear(hparams.latent_out_dim + n_label, int(hparams.latent_embedding_dim / 2))
 
         self.fc4 = nn.Linear(int(hparams.latent_embedding_dim / 2), hparams.latent_embedding_dim)
 
@@ -73,7 +73,7 @@ class GMVAE_revised(nn.Module):
             (mel_padded, gate_padded))
 
 
-    def vae_encode(self, inputs):
+    def vae_encode(self, inputs,label):
         _, _, x, _, _, _ = inputs
 #        print('x shape:', x.shape)
 #        pdb.set_trace()
@@ -90,6 +90,7 @@ class GMVAE_revised(nn.Module):
         x_after_mean = out
 #        print('After mean pool', out.shape)
 #        pdb.set_trace()
+        out=torch.cat([out, label],1)
         out = self.linear_projection.forward(out)
 #        print('After linear 1', out.shape)
 #        pdb.set_trace()
@@ -109,21 +110,22 @@ class GMVAE_revised(nn.Module):
         return mu + eps * std
 
 
-    def decode(self, z):
+    def decode(self, z, label):
         #  print('shape to be decoded', z.shape)
+        z=torch.cat([z, label],1)
         h3 = F.relu(self.fc3(z))
         # print('shape of the recons',h3.shape)
         #        pdb.set_trace()
         return torch.sigmoid(self.fc4(h3))
 
 
-    def forward(self, x):
-        mu, logvar, x_after_mean = self.vae_encode(x)
+    def forward(self, x,label):
+        mu, logvar, x_after_mean = self.vae_encode(x, label)
         z = self.reparameterize(mu, logvar)
         # print('mu shape:', mu.shape)
         # print('logvar shape:', logvar.shape)
         #       pdb.set_trace()
-        return self.decode(z), mu, logvar, x_after_mean
+        return self.decode(z, label), mu, logvar, x_after_mean
 
     
     def generate_sample(self, x):
