@@ -3,7 +3,7 @@ import pickle
 import torch
 import argparse
 import hparams
-from model import GMVAE
+from revised_latent_model import GMVAE_revised
 from classification import prepare_dataloaders, load_checkpoint
 from hparams import create_hparams
 from torch.utils.data import DataLoader
@@ -13,7 +13,7 @@ import numpy as np
 def load_latent_model(hparams, path_to_checkpoint):
     checkpoint = torch.load(path_to_checkpoint)
 #    pdb.set_trace()
-    model = GMVAE(hparams, True)
+    model = GMVAE_revised(hparams, True)
     model.load_state_dict(checkpoint['state_dict'])
 #    model.supervised = True
     return model
@@ -27,7 +27,7 @@ def evaluate_latent_model(checkpoint_path):
     torch.cuda.manual_seed(hparams.seed)
 
     # model = load_model(hparams)
-    model = GMVAE(hparams).cuda()
+    model = GMVAE_revised(hparams).cuda()
     learning_rate = hparams.learning_rate
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate,
                                  weight_decay=hparams.weight_decay)
@@ -99,4 +99,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     hparams = create_hparams(args.hparams)
 
-    evaluate_latent_model('/scratch/speech/output/IEMOCAP/checkpoint_330000')
+    evaluate_latent_model('/scratch/speech/output/IEMOCAP/checkpoint_10000')

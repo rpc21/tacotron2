@@ -75,30 +75,31 @@ class GMVAE_revised(nn.Module):
 
     def vae_encode(self, inputs):
         _, _, _, _, _, x = inputs
-        # print('x shape:', x.shape)
-        # pdb.set_trace()
+#        print('x shape:', x.shape)
+#        pdb.set_trace()
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
+#            pdb.set_trace()
         x = x.transpose(1, 2)
-        #        print('Just finished convs')
-        # pdb.set_trace()
+#        print('Just finished convs')
+#        pdb.set_trace()
         out, _ = self.lstm(x)
-        #       print('Just finished lstm', out.shape)
-        # pdb.set_trace()
+#        print('Just finished lstm', out.shape)
+#        pdb.set_trace()
         out = torch.mean(out, dim=1)
         x_after_mean = out
-        print('After mean pool', out.shape)
-        pdb.set_trace()
+#        print('After mean pool', out.shape)
+#        pdb.set_trace()
         out = self.linear_projection.forward(out)
-        #     print('After linear 1', out.shape)
-        # pdb.set_trace()
+#        print('After linear 1', out.shape)
+#        pdb.set_trace()
         mean = self.linear_projection_mean.forward(out)
         variance = self.linear_projection_variance.forward(out)
         #        mean = torch.mean(torch.mean(self.linear_projection_mean.forward(out),dim=1), dim=0)
         #        variance = torch.mean(torch.mean(self.linear_projection_variance.forward(out),dim=1), dim=0)
         #    print('mean', mean.shape)
         #   print('variance', variance.shape)
-        # pdb.set_trace()
+#        pdb.set_trace()
         return mean, variance, x_after_mean
 
 
