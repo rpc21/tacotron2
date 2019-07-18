@@ -94,6 +94,7 @@ def warm_start_model(checkpoint_path, model, ignore_layers):
         dummy_dict.update(model_dict)
         model_dict = dummy_dict
     model.load_state_dict(model_dict, strict=False)
+    print('loaded pretrained model')
     return model
 
 

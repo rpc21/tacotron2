@@ -21,8 +21,8 @@ def load_latent_model(hparams, path_to_checkpoint):
 
 def evaluate_latent_model(checkpoint_path):
     model = load_latent_model(hparams, checkpoint_path)
-    means = torch.Tensor([])
-    variances = torch.Tensor([])
+    means = torch.Tensor([]).cuda()
+    variances = torch.Tensor([]).cuda()
     torch.manual_seed(hparams.seed)
     torch.cuda.manual_seed(hparams.seed)
 
@@ -59,11 +59,14 @@ def evaluate_latent_model(checkpoint_path):
             variances = torch.cat((variances, logvar), dim=0)
             #            outputs = torch.cat((outputs, torch.squeeze(recon)), dim=0)
             #        pdb.set_trace()
-
+#            pdb.set_trace()
             print('Iteration {} is complete'.format(iteration))
             iteration += 1
-    means = means.mean()
-    variances = variances.mean()
+
+    means = means.mean(dim=0)
+    variances = variances.mean(dim=0)
+    print(means.shape,variances.shape)
+    print(means, variances)
     d = {
         'mean': means,
         'logvar': variances

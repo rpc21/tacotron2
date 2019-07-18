@@ -10,7 +10,7 @@ def create_hparams(hparams_string=None, verbose=False):
         # Experiment Parameters        #
         ################################
         epochs=500,
-        iters_per_checkpoint=10000,
+        iters_per_checkpoint=100,
         seed=1234,
         dynamic_loss_scaling=True,
         fp16_run=False,
@@ -99,7 +99,7 @@ def create_hparams(hparams_string=None, verbose=False):
         learning_rate=1e-3,
         weight_decay=1e-6,
         grad_clip_thresh=1.0,
-        batch_size=2,  #8,
+        batch_size=8,  #8,
         mask_padding=True  # set model's padded outputs to padded values
     )
 
