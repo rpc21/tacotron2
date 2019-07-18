@@ -553,7 +553,7 @@ class Decoder(nn.Module):
         gate_outputs: gate outputs from the decoder
         alignments: sequence of attention weights from the decoder
         """
-        decoder_input = self.get_go_frame(memory)
+        decoder_input = torch.zeros([1,80],dtype=distribution.sample().cuda().dtype).cuda()
 
 #        decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
         self.initialize_decoder_states(memory, mask=None)
