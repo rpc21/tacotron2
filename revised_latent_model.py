@@ -129,4 +129,5 @@ class GMVAE_revised(nn.Module):
     def generate_sample(self, x):
         mu, logvar, _ = self.vae_encode(x)
         #        pdb.set_trace()
-        return Normal(mu, logvar.exp()).sample()
+#        pdb.set_trace()
+        return Normal(mu, logvar.exp()).sample((1,x[2].shape[2])).squeeze(dim=0)

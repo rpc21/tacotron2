@@ -90,7 +90,7 @@ def create_hparams(hparams_string=None, verbose=False):
         postnet_n_convolutions=5,
 
         # Loading latent model
-        latent_model_checkpoint='/scratch/speech/output/IEMOCAP/checkpoint_330000',
+        latent_model_checkpoint='/scratch/speech/output/checkpoint_220000',
 
         ################################
         # Optimization Hyperparameters #
@@ -99,7 +99,7 @@ def create_hparams(hparams_string=None, verbose=False):
         learning_rate=1e-3,
         weight_decay=1e-6,
         grad_clip_thresh=1.0,
-        batch_size=1,  #8,
+        batch_size=2,  #8,
         mask_padding=True  # set model's padded outputs to padded values
     )
 

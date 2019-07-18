@@ -415,7 +415,8 @@ class Decoder(nn.Module):
         inputs: processed decoder inputs
 
         """
-        latent_outputs = latent_outputs.permute(1, 0, 2)
+#        pdb.set_trace()
+#        latent_outputs = latent_outputs.permute(1, 0, 2)
         # (B, n_mel_channels, T_out) -> (B, T_out, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(1, 2)
         decoder_inputs = decoder_inputs.view(
@@ -423,6 +424,7 @@ class Decoder(nn.Module):
             int(decoder_inputs.size(1) / self.n_frames_per_step), -1)
         # (B, T_out, n_mel_channels) -> (T_out, B, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(0, 1)
+#        pdb.set_trace()
         decoder_inputs = torch.cat((decoder_inputs, latent_outputs), dim=2)
         return decoder_inputs
 
@@ -577,6 +579,7 @@ class Decoder(nn.Module):
 class Tacotron2(nn.Module):
     def __init__(self, hparams, supervised=False):
         super(Tacotron2, self).__init__()
+        self.supervised = supervised
         self.mask_padding = hparams.mask_padding
         self.fp16_run = hparams.fp16_run
         self.n_mel_channels = hparams.n_mel_channels
@@ -599,7 +602,10 @@ class Tacotron2(nn.Module):
         return model
 
     def parse_batch(self, batch):
-        text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, _, _ = batch
+        if self.supervised:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512, labels = batch
+        else:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
         text_padded = to_gpu(text_padded).long()
         input_lengths = to_gpu(input_lengths).long()
         max_len = torch.max(input_lengths.data).item()
