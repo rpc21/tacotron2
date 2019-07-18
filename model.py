@@ -2,6 +2,7 @@ import pdb
 
 from math import sqrt
 import torch
+import pickle
 from torch.autograd import Variable
 from torch import nn
 from torch.distributions import Normal
@@ -650,11 +651,22 @@ class Tacotron2(nn.Module):
             [mel_outputs, mel_outputs_postnet, gate_outputs, alignments],
             output_lengths)
 
+    def latent_inference(self, x):
+        with open('/scratch/speech/output/IEMOCAP/fru/means_and_variances.pkl','rb') as f:
+            d = pickle.load(f)
+        mu = d['mean']
+        logvar = d['logvar']
+        sample = Normal(mu, logvar.exp()).sample((1, x[2].shape[2])).squeeze(dim=0)
+        pdb.set_trace()
+        return sample
+
     def inference(self, inputs):
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
+        decoder_inputs = self.latent_inference(encoder_outputs)
+
         mel_outputs, gate_outputs, alignments = self.decoder_enhanced.inference(
-            encoder_outputs)
+            decoder_inputs)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet
