@@ -137,7 +137,7 @@ def make_inferences(model, iteration, hparams, output_directory):
     waveglow.cuda().eval().half()
     for k in waveglow.convinv:
         k.float()
-    model.eval()
+    model.eval().half()
     sentences = [
         "Waveglow is really awesome!",
         "Data plus is super fun",
