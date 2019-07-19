@@ -134,10 +134,10 @@ def make_inferences(model, iteration, hparams, output_directory):
     for m in waveglow.modules():
         if 'Conv' in str(type(m)):
             setattr(m, 'padding_mode', 'zeros')
-    waveglow.cuda().eval().half()
+    waveglow.cuda().eval()
     for k in waveglow.convinv:
         k.float()
-    model.eval().half()
+    model.eval()
     sentences = [
         "Waveglow is really awesome!",
         "Data plus is super fun",
