@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import argparse
 import math
@@ -127,6 +128,7 @@ def save_checkpoint(model, optimizer, learning_rate, iteration, filepath):
 
 def make_inferences(model, iteration, hparams, output_directory):
     waveglow_path = '/scratch/speech/waveglow_256channels.pt'
+    sys.path.append('waveglow/')
     pdb.set_trace()
     waveglow = torch.load(waveglow_path)['model']
     for m in waveglow.modules():
