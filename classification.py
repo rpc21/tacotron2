@@ -3,6 +3,7 @@ import time
 import argparse
 import math
 import wavio
+import pdb
 import numpy as np
 from numpy import finfo
 
@@ -125,6 +126,7 @@ def save_checkpoint(model, optimizer, learning_rate, iteration, filepath):
 
 def make_inferences(model, iteration, hparams, output_directory):
     waveglow_path = '/scratch/speech/waveglow_256channels.pt'
+    pdb.set_trace()
     waveglow = torch.load(waveglow_path)['model']
     for m in waveglow.modules():
         if 'Conv' in str(type(m)):
@@ -160,6 +162,8 @@ def make_inferences(model, iteration, hparams, output_directory):
 def validate(model, criterion, valset, iteration, batch_size, n_gpus,
              collate_fn, logger, distributed_run, rank, hparams=None, output_directory=None):
     """Handles all the validation scoring and printing"""
+    make_inferences(model, iteration, hparams, output_directory)
+
     model.eval()
     with torch.no_grad():
         val_sampler = DistributedSampler(valset) if distributed_run else None
