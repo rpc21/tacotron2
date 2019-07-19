@@ -2,12 +2,14 @@ import pdb
 
 from math import sqrt
 import torch
+import pickle
 from torch.autograd import Variable
 from torch import nn
+from torch.distributions import Normal
 from torch.nn import functional as F
 from layers import ConvNorm, LinearNorm
 from utils import to_gpu, get_mask_from_lengths
-
+from revised_latent_model import GMVAE_revised
 
 class LocationLayer(nn.Module):
     def __init__(self, attention_n_filters, attention_kernel_size,
@@ -204,9 +206,11 @@ class Encoder(nn.Module):
         return outputs
 
 
-class LatentModel(nn.Module):
-    def __init__(self, hparams):
-        super(LatentModel, self).__init__()
+class GMVAE(nn.Module):
+    def __init__(self, hparams, supervised=False):
+        super(GMVAE, self).__init__()
+        self.latent_embedding_dim = hparams.latent_embedding_dim
+        self.supervised = supervised
         convolutions = []
         for _ in range(hparams.latent_n_convolutions):
             conv_layer = nn.Sequential(
@@ -223,44 +227,94 @@ class LatentModel(nn.Module):
                             int(hparams.latent_embedding_dim / 2), 1,
                             batch_first=True, bidirectional=True)
 
-        pdb.set_trace()
-        print(self.lstm)
-
         self.mean_pool = nn.AvgPool1d(hparams.latent_kernel_size, stride=1)
-        pdb.set_trace()
-        print(self.mean_pool)
 
-        self.linear_projection = LinearNorm(hparams.latent_embedding_dim - hparams.latent_kernel_size + 1, 16)
-        pdb.set_trace()
-        print(self.linear_projection)
+        self.mean_pool_out_size = hparams.latent_embedding_dim - hparams.latent_kernel_size + 1
 
-    def forward(self, x):
-        print(x)
-        print(x.shape)
-        print("The above is the input to the forward function (x) and its shape")
-        pdb.set_trace()
+        self.linear_projection = LinearNorm(self.mean_pool_out_size, int(self.mean_pool_out_size / 2))
+
+        self.linear_projection_mean = LinearNorm(int(self.mean_pool_out_size / 2), hparams.latent_out_dim)
+
+        self.linear_projection_variance = LinearNorm(int(self.mean_pool_out_size / 2), hparams.latent_out_dim)
+
+        self.fc3 = nn.Linear(hparams.latent_out_dim, int(self.mean_pool_out_size / 2))
+
+        self.fc4 = nn.Linear(int(self.mean_pool_out_size / 2), self.mean_pool_out_size)
+
+    def parse_batch(self, batch):
+        if self.supervised:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512, labels = batch
+        else:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
+        text_padded = to_gpu(text_padded).long()
+        input_lengths = to_gpu(input_lengths).long()
+        max_len = torch.max(input_lengths.data).item()
+        mel_padded = to_gpu(mel_padded).float()
+        gate_padded = to_gpu(gate_padded).float()
+        output_lengths = to_gpu(output_lengths).long()
+        mel_padded_512 = to_gpu(mel_padded_512).float()
+        gate_padded_512 = to_gpu(gate_padded_512).float()
+        output_lengths_512 = to_gpu(output_lengths_512).long()
+
+        return (
+            (text_padded, input_lengths, mel_padded, max_len, output_lengths, mel_padded_512),
+            (mel_padded, gate_padded))
+
+
+    def vae_encode(self, inputs):
+        _, _, _, _, _, x = inputs
+       # print('x shape:', x.shape)
+        #pdb.set_trace()
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
-            print(x)
-            print(x.shape)
-            print("The above is x, the after convolution")
-            pdb.set_trace()
-        out = self.lstm(x)
-        print(out)
-        print(out.shape)
-        print("The above is the output of the lstm")
-        pdb.set_trace()
+        x = x.transpose(1, 2)
+#        print('Just finished convs')
+        #pdb.set_trace()
+        out, _ = self.lstm(x)
+ #       print('Just finished lstm', out.shape)
+        #pdb.set_trace()
         out = self.mean_pool(out)
-        print(out)
-        print(out.shape)
-        print("Above is the output of the mean pooling")
-        pdb.set_trace()
+        x_after_mean = out
+  #      print('After mean pool', out.shape)
+        #pdb.set_trace()
         out = self.linear_projection.forward(out)
-        print(out)
-        print(out.shape)
-        print("Above is the output of the linear projection and is what is returned from the forward function")
-        pdb.set_trace()
-        return out
+   #     print('After linear 1', out.shape)
+        #pdb.set_trace()
+        mean = self.linear_projection_mean.forward(out)
+        variance = self.linear_projection_variance.forward(out)
+#        mean = torch.mean(torch.mean(self.linear_projection_mean.forward(out),dim=1), dim=0)
+#        variance = torch.mean(torch.mean(self.linear_projection_variance.forward(out),dim=1), dim=0)
+    #    print('mean', mean.shape)
+     #   print('variance', variance.shape)
+        #pdb.set_trace()
+        return mean, variance, x_after_mean
+
+    def reparameterize(self, mu, logvar):
+        std = torch.exp(0.5 * logvar)
+        eps = torch.randn_like(std)
+        return mu + eps * std
+
+    def decode(self, z):
+      #  print('shape to be decoded', z.shape)
+        h3 = F.relu(self.fc3(z))
+       # print('shape of the recons',h3.shape)
+#        pdb.set_trace()
+        return torch.sigmoid(self.fc4(h3))
+
+    def forward(self, x):
+        mu, logvar, x_after_mean = self.vae_encode(x)
+        z = self.reparameterize(mu, logvar)
+        #print('mu shape:', mu.shape)
+        #print('logvar shape:', logvar.shape)
+ #       pdb.set_trace()
+        return self.decode(z), mu, logvar, x_after_mean
+
+
+    def generate_sample(self, x):
+        mu, logvar, _ = self.vae_encode(x)
+#        pdb.set_trace()
+        return Normal(mu, logvar.exp()).sample()
+
 
 
 class Decoder(nn.Module):
@@ -276,9 +330,10 @@ class Decoder(nn.Module):
         self.gate_threshold = hparams.gate_threshold
         self.p_attention_dropout = hparams.p_attention_dropout
         self.p_decoder_dropout = hparams.p_decoder_dropout
+        self.latent_output_dim = hparams.latent_out_dim
 
         self.prenet = Prenet(
-            hparams.n_mel_channels * hparams.n_frames_per_step,
+            hparams.n_mel_channels * hparams.n_frames_per_step + hparams.latent_out_dim,
             [hparams.prenet_dim, hparams.prenet_dim])
 
         self.attention_rnn = nn.LSTMCell(
@@ -314,7 +369,7 @@ class Decoder(nn.Module):
         """
         B = memory.size(0)
         decoder_input = Variable(memory.data.new(
-            B, self.n_mel_channels * self.n_frames_per_step).zero_())
+            B, self.n_mel_channels * self.n_frames_per_step + self.latent_output_dim).zero_())
         return decoder_input
 
     def initialize_decoder_states(self, memory, mask):
@@ -350,7 +405,7 @@ class Decoder(nn.Module):
         self.processed_memory = self.attention_layer.memory_layer(memory)
         self.mask = mask
 
-    def parse_decoder_inputs(self, decoder_inputs):
+    def parse_decoder_inputs(self, decoder_inputs, latent_outputs):
         """ Prepares decoder inputs, i.e. mel outputs
         PARAMS
         ------
@@ -361,6 +416,8 @@ class Decoder(nn.Module):
         inputs: processed decoder inputs
 
         """
+#        pdb.set_trace()
+#        latent_outputs = latent_outputs.permute(1, 0, 2)
         # (B, n_mel_channels, T_out) -> (B, T_out, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(1, 2)
         decoder_inputs = decoder_inputs.view(
@@ -368,6 +425,8 @@ class Decoder(nn.Module):
             int(decoder_inputs.size(1) / self.n_frames_per_step), -1)
         # (B, T_out, n_mel_channels) -> (T_out, B, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(0, 1)
+#        pdb.set_trace()
+        decoder_inputs = torch.cat((decoder_inputs, latent_outputs), dim=2)
         return decoder_inputs
 
     def parse_decoder_outputs(self, mel_outputs, gate_outputs, alignments):
@@ -384,11 +443,14 @@ class Decoder(nn.Module):
         gate_outpust: gate output energies
         alignments:
         """
+#        print('check alignments, gate_outputs, mel_outputs')
+#        pdb.set_trace()
         # (T_out, B) -> (B, T_out)
         alignments = torch.stack(alignments).transpose(0, 1)
         # (T_out, B) -> (B, T_out)
-        gate_outputs = torch.stack(gate_outputs).transpose(0, 1)
-        gate_outputs = gate_outputs.contiguous()
+#        gate_outputs = torch.stack(gate_outputs).transpose(0, 1)
+#        pdb.set_trace()
+        gate_outputs = torch.stack(gate_outputs).view(len(gate_outputs),-1).transpose(0,-1).contiguous()
         # (T_out, B, n_mel_channels) -> (B, T_out, n_mel_channels)
         mel_outputs = torch.stack(mel_outputs).transpose(0, 1).contiguous()
         # decouple frames per step
@@ -440,7 +502,7 @@ class Decoder(nn.Module):
         gate_prediction = self.gate_layer(decoder_hidden_attention_context)
         return decoder_output, gate_prediction, self.attention_weights
 
-    def forward(self, memory, decoder_inputs, memory_lengths):
+    def forward(self, memory, decoder_inputs, latent_outputs, memory_lengths):
         """ Decoder forward pass for training
         PARAMS
         ------
@@ -456,10 +518,12 @@ class Decoder(nn.Module):
         """
 
         decoder_input = self.get_go_frame(memory).unsqueeze(0)
-        decoder_inputs = self.parse_decoder_inputs(decoder_inputs)
+#        pdb.set_trace()
+        decoder_inputs = self.parse_decoder_inputs(decoder_inputs, latent_outputs)
+#        pdb.set_trace()
         decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
+#        pdb.set_trace()
         decoder_inputs = self.prenet(decoder_inputs)
-
         self.initialize_decoder_states(
             memory, mask=~get_mask_from_lengths(memory_lengths))
 
@@ -477,7 +541,7 @@ class Decoder(nn.Module):
 
         return mel_outputs, gate_outputs, alignments
 
-    def inference(self, memory):
+    def inference(self, memory, distribution):
         """ Decoder inference
         PARAMS
         ------
@@ -489,13 +553,18 @@ class Decoder(nn.Module):
         gate_outputs: gate outputs from the decoder
         alignments: sequence of attention weights from the decoder
         """
-        decoder_input = self.get_go_frame(memory)
+        decoder_input = torch.zeros([1,80],dtype=distribution.sample().cuda().dtype).cuda()
 
+#        decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
         self.initialize_decoder_states(memory, mask=None)
 
         mel_outputs, gate_outputs, alignments = [], [], []
         while True:
+#            pdb.set_trace()
+            sample = distribution.sample().cuda()
+            decoder_input = torch.cat((decoder_input, sample.view((1, -1))), dim=1)
             decoder_input = self.prenet(decoder_input)
+#            pdb.set_trace()
             mel_output, gate_output, alignment = self.decode(decoder_input)
 
             mel_outputs += [mel_output.squeeze(1)]
@@ -517,8 +586,9 @@ class Decoder(nn.Module):
 
 
 class Tacotron2(nn.Module):
-    def __init__(self, hparams):
+    def __init__(self, hparams, supervised=False):
         super(Tacotron2, self).__init__()
+        self.supervised = supervised
         self.mask_padding = hparams.mask_padding
         self.fp16_run = hparams.fp16_run
         self.n_mel_channels = hparams.n_mel_channels
@@ -528,23 +598,33 @@ class Tacotron2(nn.Module):
         std = sqrt(2.0 / (hparams.n_symbols + hparams.symbols_embedding_dim))
         val = sqrt(3.0) * std  # uniform bounds for std
         self.embedding.weight.data.uniform_(-val, val)
-        self.latent_model = LatentModel(hparams)
+        self.latent_model = self.load_latent_model(hparams, supervised)
         self.encoder = Encoder(hparams)
-        self.decoder = Decoder(hparams)
+        self.decoder_enhanced = Decoder(hparams)
         self.postnet = Postnet(hparams)
 
+
+    def load_latent_model(self, hparams, supervised=False):
+        checkpoint = torch.load(hparams.latent_model_checkpoint)
+        model = GMVAE_revised(hparams, supervised)
+        model.load_state_dict(checkpoint['state_dict'])
+        return model
+
     def parse_batch(self, batch):
-        text_padded, input_lengths, mel_padded, gate_padded, \
-        output_lengths = batch
+        if self.supervised:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512, labels = batch
+        else:
+            text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
         text_padded = to_gpu(text_padded).long()
         input_lengths = to_gpu(input_lengths).long()
         max_len = torch.max(input_lengths.data).item()
         mel_padded = to_gpu(mel_padded).float()
         gate_padded = to_gpu(gate_padded).float()
         output_lengths = to_gpu(output_lengths).long()
+        mel_padded_512 = to_gpu(mel_padded_512).float()
 
         return (
-            (text_padded, input_lengths, mel_padded, max_len, output_lengths),
+            (text_padded, input_lengths, mel_padded, max_len, output_lengths, mel_padded_512),
             (mel_padded, gate_padded))
 
     def parse_output(self, outputs, output_lengths=None):
@@ -560,28 +640,17 @@ class Tacotron2(nn.Module):
         return outputs
 
     def forward(self, inputs):
-        text_inputs, text_lengths, mels, max_len, output_lengths = inputs
+        text_inputs, text_lengths, mels, max_len, output_lengths, latent_mels = inputs
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
-        pdb.set_trace()
-        print(mels)
-        print('About to call self.latent_model(mels), get info about mels')
-
-        latent_output = self.latent_model(mels)
-
-        print('Just called latent_output=self.latent_model(mels), check latent_output variables properties')
-        pdb.set_trace()
+        latent_sample = self.latent_model.generate_sample(inputs)
 
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
 
         encoder_outputs = self.encoder(embedded_inputs, text_lengths)
 
-        print('About to call self.decoder, check the shape of encoder_outputs, mels, text_lengths to figure out concat')
-        print('Also look again at latent_output properties')
-        pdb.set_trace()
-
-        mel_outputs, gate_outputs, alignments = self.decoder(
-            encoder_outputs, mels, memory_lengths=text_lengths)
+        mel_outputs, gate_outputs, alignments = self.decoder_enhanced(
+            encoder_outputs, mels, latent_sample, memory_lengths=text_lengths)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet
@@ -590,11 +659,23 @@ class Tacotron2(nn.Module):
             [mel_outputs, mel_outputs_postnet, gate_outputs, alignments],
             output_lengths)
 
+
+    def latent_inference(self):
+        with open('/scratch/speech/output/IEMOCAP/fru/means_and_variances.pkl','rb') as f:
+            d = pickle.load(f)
+        mu = d['mean'].cuda()
+        logvar = d['logvar'].cuda()
+        return Normal(mu, logvar.exp())
+
+
     def inference(self, inputs):
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
-        mel_outputs, gate_outputs, alignments = self.decoder.inference(
-            encoder_outputs)
+        distribution = self.latent_inference()
+
+        mel_outputs, gate_outputs, alignments = self.decoder_enhanced.inference(
+            encoder_outputs, distribution)
+
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet
@@ -603,3 +684,4 @@ class Tacotron2(nn.Module):
             [mel_outputs, mel_outputs_postnet, gate_outputs, alignments])
 
         return outputs
+

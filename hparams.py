@@ -9,8 +9,8 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         # Experiment Parameters        #
         ################################
-        epochs=10, #500
-        iters_per_checkpoint=10, #1000
+        epochs=500,
+        iters_per_checkpoint=5,
         seed=1234,
         dynamic_loss_scaling=True,
         fp16_run=False,
@@ -24,12 +24,17 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         # Data Parameters             #
         ################################
-        load_mel_from_disk=False,
+        load_mel_from_disk=True, #False,
 #        training_files='filelists/ljs_audio_text_train_filelist.txt',
 #        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
-        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_small.txt',
+#        training_files='/scratch/speech/datasets/IEMOCAP_happy_sad_train.pkl',
+        training_files='/scratch/speech/datasets/IEMOCAP_fru_train.pkl',
+#        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100_1028_subset.txt',
+#        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_small.txt',
 #        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
-        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
+#        validation_files='/scratch/speech/datasets/IEMOCAP_happy_sad_val.pkl',
+        validation_files='/scratch/speech/datasets/IEMOCAP_fru_val.pkl',
+#        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
         text_cleaners=['english_cleaners'],
 
         ################################
@@ -37,7 +42,7 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         max_wav_value=32768.0,
         #sampling_rate=22050,
-        sampling_rate=24000, #LibriTTS uses sampling rate of 24000
+        sampling_rate=16000,  #24000, #LibriTTS uses sampling rate of 24000
         filter_length=1024,
         hop_length=256,
         win_length=1024,
@@ -60,6 +65,7 @@ def create_hparams(hparams_string=None, verbose=False):
         latent_kernel_size=3,
         latent_n_convolutions=2,
         latent_embedding_dim=512,
+        latent_out_dim=16,
 
         # Decoder parameters
         n_frames_per_step=1,  # currently only 1 is supported
@@ -83,6 +89,9 @@ def create_hparams(hparams_string=None, verbose=False):
         postnet_kernel_size=5,
         postnet_n_convolutions=5,
 
+        # Loading latent model
+        latent_model_checkpoint='/scratch/speech/output/checkpoint_220000',
+
         ################################
         # Optimization Hyperparameters #
         ################################
@@ -90,7 +99,7 @@ def create_hparams(hparams_string=None, verbose=False):
         learning_rate=1e-3,
         weight_decay=1e-6,
         grad_clip_thresh=1.0,
-        batch_size=8,
+        batch_size=8,  #8,
         mask_padding=True  # set model's padded outputs to padded values
     )
 

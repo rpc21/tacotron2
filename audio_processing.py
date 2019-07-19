@@ -46,7 +46,7 @@ def window_sumsquare(window, n_frames, hop_length=200, win_length=800,
 
     # Compute the squared window at the desired length
     win_sq = get_window(window, win_length, fftbins=True)
-    win_sq = librosa_util.normalize(win_sq, norm=norm)**2
+    win_sq = librosa_util.normalize(win_sq, norm=norm) ** 2
     win_sq = librosa_util.pad_center(win_sq, n_fft)
 
     # Fill the envelope
@@ -91,3 +91,13 @@ def dynamic_range_decompression(x, C=1):
     C: compression factor used to compress
     """
     return torch.exp(x) / C
+
+#
+# def cache_input(source_directory, target_directory):
+#
+#
+# if __name__ == '__main__':
+#     cache_mels('/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
+#                '/scratch/speech/datasets/Tacotron_LibriTTS/cached_mels/')
+#     cache_mels('/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
+#                '/scratch/speech/datasets/Tacotron_LibriTTS/cached_mels/')
