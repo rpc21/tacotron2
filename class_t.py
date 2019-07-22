@@ -49,7 +49,7 @@ class GMVAE_revised(nn.Module):
                                             int(hparams.latent_embedding_dim / 2))
 
         self.linear_projection_mean_variance = LinearNorm(int(hparams.latent_embedding_dim / 2),
-                                                          hparams.latent_out_dim * self.k)
+                                                          hparams.latent_out_dim * self.k * 2)
 
         # self.linear_projection_variance = LinearNorm(int(hparams.latent_embedding_dim / 2), hparams.latent_out_dim)
 
