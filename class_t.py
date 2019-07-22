@@ -98,7 +98,7 @@ class GMVAE_revised(nn.Module):
         x_after_mean = out
         #        print('After mean pool', out.shape)
         #        pdb.set_trace()
-        out = torch.cat([out, label], 1)
+#        out = torch.cat([out, label], 1)
         out = self.linear_projection.forward(out)
         #        print('After linear 1', out.shape)
         #        pdb.set_trace()
@@ -119,7 +119,7 @@ class GMVAE_revised(nn.Module):
 
     def decode(self, z, label=None):
         #  print('shape to be decoded', z.shape)
-        z = torch.cat([z, label], 1)
+#        z = torch.cat([z, label], 1)
         h3 = F.relu(self.fc3(z))
         # print('shape of the recons',h3.shape)
         #        pdb.set_trace()
