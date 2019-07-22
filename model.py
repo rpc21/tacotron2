@@ -425,7 +425,7 @@ class Decoder(nn.Module):
             int(decoder_inputs.size(1) / self.n_frames_per_step), -1)
         # (B, T_out, n_mel_channels) -> (T_out, B, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(0, 1)
-#        pdb.set_trace()
+        pdb.set_trace()
         decoder_inputs = torch.cat((decoder_inputs, latent_outputs), dim=2)
         return decoder_inputs
 
