@@ -195,7 +195,7 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
 
     model.train()
     if rank == 0:
-        with open(output_directory + 'output_stats.txt','a+') as f:
+        with open(output_directory + 'output_stats_epochs.txt','a+') as f:
             f.write("Validation loss {}: {:9f}  \n".format(iteration, reduced_val_loss))
 
         logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
@@ -441,24 +441,24 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
             optimizer.step()
 
-            if not is_overflow and rank == 0:
+            if not is_overflow and rank == 0 and (iteration % 10 == 0):
                 duration = time.perf_counter() - start
-                with open(output_directory + 'output_stats.txt','a+') as f:
+                with open(output_directory + 'output_stats_iterations.txt','a+') as f:
                     f.write("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
                         epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
 
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
-            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0) and iteration > 0:
-                validate(model, criterion, valset, iteration,
-                         hparams.batch_size, n_gpus, collate_fn, logger,
-                         hparams.distributed_run, rank, hparams=hparams, output_directory=output_directory)
-                if rank == 0:
-                    checkpoint_path = os.path.join(
-                        output_directory, "checkpoint_{}".format(iteration))
-                    save_checkpoint(model, optimizer, learning_rate, iteration,
-                                    checkpoint_path)
+        if not is_overflow and iteration > 0:
+            validate(model, criterion, valset, epoch,
+                     hparams.batch_size, n_gpus, collate_fn, logger,
+                     hparams.distributed_run, rank, hparams=hparams, output_directory=output_directory)
+            if rank == 0 and (epoch % 10 == 0):
+                checkpoint_path = os.path.join(
+                    output_directory, "checkpoint_{}".format(epoch))
+                save_checkpoint(model, optimizer, learning_rate, epoch,
+                                checkpoint_path)
 
             iteration += 1
 
