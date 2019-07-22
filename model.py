@@ -331,7 +331,7 @@ class Decoder(nn.Module):
         self.latent_output_dim = hparams.latent_out_dim
 
         self.prenet = Prenet(
-            hparams.n_mel_channels * hparams.n_frames_per_step + hparams.latent_out_dim,
+            hparams.n_mel_channels * hparams.n_frames_per_step, # + hparams.latent_out_dim,
             [hparams.prenet_dim, hparams.prenet_dim])
 
         self.attention_rnn = nn.LSTMCell(
@@ -367,7 +367,7 @@ class Decoder(nn.Module):
         """
         B = memory.size(0)
         decoder_input = Variable(memory.data.new(
-            B, self.n_mel_channels * self.n_frames_per_step + self.latent_output_dim).zero_())
+            B, self.n_mel_channels * self.n_frames_per_step).zero_() # + self.latent_output_dim).zero_())
         return decoder_input
 
     def initialize_decoder_states(self, memory, mask):
@@ -423,8 +423,8 @@ class Decoder(nn.Module):
             int(decoder_inputs.size(1) / self.n_frames_per_step), -1)
         # (B, T_out, n_mel_channels) -> (T_out, B, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(0, 1)
-        pdb.set_trace()
-        decoder_inputs = torch.cat((decoder_inputs, latent_outputs), dim=2)
+#        pdb.set_trace()
+        decoder_inputs = decoder_inputs + latent_outputs
         return decoder_inputs
 
     def parse_decoder_outputs(self, mel_outputs, gate_outputs, alignments):
