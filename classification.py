@@ -322,6 +322,9 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
 
             optimizer.step()
 
+            print("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} \n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm))
+
             if not is_overflow and rank == 0:
                 duration = time.perf_counter() - start
                 with open(output_directory + 'output_stats.txt','a+') as f:
@@ -441,6 +444,8 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
             optimizer.step()
 
+            print("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
             if not is_overflow and rank == 0 and (iteration % 10 == 0):
                 duration = time.perf_counter() - start
                 with open(output_directory + 'output_stats_iterations.txt','a+') as f:
