@@ -159,6 +159,7 @@ class GMVAE_revised(nn.Module):
         return nelbo, rec, kl
 
     def gaussian_parameters(self, h, dim=-1):
+        pdb.set_trace()
         m, h = torch.split(h, h.size(dim) // 2, dim=dim)
         v = F.softplus(h) + 1e-8
         return m, v
