@@ -539,30 +539,67 @@ class Decoder(nn.Module):
 
         return mel_outputs, gate_outputs, alignments
 
-    def inference(self, memory, distribution):
+    # def inference(self, memory, distribution):
+    #     """ Decoder inference
+    #     PARAMS
+    #     ------
+    #     memory: Encoder outputs
+    #
+    #     RETURNS
+    #     -------
+    #     mel_outputs: mel outputs from the decoder
+    #     gate_outputs: gate outputs from the decoder
+    #     alignments: sequence of attention weights from the decoder
+    #     """
+    #     decoder_input = torch.zeros([1, 80], dtype=distribution.sample().cuda().dtype).cuda()
+    #
+    #     #        decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
+    #     self.initialize_decoder_states(memory, mask=None)
+    #
+    #     mel_outputs, gate_outputs, alignments = [], [], []
+    #     while True:
+    #         #            pdb.set_trace()
+    #         sample = distribution.sample().cuda()
+    #         decoder_input = torch.cat((decoder_input, sample.view((1, -1))), dim=1)
+    #         decoder_input = self.prenet(decoder_input)
+    #         #            pdb.set_trace()
+    #         mel_output, gate_output, alignment = self.decode(decoder_input)
+    #
+    #         mel_outputs += [mel_output.squeeze(1)]
+    #         gate_outputs += [gate_output]
+    #         alignments += [alignment]
+    #
+    #         if torch.sigmoid(gate_output.data) > self.gate_threshold:
+    #             break
+    #         elif len(mel_outputs) == self.max_decoder_steps:
+    #             print("Warning! Reached max decoder steps")
+    #             break
+    #
+    #         decoder_input = mel_output
+    #
+    #     mel_outputs, gate_outputs, alignments = self.parse_decoder_outputs(
+    #         mel_outputs, gate_outputs, alignments)
+    #
+    #     return mel_outputs, gate_outputs, alignments
+
+    def inference(self, memory):
         """ Decoder inference
         PARAMS
         ------
         memory: Encoder outputs
-
         RETURNS
         -------
         mel_outputs: mel outputs from the decoder
         gate_outputs: gate outputs from the decoder
         alignments: sequence of attention weights from the decoder
         """
-        decoder_input = torch.zeros([1, 80], dtype=distribution.sample().cuda().dtype).cuda()
+        decoder_input = self.get_go_frame(memory)
 
-        #        decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
         self.initialize_decoder_states(memory, mask=None)
 
         mel_outputs, gate_outputs, alignments = [], [], []
         while True:
-            #            pdb.set_trace()
-            sample = distribution.sample().cuda()
-            decoder_input = torch.cat((decoder_input, sample.view((1, -1))), dim=1)
             decoder_input = self.prenet(decoder_input)
-            #            pdb.set_trace()
             mel_output, gate_output, alignment = self.decode(decoder_input)
 
             mel_outputs += [mel_output.squeeze(1)]
@@ -664,13 +701,27 @@ class Tacotron2(nn.Module):
         logvar = d['logvar'].cuda()
         return Normal(mu, logvar.exp())
 
+    # def inference(self, inputs):
+    #     embedded_inputs = self.embedding(inputs).transpose(1, 2)
+    #     encoder_outputs = self.encoder.inference(embedded_inputs)
+    #     distribution = self.latent_inference()
+    #
+    #     mel_outputs, gate_outputs, alignments = self.decoder_enhanced.inference(
+    #         encoder_outputs, distribution)
+    #
+    #     mel_outputs_postnet = self.postnet(mel_outputs)
+    #     mel_outputs_postnet = mel_outputs + mel_outputs_postnet
+    #
+    #     outputs = self.parse_output(
+    #         [mel_outputs, mel_outputs_postnet, gate_outputs, alignments])
+    #
+    #     return outputs
+
     def inference(self, inputs):
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
-        distribution = self.latent_inference()
-
-        mel_outputs, gate_outputs, alignments = self.decoder_enhanced.inference(
-            encoder_outputs, distribution)
+        mel_outputs, gate_outputs, alignments = self.decoder.inference(
+            encoder_outputs)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet
