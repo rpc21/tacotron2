@@ -66,6 +66,8 @@ def create_hparams(hparams_string=None, verbose=False):
         latent_n_convolutions=2,
         latent_embedding_dim=512,
         latent_out_dim=16,
+        num_lables=4,
+        num_of_mixtues=5, 
 
         # Decoder parameters
         n_frames_per_step=1,  # currently only 1 is supported
