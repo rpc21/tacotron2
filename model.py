@@ -367,7 +367,7 @@ class Decoder(nn.Module):
         """
         B = memory.size(0)
         decoder_input = Variable(memory.data.new(
-            B, self.n_mel_channels * self.n_frames_per_step).zero_() # + self.latent_output_dim).zero_())
+            B, self.n_mel_channels * self.n_frames_per_step).zero_()) # + self.latent_output_dim).zero_())
         return decoder_input
 
     def initialize_decoder_states(self, memory, mask):
@@ -677,7 +677,7 @@ class Tacotron2(nn.Module):
         text_inputs, text_lengths, mels, max_len, output_lengths, latent_mels = inputs
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
-        pdb.set_trace()
+#        pdb.set_trace()
         latent_sample = torch.cat([self.latent_model.generate_sample(inputs) for x in range(5)], dim=2)
 
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
