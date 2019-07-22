@@ -22,8 +22,6 @@ class Tacotron2Loss(nn.Module):
         return mel_loss + gate_loss
 
 
-
-
 class GMVAELoss(nn.Module):
     def __init__(self):
         super(GMVAELoss, self).__init__()
