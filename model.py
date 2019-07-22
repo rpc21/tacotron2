@@ -641,7 +641,7 @@ class Tacotron2(nn.Module):
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
         pdb.set_trace()
-        latent_sample = torch.stack([self.latent_model.generate_sample(inputs) for x in range(5)], dim=2)
+        latent_sample = torch.cat([self.latent_model.generate_sample(inputs) for x in range(5)], dim=2)
 
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
 
