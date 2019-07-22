@@ -165,6 +165,7 @@ class GMVAE_revised(nn.Module):
         return m, v
 
     def log_bernoulli_with_logits(self,x, logits):
+        bce = torch.nn.BCEWithLogitsLoss(reduction='none')
         log_prob = -bce(input=logits, target=x).sum(-1)
         return log_prob
 
