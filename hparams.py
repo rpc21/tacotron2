@@ -26,14 +26,14 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         load_mel_from_disk=True, #False,
 #        training_files='filelists/ljs_audio_text_train_filelist.txt',
-        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
+#        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100.txt',
 #        training_files='/scratch/speech/datasets/IEMOCAP_happy_sad_train.pkl',
-#        training_files='/scratch/speech/datasets/IEMOCAP_fru_train.pkl',
+        training_files='/scratch/speech/datasets/IEMOCAP_fru_train.pkl',
 #        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_100_1028_subset.txt',
 #        training_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_train_small.txt',
-        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
+#        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_100.txt',
 #        validation_files='/scratch/speech/datasets/IEMOCAP_happy_sad_val.pkl',
-#        validation_files='/scratch/speech/datasets/IEMOCAP_fru_val.pkl',
+        validation_files='/scratch/speech/datasets/IEMOCAP_fru_val.pkl',
 #        validation_files='/scratch/speech/datasets/Tacotron_LibriTTS/LibriTTS_validation_small.txt',
         text_cleaners=['english_cleaners'],
 
