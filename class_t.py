@@ -58,7 +58,7 @@ class GMVAE_revised(nn.Module):
         self.fc4 = nn.Linear(int(hparams.latent_embedding_dim / 2), hparams.latent_embedding_dim)
 
         self.z_init = torch.nn.Parameter(
-            torch.randn(1, 2 * self.k, self.k*self.latent_out_dim) / np.sqrt(self.k * self.latent_out_dim))
+            torch.randn(1, 2 * self.k, self.k*hparams.latent_out_dim) / np.sqrt(self.k * hparams.latent_out_dim))
         # Uniform weighting
         self.pi = torch.nn.Parameter((torch.ones(self.k) / self.k), requires_grad=False)
 
