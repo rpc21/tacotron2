@@ -120,6 +120,7 @@ class GMVAE_revised(nn.Module):
     def decode(self, z, label=None):
         #  print('shape to be decoded', z.shape)
 #        z = torch.cat([z, label], 1)
+        pdb.set_trace()
         h3 = F.relu(self.fc3(z))
         # print('shape of the recons',h3.shape)
         #        pdb.set_trace()
@@ -128,6 +129,7 @@ class GMVAE_revised(nn.Module):
     def forward(self, x, label=None):
         mu, logvar, x_after_mean = self.vae_encode(x, label)
         z = self.reparameterize(mu, logvar)
+        pdb.set_trace()
         # print('mu shape:', mu.shape)
         # print('logvar shape:', logvar.shape)
         #       pdb.set_trace()
@@ -159,9 +161,9 @@ class GMVAE_revised(nn.Module):
         return nelbo, rec, kl
 
     def gaussian_parameters(self, h, dim=-1):
-        pdb.set_trace()
         m, h = torch.split(h, h.size(dim) // 2, dim=dim)
         v = F.softplus(h) + 1e-8
+        pdb.set_trace()
         return m, v
 
     def log_bernoulli_with_logits(self, x, logits):
