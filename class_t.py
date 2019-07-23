@@ -49,7 +49,7 @@ class GMVAE_revised(nn.Module):
                                             int(hparams.latent_embedding_dim / 2))
 
         self.linear_projection_mean_variance = LinearNorm(int(hparams.latent_embedding_dim / 2),
-                                                          hparams.latent_out_dim * self.k)
+                                                          hparams.latent_out_dim * self.k * 2)
 
         # self.linear_projection_variance = LinearNorm(int(hparams.latent_embedding_dim / 2), hparams.latent_out_dim)
 
@@ -98,7 +98,7 @@ class GMVAE_revised(nn.Module):
         x_after_mean = out
         #        print('After mean pool', out.shape)
         #        pdb.set_trace()
-        out = torch.cat([out, label], 1)
+#        out = torch.cat([out, label], 1)
         out = self.linear_projection.forward(out)
         #        print('After linear 1', out.shape)
         #        pdb.set_trace()
@@ -119,7 +119,7 @@ class GMVAE_revised(nn.Module):
 
     def decode(self, z, label=None):
         #  print('shape to be decoded', z.shape)
-        z = torch.cat([z, label], 1)
+#        z = torch.cat([z, label], 1)
         h3 = F.relu(self.fc3(z))
         # print('shape of the recons',h3.shape)
         #        pdb.set_trace()
@@ -159,6 +159,7 @@ class GMVAE_revised(nn.Module):
         return nelbo, rec, kl
 
     def gaussian_parameters(self, h, dim=-1):
+        pdb.set_trace()
         m, h = torch.split(h, h.size(dim) // 2, dim=dim)
         v = F.softplus(h) + 1e-8
         return m, v

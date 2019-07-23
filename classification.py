@@ -152,7 +152,7 @@ def make_inferences(model, iteration, hparams, output_directory):
     ]
     for i, text in enumerate(sentences):
         #### Just for testing purposes
-        text = "Waveglow is really awesome!"
+#        text = "Waveglow is really awesome!"
         sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
         sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
         mel_outputs, mel_outputs_postnet, _, alignments = model.inference(sequence)
@@ -195,7 +195,9 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
 
     model.train()
     if rank == 0:
-        print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
+        with open(output_directory + 'output_stats_epochs.txt','a+') as f:
+            f.write("Validation loss {}: {:9f}  \n".format(iteration, reduced_val_loss))
+
         logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
 
 
@@ -224,7 +226,8 @@ def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
 
     model.train()
     if rank == 0:
-        print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
+        with open(output_directory + 'output_stats.txt','a+') as f:
+            f.write("Validation loss {}: {:9f}  \n".format(iteration, reduced_val_loss))
 #        logger.log_validation(reduced_val_loss, model, y, recon, iteration)
 
 def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n_gpus, rank, group_name, hparams):
@@ -319,10 +322,14 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
 
             optimizer.step()
 
+            print("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} \n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm))
+
             if not is_overflow and rank == 0:
                 duration = time.perf_counter() - start
-                print("Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it".format(
-                    iteration, reduced_loss, grad_norm, duration))
+                with open(output_directory + 'output_stats.txt','a+') as f:
+                    f.write("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
@@ -401,6 +408,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
     for epoch in range(epoch_offset, hparams.epochs):
         print("Epoch: {}".format(epoch))
         for i, batch in enumerate(train_loader):
+            iteration += 1
             start = time.perf_counter()
             for param_group in optimizer.param_groups:
                 param_group['lr'] = learning_rate
@@ -437,24 +445,27 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
             optimizer.step()
 
-            if not is_overflow and rank == 0:
+            print("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
+            if not is_overflow and rank == 0 and (iteration % 10 == 0):
                 duration = time.perf_counter() - start
-                print("Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it".format(
-                    iteration, reduced_loss, grad_norm, duration))
+                with open(output_directory + 'output_stats_iterations.txt','a+') as f:
+                    f.write("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
+
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
-            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0) and iteration > 0:
-                validate(model, criterion, valset, iteration,
-                         hparams.batch_size, n_gpus, collate_fn, logger,
-                         hparams.distributed_run, rank, hparams=hparams, output_directory=output_directory)
-                if rank == 0:
-                    checkpoint_path = os.path.join(
-                        output_directory, "checkpoint_{}".format(iteration))
-                    save_checkpoint(model, optimizer, learning_rate, iteration,
-                                    checkpoint_path)
+        if not is_overflow and iteration > 0:
+            validate(model, criterion, valset, epoch,
+                     hparams.batch_size, n_gpus, collate_fn, logger,
+                     hparams.distributed_run, rank, hparams=hparams, output_directory=output_directory)
+            if rank == 0 and (epoch % 10 == 0):
+                checkpoint_path = os.path.join(
+                    output_directory, "checkpoint_{}".format(epoch))
+                save_checkpoint(model, optimizer, learning_rate, epoch,
+                                checkpoint_path)
 
-            iteration += 1
 
 
 if __name__ == '__main__':
