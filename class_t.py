@@ -145,7 +145,7 @@ class GMVAE_revised(nn.Module):
         # decoded_bernoulli_logits = self.decode(z_given_x)
         rec = -self.log_bernoulli_with_logits(recon, x)
         # rec = -torch.mean(rec)
-
+        pdb.set_trace()
         # terms for KL divergence
         log_q_phi = self.log_normal(z, mu, var)
         # print("log_q_phi", log_q_phi.size())
