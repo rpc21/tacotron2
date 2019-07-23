@@ -129,6 +129,7 @@ class GMVAE_revised(nn.Module):
     def forward(self, x, label=None):
         mu, logvar, x_after_mean = self.vae_encode(x, label)
         z = self.reparameterize(mu, logvar)
+        pdb.set_trace()
         # print('mu shape:', mu.shape)
         # print('logvar shape:', logvar.shape)
         #       pdb.set_trace()
