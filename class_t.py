@@ -53,7 +53,7 @@ class GMVAE_revised(nn.Module):
 
         # self.linear_projection_variance = LinearNorm(int(hparams.latent_embedding_dim / 2), hparams.latent_out_dim)
 
-        self.fc3 = nn.Linear(hparams.latent_out_dim + self.num_lables, int(hparams.latent_embedding_dim / 2))
+        self.fc3 = nn.Linear(hparams.latent_out_dim*self.k + self.num_lables, int(hparams.latent_embedding_dim / 2))
 
         self.fc4 = nn.Linear(int(hparams.latent_embedding_dim / 2), hparams.latent_embedding_dim)
 
