@@ -150,7 +150,7 @@ class GMVAE_revised(nn.Module):
         log_q_phi = self.log_normal(z, mu, var)
         # print("log_q_phi", log_q_phi.size())
         log_p_theta = self.log_normal_mixture(z, prior[0], prior[1])
-        # print("log_p_theta", log_p_theta.size())
+        print("log_p_theta", log_p_theta.size())
         kl = log_q_phi - log_p_theta
         # print("kl", kl.size())
 
