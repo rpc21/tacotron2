@@ -174,6 +174,7 @@ class GMVAE_revised(nn.Module):
     def log_normal(self, x, m, v):
         const = -0.5 * x.size(-1) * torch.log(2 * torch.tensor(np.pi))
         log_det = -0.5 * torch.sum(torch.log(v), dim=-1)
+        pdb.set_trace()
         log_exp = -0.5 * torch.sum((x - m) ** 2 / v, dim=-1)
         log_prob = const + log_det + log_exp
         return log_prob
