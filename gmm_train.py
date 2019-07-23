@@ -200,7 +200,7 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
 
 
 def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
-             collate_fn, logger, distributed_run, rank):
+             collate_fn, logger, distributed_run, rank, output_directory, hparams):
     """Handles all the validation scoring and printing"""
     model.eval()
     with torch.no_grad():
@@ -212,9 +212,9 @@ def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
         val_loss = 0.0
         for i, batch in enumerate(val_loader):
             x, y = model.parse_batch(batch)
-            recon, mu, logvar, x_after_mean = model(x)
+            recon, mu, logvar, x_after_mean, z = model(x)
 
-            loss = criterion(recon, x_after_mean, mu, logvar)
+            loss, recon, kl = criterion(recon, x_after_mean, mu, logvar, z)
             if distributed_run:
                 reduced_val_loss = reduce_tensor(loss.data, n_gpus).item()
             else:
@@ -224,8 +224,8 @@ def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
 
     model.train()
     if rank == 0:
-        print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
-#        logger.log_validation(reduced_val_loss, model, y, recon, iteration)
+        with open(output_directory + 'output_stats.txt', 'a+') as f:
+            f.write("Validation loss {}: {:9f}  \n".format(iteration, reduced_val_loss))
 
 def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n_gpus, rank, group_name, hparams):
     """Training and validation logging results to tensorboard and stdout
@@ -319,17 +319,21 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
 
             optimizer.step()
 
+            print("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} \n".format(
+                epoch, hparams.batch_size, iteration, reduced_loss, grad_norm))
+
             if not is_overflow and rank == 0:
                 duration = time.perf_counter() - start
-                print("Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it".format(
-                    iteration, reduced_loss, grad_norm, duration))
+                with open(output_directory + 'output_stats.txt', 'a+') as f:
+                    f.write("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
-            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0) and iteration > 0:
+            if not is_overflow and (iteration % hparams.iters_per_checkpoint == 0):
                 validate_latent(model, criterion, valset, iteration,
-                         hparams.batch_size, n_gpus, collate_fn, logger,
-                         hparams.distributed_run, rank)
+                                hparams.batch_size, n_gpus, collate_fn, logger,
+                                hparams.distributed_run, rank, output_directory, hparams)
                 if rank == 0:
                     checkpoint_path = os.path.join(
                         output_directory, "checkpoint_{}".format(iteration))
