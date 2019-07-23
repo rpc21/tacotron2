@@ -120,6 +120,7 @@ class GMVAE_revised(nn.Module):
     def decode(self, z, label=None):
         #  print('shape to be decoded', z.shape)
 #        z = torch.cat([z, label], 1)
+        pdb.set_trace()
         h3 = F.relu(self.fc3(z))
         # print('shape of the recons',h3.shape)
         #        pdb.set_trace()
