@@ -120,7 +120,7 @@ class GMVAE_revised(nn.Module):
     def decode(self, z, label=None):
         #  print('shape to be decoded', z.shape)
 #        z = torch.cat([z, label], 1)
-        pdb.set_trace()
+        #pdb.set_trace()
         h3 = F.relu(self.fc3(z))
         # print('shape of the recons',h3.shape)
         #        pdb.set_trace()
@@ -129,7 +129,7 @@ class GMVAE_revised(nn.Module):
     def forward(self, x, label=None):
         mu, logvar, x_after_mean = self.vae_encode(x, label)
         z = self.reparameterize(mu, logvar)
-        pdb.set_trace()
+        #pdb.set_trace()
         # print('mu shape:', mu.shape)
         # print('logvar shape:', logvar.shape)
         #       pdb.set_trace()
@@ -145,7 +145,7 @@ class GMVAE_revised(nn.Module):
         # decoded_bernoulli_logits = self.decode(z_given_x)
         rec = -self.log_bernoulli_with_logits(recon, x)
         # rec = -torch.mean(rec)
-        pdb.set_trace()
+        #pdb.set_trace()
         # terms for KL divergence
         log_q_phi = self.log_normal(z, mu, var)
         # print("log_q_phi", log_q_phi.size())
@@ -163,7 +163,7 @@ class GMVAE_revised(nn.Module):
     def gaussian_parameters(self, h, dim=-1):
         m, h = torch.split(h, h.size(dim) // 2, dim=dim)
         v = F.softplus(h) + 1e-8
-        pdb.set_trace()
+        #pdb.set_trace()
         return m, v
 
     def log_bernoulli_with_logits(self, x, logits):
@@ -182,7 +182,7 @@ class GMVAE_revised(nn.Module):
 
     def log_normal_mixture(self, z, m, v):
         z = z.unsqueeze(1)
-        pdb.set_trace()
+        #pdb.set_trace()
         log_probs = self.log_normal(z, m, v)
         log_prob = self.log_mean_exp(log_probs, 1)
         return log_prob
