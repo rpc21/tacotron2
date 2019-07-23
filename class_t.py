@@ -150,7 +150,7 @@ class GMVAE_revised(nn.Module):
         log_q_phi = self.log_normal(z, mu, var)
         # print("log_q_phi", log_q_phi.size())
         log_p_theta = self.log_normal_mixture(z, prior[0], prior[1])
-        print("log_p_theta", log_p_theta.size())
+#        print("log_p_theta", log_p_theta.size())
         kl = log_q_phi - log_p_theta
         # print("kl", kl.size())
 
@@ -174,7 +174,7 @@ class GMVAE_revised(nn.Module):
     def log_normal(self, x, m, v):
         const = -0.5 * x.size(-1) * torch.log(2 * torch.tensor(np.pi))
         log_det = -0.5 * torch.sum(torch.log(v), dim=-1)
-        pdb.set_trace()
+#        pdb.set_trace()
 
         log_exp = -0.5 * torch.sum((x - m) ** 2 / v, dim=-1)
         log_prob = const + log_det + log_exp
