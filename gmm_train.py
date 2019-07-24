@@ -224,7 +224,7 @@ def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
 
     model.train()
     if rank == 0:
-        with open(output_directory + 'output_stats.txt', 'a+') as f:
+        with open(output_directory + 'output_stats_gmvae_val.txt', 'a+') as f:
             f.write("Validation loss {}: {:9f}  \n".format(iteration, reduced_val_loss))
 
 def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n_gpus, rank, group_name, hparams):
@@ -324,7 +324,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
 
             if not is_overflow and rank == 0:
                 duration = time.perf_counter() - start
-                with open(output_directory + 'output_stats.txt', 'a+') as f:
+                with open(output_directory + 'output_stats_gmvae_it.txt', 'a+') as f:
                     f.write("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
                         epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
                 logger.log_training(
@@ -341,7 +341,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
                                     checkpoint_path)
 
             iteration += 1
- '''def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
+    '''def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
           rank, group_name, hparams):
     """Training and validation logging results to tensorboard and stdout
 
