@@ -3,7 +3,7 @@ import pickle
 import torch
 import argparse
 import hparams
-from revised_latent_model import GMVAE_revised
+from class_t import GMVAE_revised
 from classification import prepare_dataloaders, load_checkpoint
 from hparams import create_hparams
 from torch.utils.data import DataLoader
@@ -27,7 +27,7 @@ def evaluate_latent_model(checkpoint_path):
     torch.cuda.manual_seed(hparams.seed)
 
     # model = load_model(hparams)
-    model = GMVAE_revised(hparams).cuda()
+    model = model.cuda()
     learning_rate = hparams.learning_rate
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate,
                                  weight_decay=hparams.weight_decay)
@@ -53,7 +53,7 @@ def evaluate_latent_model(checkpoint_path):
 #        pdb.set_trace()
             model.supervised = True
             x, y = model.parse_batch(batch)
-            recon, mu, logvar, x_after_mean = model(x)
+            recon, mu, logvar, x_after_mean, z = model(x)
 #            pdb.set_trace()
             w = torch.squeeze(x_after_mean).view(-1).cpu().numpy()
             v = torch.squeeze(recon).view(-1).cpu().numpy()
