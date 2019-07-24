@@ -15,7 +15,7 @@ import torch.distributed as dist
 from torch.utils.data.distributed import DistributedSampler
 from torch.utils.data import DataLoader
 
-from model import Tacotron2, GMVAE
+from model import GMVAE
 from IEMOCAP_data_utils import IEMOCAPLoader, TextMelCollate
 from loss_function import Tacotron2Loss, GMVAELoss
 from logger import Tacotron2Logger
@@ -77,7 +77,7 @@ def prepare_directories_and_logger(output_directory, log_directory, rank):
     return logger
 
 
-def load_model(hparams):
+'''def load_model(hparams):
     model = Tacotron2(hparams, True).cuda()
     if hparams.fp16_run:
         model.decoder_enhanced.attention_layer.score_mask_value = finfo('float16').min
@@ -85,7 +85,7 @@ def load_model(hparams):
     if hparams.distributed_run:
         model = apply_gradient_allreduce(model)
 
-    return model
+    return model'''
 
 
 def warm_start_model(checkpoint_path, model, ignore_layers):
@@ -126,7 +126,7 @@ def save_checkpoint(model, optimizer, learning_rate, iteration, filepath):
                 'learning_rate': learning_rate}, filepath)
 
 
-def make_inferences(model, iteration, hparams, output_directory):
+'''def make_inferences(model, iteration, hparams, output_directory):
     output_directory = output_directory + 'checkpoint_{}_samples/'.format(iteration)
     if not os.path.exists(output_directory):
         os.mkdir(output_directory)
@@ -163,10 +163,10 @@ def make_inferences(model, iteration, hparams, output_directory):
         ##########
 
     print('generated samples')
-    model.train()
+    model.train()'''
 
 
-def validate(model, criterion, valset, iteration, batch_size, n_gpus,
+'''def validate(model, criterion, valset, iteration, batch_size, n_gpus,
              collate_fn, logger, distributed_run, rank, hparams=None, output_directory=None):
     """Handles all the validation scoring and printing"""
 #    make_inferences(model, iteration, hparams, output_directory)
@@ -196,7 +196,7 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
     model.train()
     if rank == 0:
         print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
-        logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
+        logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)'''
 
 
 def validate_latent(model, criterion, valset, iteration, batch_size, n_gpus,
@@ -341,9 +341,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
                                     checkpoint_path)
 
             iteration += 1
-
-
-def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
+ '''def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
           rank, group_name, hparams):
     """Training and validation logging results to tensorboard and stdout
 
@@ -458,9 +456,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
                     save_checkpoint(model, optimizer, learning_rate, iteration,
                                     checkpoint_path)
 
-            iteration += 1
-
-
+            iteration += 1'''
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-o', '--output_directory', type=str,
