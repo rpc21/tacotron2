@@ -67,6 +67,7 @@ class GMVAE_revised(nn.Module):
             text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512, labels = batch
         else:
             text_padded, input_lengths, mel_padded, gate_padded, output_lengths, mel_padded_512, gate_padded_512, output_lengths_512 = batch
+            labels = None
         text_padded = to_gpu(text_padded).long()
         input_lengths = to_gpu(input_lengths).long()
         max_len = torch.max(input_lengths.data).item()
@@ -79,7 +80,7 @@ class GMVAE_revised(nn.Module):
 
         return (
             (text_padded, input_lengths, mel_padded, max_len, output_lengths, mel_padded),
-            (mel_padded, gate_padded))
+            (mel_padded, gate_padded, labels))
 
     def vae_encode(self, inputs, label=None):
         _, _, x, _, _, _ = inputs

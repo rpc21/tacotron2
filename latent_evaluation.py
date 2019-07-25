@@ -45,6 +45,9 @@ def evaluate_latent_model(checkpoint_path):
     print(str(sum(p.numel() for p in model.parameters() if p.requires_grad)))
     is_overflow = False
 
+    happy_mels = []
+    sad_mels = []
+
     for i, batch in enumerate(train_loader):
         for param_group in optimizer.param_groups:
             param_group['lr'] = learning_rate
@@ -53,6 +56,12 @@ def evaluate_latent_model(checkpoint_path):
 #        pdb.set_trace()
             model.supervised = True
             x, y = model.parse_batch(batch)
+            label = y[2]
+            pdb.set_trace()
+            if label == torch.Tensor([1,0]):
+                happy_mels.append(x[2].view(-1))
+            else:
+                sad_mels.append(x[2].view(-1))
             recon, mu, logvar, x_after_mean, z = model(x)
 #            pdb.set_trace()
             w = torch.squeeze(x_after_mean).view(-1).cpu().numpy()
@@ -70,10 +79,10 @@ def evaluate_latent_model(checkpoint_path):
     print(len(outputs))
     print(len(inputs))
     print(inputs[1])
-    with open('/scratch/speech/output/gm_inputs.pkl','wb+') as f:
-        pickle.dump(inputs, f)
-    with open('/scratch/speech/output/gm_outputs.pkl','wb+') as f:
-        pickle.dump(outputs,f)
+    with open('/scratch/speech/output/gm_happy_mels.pkl','wb+') as f:
+        pickle.dump(happy_mels, f)
+    with open('/scratch/speech/output/gm_sad_mels.pkl','wb+') as f:
+        pickle.dump(sad_mels,f)
 
 
 if __name__ == '__main__':
