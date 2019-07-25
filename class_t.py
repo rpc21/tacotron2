@@ -2,7 +2,7 @@ from torch import nn
 import numpy as np
 import torch
 from torch.distributions import Normal
-
+from torch.nn.functional import binary_cross_entropy, sigmoid
 from layers import ConvNorm, LinearNorm
 from torch.nn import functional as F
 from utils import to_gpu
@@ -84,7 +84,7 @@ class GMVAE_revised(nn.Module):
     def vae_encode(self, inputs, label=None):
         _, _, x, _, _, _ = inputs
         #        print('x shape:', x.shape)
-        #        pdb.set_trace()
+#        pdb.set_trace()
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
         #            pdb.set_trace()
@@ -138,14 +138,14 @@ class GMVAE_revised(nn.Module):
     def negative_elbo_bound(self, recon, x, mu, var, z):
 
         prior = self.gaussian_parameters(self.z_init, dim=1)
-
+        pdb.set_trace()
         # q_m, q_v = self.vae_encode(x)
         # #print("q_m", q_m.size())
         # z_given_x = self.reparameterize(q_m, q_v)
         # decoded_bernoulli_logits = self.decode(z_given_x)
         rec = -self.log_bernoulli_with_logits(recon, x)
         # rec = -torch.mean(rec)
-        #pdb.set_trace()
+        pdb.set_trace()
         # terms for KL divergence
         log_q_phi = self.log_normal(z, mu, var)
         # print("log_q_phi", log_q_phi.size())
@@ -153,7 +153,7 @@ class GMVAE_revised(nn.Module):
 #        print("log_p_theta", log_p_theta.size())
         kl = log_q_phi - log_p_theta
         # print("kl", kl.size())
-
+#        pdb.set_trace()
         nelbo = torch.mean(kl + rec)
 
         rec = torch.mean(rec)
@@ -167,8 +167,12 @@ class GMVAE_revised(nn.Module):
         return m, v
 
     def log_bernoulli_with_logits(self, x, logits):
-        bce = torch.nn.BCEWithLogitsLoss(reduction='none')
-        log_prob = -bce(input=logits, target=x).sum(-1)
+        #torch.nn.BCEWithLogitsLoss(reduction='mean')
+#        input=logits
+#        target=torch.sigmoid(x).detach()
+        bce = torch.nn.BCEWithLogitsLoss(reduction='mean')
+        log_prob = bce(input=x, target=logits).sum(-1)
+#        log_prob=bce=torch.nn.functional.binary_cross_entropy(x,torch.nn.functional.sigmoid(logits).detach())
         return log_prob
 
     def log_normal(self, x, m, v):

@@ -299,6 +299,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
             recon, mu, logvar, x_after_mean, z = model(x)
 
             loss, recon, kl = criterion(recon, x_after_mean, mu, logvar, z)
+            pdb.set_trace()
             if hparams.distributed_run:
                 reduced_loss = reduce_tensor(loss.data, n_gpus).item()
             else:
@@ -341,11 +342,7 @@ def train_latent(output_directory, log_directory, checkpoint_path, warm_start, n
                                     checkpoint_path)
 
             iteration += 1
-<<<<<<< HEAD
 '''def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
-=======
-    '''def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
->>>>>>> dd9429ff1a6c8cf438a16acf907f4380807c648a
           rank, group_name, hparams):
     """Training and validation logging results to tensorboard and stdout
 

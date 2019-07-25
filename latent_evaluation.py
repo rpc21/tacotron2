@@ -3,7 +3,7 @@ import pickle
 import torch
 import argparse
 import hparams
-from revised_latent_model import GMVAE_revised
+from class_t import GMVAE_revised
 from classification import prepare_dataloaders, load_checkpoint
 from hparams import create_hparams
 from torch.utils.data import DataLoader
@@ -53,7 +53,7 @@ def evaluate_latent_model(checkpoint_path):
 #        pdb.set_trace()
             model.supervised = True
             x, y = model.parse_batch(batch)
-            recon, mu, logvar, x_after_mean = model(x)
+            recon, mu, logvar, x_after_mean, z = model(x)
 #            pdb.set_trace()
             w = torch.squeeze(x_after_mean).view(-1).cpu().numpy()
             v = torch.squeeze(recon).view(-1).cpu().numpy()
@@ -70,9 +70,9 @@ def evaluate_latent_model(checkpoint_path):
     print(len(outputs))
     print(len(inputs))
     print(inputs[1])
-    with open('/scratch/speech/inputs.pkl','wb+') as f:
+    with open('/scratch/speech/output/gm_inputs.pkl','wb+') as f:
         pickle.dump(inputs, f)
-    with open('/scratch/speech/outputs.pkl','wb+') as f:
+    with open('/scratch/speech/output/gm_outputs.pkl','wb+') as f:
         pickle.dump(outputs,f)
 
 
@@ -99,4 +99,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     hparams = create_hparams(args.hparams)
 
-    evaluate_latent_model('/scratch/speech/output/IEMOCAP/checkpoint_10000')
+    evaluate_latent_model('/scratch/speech/output/gmvae_test/checkpoint_111000')
