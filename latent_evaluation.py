@@ -27,7 +27,7 @@ def evaluate_latent_model(checkpoint_path):
     torch.cuda.manual_seed(hparams.seed)
 
     # model = load_model(hparams)
-    model = GMVAE_revised(hparams).cuda()
+    model = model.cuda()
     learning_rate = hparams.learning_rate
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate,
                                  weight_decay=hparams.weight_decay)
