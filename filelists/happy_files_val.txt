@@ -1,0 +1,119 @@
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_M007.wav|No.  Wrong number. [LAUGHTER]
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_M040.wav|Now that you mention it. No, I don't.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_F007.wav|I knew they would, your mother anyway.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M011.wav|Annie, I love you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro07/Ses02F_impro07_M018.wav|That'll be awesome.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_F018.wav|like a loser, I cried.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M011.wav|Ah, this is great, isn't it?  I didn't even think to bring a six-pack.  A six-pack would be just the ticket right about now.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_2/Ses05F_script02_2_F037.wav|No, I am beginning to think that maybe this is the spot after all.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_F004.wav|Um- Yes.  It was very romantic.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F010.wav|Everybody's going to come up. We're going to stay in all the pretty cabins up there and, um, everybody's going to have, you know, really flowery sort of naturey stuff.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M049.wav|Or not.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_M032.wav|Yeah, she is good-looking.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F033.wav|Yeah, she loves him.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M024.wav|Do you want to take off your shoes?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro07/Ses05M_impro07_F035.wav|You've got a lot- oh, awesome.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_3/Ses05F_script01_3_F002.wav|It's so lovely here.  The air is sweet.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro08/Ses05F_impro08_M025.wav|That would be wonderful, that would be great seriously.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F024.wav|make my life a lot easier.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script03_1/Ses02M_script03_1_F021.wav|Which particular one?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M045.wav|Shh.  If we're very quiet the fish might come.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M011.wav|I'm embarrassing you.  I didn't want to tell it to you here.  I
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M012.wav|I love you a great deal.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_F014.wav|He scored points.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M014.wav|I'm embarrassing you. I didn't want to tell you it here. I wanted to go somewhere that would be brand-new to each other. It feels wrong here, don't you? This yard and this chair.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro07/Ses05F_impro07_F006.wav|Uh- I don't know.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M024.wav|I kissed you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro03/Ses05M_impro03_M028.wav|She wants like eight- She wants like eight kids and I'm like, no, no, no, no, no.  I am like what Let's do maybe three and we'll go with that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script03_1/Ses02M_script03_1_F025.wav|It burned my comb too and all the towels in the bathroom.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_F012.wav|Well, you started to write me
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M066.wav|That's what girls like, right?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_M026.wav|Oh See, I don't care what you do, see.  You can paint yourself green and run naked through the Place Vendome and run off with all of the men of the world.  I shan't say a word, just as long as you love me best.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M044.wav|And look what I got here.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_M010.wav|With perfect poise...
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F027.wav|It's so weird too, right, that like you can grow up so near somebody and never know them until you travel hundreds of miles away.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_F027.wav|How long have you guys been going out?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_M020.wav|Chucky...I don't know.  I don't know. Anyways, I pull her up and I go, I go Sarah
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_F009.wav|[LAUGHTER] I think I shall do a court curtsey.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_M008.wav|Yeah.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M038.wav|[LAUGHTER]
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_F022.wav|Oh that's kind of sweet.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_F008.wav|Yeah.  Well.  You know, because he's leaving the next day.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_F013.wav|So now I can stay here and now we can party. I know.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F016.wav|Every day since.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F030.wav|Knowing the neighborhood.  Yeah, it's pretty bizarre.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro03/Ses05M_impro03_M023.wav|She's the one.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F045.wav|Well then I guess we don't need glasses.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F021.wav|Not like that you're not.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F017.wav|Every day since.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_F030.wav|Oh, thank you. [LAUGHTER]
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F015.wav|You started to write me.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F042.wav|Hmm.  I noticed that, it's pretty. Big old white moon.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_F009.wav|I guess this is why I came.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M010.wav|I have no imagination that's all I know to tell you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script03_1/Ses02M_script03_1_M011.wav|What does it all mean that's what I ask- that's what I ask myself in my ceaseless quest for ultimate truth?  Good God what does it all mean?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_F016.wav|Oh god! You are damn cheap, cheap, cheap. Anyways, moving on. It's not like you're poor.  I mean your dad makes... okey
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F012.wav|from her opinion, why else would I come here?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro07/Ses02M_impro07_F029.wav|So Congratulations. That's awesome.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F056.wav|You won't have trouble, You won't have trouble.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_2/Ses05F_script02_2_M040.wav|Shh, If we're very quiet, the fish might come.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro07/Ses02M_impro07_F017.wav|Like you get to be a part of that. Like the, like the- Like a cult.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script03_1/Ses02M_script03_1_M029.wav|That was a rouser, wasn't it?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_M010.wav|Um, you know, I don't think so.  But I think that, you know, it's still a private school
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M030.wav|[LAUGHTER] I am sil
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_F002.wav|Yeah.  In the old town part.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_M007.wav|Yeah.  I like to know about history, 'cause, you know, it's- it's just so relevant to the present.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script03_1/Ses02M_script03_1_M010.wav|Meaning that sacred and beautiful thing love?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_M018.wav|dim down the lights and uh, I got on one of the tables pulled her up.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_F023.wav|Oh man, I'm so excited. So much to do.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_F042.wav|Yeah.  I noticed that.  It's real pretty on the water.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro03/Ses04M_impro03_M020.wav|Yeah, I don't know. [LAUGHTER] But, yeah, so anyway -- well I wanted to tell you that, you know, 'cause you're one of my good friends and you're Kate's- one of her best friends and-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro03/Ses04M_impro03_M028.wav|Well, I mean I just told her--Well I just said, you know, hey, these are my suggestions.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_F009.wav|I wonder if they can hear me talk
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script01_3/Ses01M_script01_3_M043.wav|I'm going to make a fortune for you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_F000.wav|Hello.  Thank you for calling Dell Taco Corporate.  Can I help you?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M009.wav|I, I guess that's why I asked you to come.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_F021.wav|Oh, thank you, dear.  The same applies to you except that if I catch so much as looking at another woman, I'll kill you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M043.wav|It's not champagne.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F018.wav|You'd always be so ambiguous.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_F005.wav|[LAUGHTER] That sent shivers up my spine.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_F024.wav|I think you're talking nonsense.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M040.wav|I don't know.  It seemed like a good spot to me.  I mean, look at the view you've got of the moon from here.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_F013.wav|I guess I'll-  I guess I'll have an internet husband.[LAUGHTER]
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M061.wav|Oh, thanks.  I'll need it.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_3/Ses05F_script01_3_M008.wav|Anne, I love you.  I love you a great deal.  I love you!
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro07/Ses02M_impro07_M026.wav|I'm looking forward to getting there. I mean, God, the campus is cool, you know it's like all just very confined I mean just you know it's a college campus you know it's like
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M040.wav|Look what we got here.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_F001.wav|Oh.  You knew there was nothing in that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_3/Ses05F_script01_3_F009.wav|I guess this is why I came.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_M033.wav|Do you remember that row we did have in Venice?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_F030.wav|Which particular one?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro08/Ses05F_impro08_M028.wav|six four nine four. That would be so great, thank you so much.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_F016.wav|He likes to keep tabs, you know.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F043.wav|Augie, you bought refreshments.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M063.wav|just being polite now
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M019.wav|Why didn't you let me know?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F022.wav|Oh, my God, thank you so much.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro07/Ses03M_impro07_F010.wav|Oh man.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_F003.wav|Why the sad face?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_M015.wav|Why didn't you let me know?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_M019.wav|Okay.  All right.  So-[LAUGHTER]-quite a while.  I mean--That's-  That's good.  I'm so happy for you. [LAUGHTER]
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F019.wav|You whispered the sweetest, most intimate things to me right into my ear so I could feel them as much as hear them.  And I remember thinking, this is it.  You know, finally, I am as happy as I'm supposed to be.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_M022.wav|Oh, I approve. I-[LAUGHTER]-I more than approve.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F002.wav|It's really lovely here. The air is sweet.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_M010.wav|It's strange; things that ought to matter dreadfully, they just don't matter at all when one's happy.  Do they?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_M027.wav|Oh, it will, obviously you know. But I know it's something - I don't know, you never really think about it happening, like before hand.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro03/Ses05M_impro03_F012.wav|Oh, right. sure [LAUGHTER]
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_M017.wav|You mustn't be so serious, darling, it just what they want.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F013.wav|No. No
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F016.wav|I will never forgive you.  Why did you wait all these years?  All I did was sit and wonder if I was crazy for thinking of you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_F047.wav|I think this may be the place for us after all.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_3/Ses05F_script01_3_M040.wav|Oh Annie.  Annie, I am going to make you a fortune!
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_M037.wav|[LAUGHTER] We were very much younger then.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro08/Ses05M_impro08_M026.wav|Great.  Well, that makes me very happy.  That makes us all happy here at D.S.L. Extreme.  Is there anything else I can help you with?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F049.wav|L.A. apartment is fine.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro03/Ses05M_impro03_M011.wav|And she's like- she feels it you know and she doesn't know what it is.  And she you know helps me get out and I won't let go of her hand.  And she's like, what are you doing?  I and said, You saved my life, now will you marry me?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F023.wav|Like Larry's brother. Do it like you, Chris.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M065.wav|Exactly, [LAUGHTER] I think that'll go over great, don't you?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_F005.wav|Yes, What would you want more than anything in this world?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_M042.wav|What have we got here?

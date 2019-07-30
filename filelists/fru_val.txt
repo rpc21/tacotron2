@@ -1,0 +1,370 @@
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M028.wav|Right. Yes, ma'am.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M033.wav|Oh, no honey. And you're going to miss the Christmas card too. It's a shame. It's going to be a good, nice picture.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M012.wav|I probably have to go wait another line to get my birth certificate don't I?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro05/Ses03F_impro05_M005.wav|Okay. What can we do is we can get your name and information and if it shows up we can send it to you so-- Wherever you stay
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M017.wav|And plus my car is breaking down-
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M015.wav|So can you help me or not?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M009.wav|And this is what I do.  This is -- I mean, this is my life.  And I know that you're part of my life, too, and I mean, it's only -- it's just going to be a year.  I'll be back.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F032.wav|I mean this is a lot of things, but it's just...
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro04/Ses03F_impro04_F001.wav|No, I don't know, I--maybe this isn't for me. You know, maybe this isn't the right business for me.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M035.wav|I'm doing the best I can.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M014.wav|It's just fish, it's nothing to get traumatized over.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro08/Ses05M_impro08_F001.wav|Yeah.  That my service just goes out.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_M012.wav|No, it's--
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F024.wav|Buck-O. That's really helpful.  Just keep chugging along.  The little engine that could.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro01/Ses03F_impro01_M009.wav|okay, just go back and fill it out real quick and I'm sorry, you have to get back in line and wait. I can't let you cut.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F028.wav|Well I mean I need to make a little bit more than the minimum wage fry flipper.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_F033.wav|No I don't want a diagram.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M013.wav|But what I'm telling you is that's what you're going to do.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_2/Ses05F_script02_2_M008.wav|Why not?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_F036.wav|So I'm just supposed to oh, well, oops, my luggage is gone and be fine with that and take your stinking fifty dollar voucher?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_2/Ses05F_script02_2_M022.wav|You want to get married again?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_F009.wav|She knows what I know, that's why.  She's faithful as a rock.  In my worst moments I think of her waiting and I know again that I'm right.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M018.wav|Then it's not just my business.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_M032.wav|A vacation?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_M021.wav|How would you like that hmm?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_F018.wav|I just don't want this paper trail, you know.  I just don't want things following me around, like-.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M020.wav|No.  I'm not going to...yeah, they'd laugh in my face.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M005.wav|Carla, can I ask you something?  Don't take this the wrong way, but are you having your period?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M015.wav|This whole area of the form was not supposed to be filled out and you put the address in the wrong place
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M011.wav|I don't want to argue with him, it's just for God's sake it's time he realized that no one believes with him any more.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_M017.wav|Okay, so you think you're going to-  -get me back some minutes, and that's going to make up for three days of business that I lost?  Okay, great.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M011.wav|What's bugging you then?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_M003.wav|Ma'am, first of all I'd like you to calm down.  Second of all-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_F007.wav|Can't you ask them?  Can't you go back and ask them if you could -- I don't know if you could change  assignments or something and you could stay here?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_F013.wav|I'm sorry, but there is a lot of people waiting so you're just going to have to get in line again.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_F007.wav|Well, I'm sorry sir but
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M013.wav|But they always go with somebody else.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_F006.wav|I'm asking you if this is direct flight from Baltimore to LAX or if you have to stop--
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F032.wav|You didn't ask her yet?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M009.wav|That's why I'm here, that's why I was waiting in this line.  I need to get another form of ID.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_M019.wav|Then it's alright.  I'll go ahead with it.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script03_2/Ses05F_script03_2_F008.wav|I'm growing quite tired and bored of this conversation.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F022.wav|I make myself very presentable before I go to any kind of interview.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F009.wav|That is I am paying you guys for service and I'm not getting any service.  I get, I get just dropped calls all the time and now it's completely not working at all.  I can't even call out, nine one one probably wouldn't even work.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M026.wav|What?  Do you want me to breathe in your ear?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1b/Ses05M_script01_1b_M016.wav|You know it's not just my business.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M028.wav|--you know? Head of the Science Club.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro04/Ses03F_impro04_F006.wav|I know, I just don't know if I can handle it. I mean, you're helping me so much financially it's like I can't survive on my own without you. I don't like that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_M022.wav|I am the supervisor, ma'am.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M001.wav|About what I just said?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_F011.wav|I don't have time for this today, and-
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M019.wav|There is a strict system here.  You need to wait in the right line for the right thing.  This is the line for registration.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_M015.wav|Nothing.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_F038.wav|This is ridiculous.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_1/Ses05F_script02_1_F018.wav|We didn't see them the first time either.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F003.wav|this is my business.  This is how I make money is through my phone.  It needs to be working.  Can you please help me?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M035.wav|Yeah, maybe if you were with someone else too.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1b/Ses05M_script01_1b_M010.wav|For Gods sake, three years!  Nobody comes back after three years.  It's insane!
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_F011.wav|Okay no.  Sir, this is the deal.  My phone isn't working and I don't care what the problem is but it needs to work.  That's why I'm paying you guys to fix it.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F029.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_2/Ses04F_script01_2_F017.wav|Believe with me, Joe.  I can't stand alone.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M036.wav|and I'm never going to find anything probably but I'll just keep working hard at it-- Yeah. Okay.  Positive, I'm going to do good, find that job.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_2/Ses05M_script01_2_M012.wav|Calm yourself.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_1/Ses05F_script01_1_M015.wav|All right, All right mom.  Listen!
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro02/Ses01M_impro02_F003.wav|How...
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro01/Ses05M_impro01_F013.wav|I can't take this one, sir. this is the wrong form.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script03_2/Ses05F_script03_2_F028.wav|Ugh.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F040.wav|Well don't be ridiculous.  Don't you know that?  You're the one who probably wishes you were with somebody else
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M028.wav|Two days I'll be in San Diego and how's it going to get to me in San Diego?  You going to make sure it gets to the San Diego airport?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M010.wav|Why not?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_M025.wav|Look if I could give you a job,if I could give you a job I would but I mean I'm not in that position. I'm-
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M002.wav|Something like that.  I can't even remember anymore. I don't know what to do anymore.  I just get out there everyday -- well, not everyday, almost everyday.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro08/Ses05M_impro08_F003.wav|And I'll reset the IP address.  I will do like, you know, direct connect the modem to my computer, and then reset everything, and then put the router back in. And-
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_F043.wav|I don't understand you, do I?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro05/Ses05M_impro05_M016.wav|Let me explain to you what the problem is.  My grandfather's remains are in that bag.  And I have to, like, distribute them today.  We're suppose to, you know, throw them out to the sea today.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro01/Ses01F_impro01_M007.wav|I don't know.  But I need an ID to pass this form along.  I can't just send it along without an ID.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_M000.wav|Hey listen here missy, I've been in this line for an hour and now I'm finally here.  So you're going to take my application.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_2/Ses05F_script02_2_F006.wav|I just had a different idea of what this evening is going to look like.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_F005.wav|I don't have any of them over here.  You're gonna have to go get in that line over there.  And they will give you a copy of the form.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script02_1/Ses05M_script02_1_M016.wav|Oh
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M018.wav|What else can we do?  I -- we don't have a choice in this.  Do you understand?  You can't come with me and I can't stay here.  That's all there is to it.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_F022.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_M011.wav|Oh
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M021.wav|I am sorry, ma'am.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro05/Ses01M_impro05_M009.wav|My bag from Atlanta.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F028.wav|Oh that's a great reason.  It's no reason at all.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_2/Ses05M_script01_2_M010.wav|But Kate?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M000.wav|Uhm, I don't know
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_2/Ses05M_script01_2_M002.wav|What are you talking about?  He grew up next to the girl his whole life, why wouldn't he want to see her again?  Don't look at me like that.  He hasn't told me anything he didn't told you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F003.wav|Okay.  three two three six nine seven five zero six six.  Can we move on?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F004.wav|I mean, I just don't--I don't know.  If you don't have a lot of qualification, where do you - where do you find work?  It's like L.A. is so frustrating because if you don't know somebody, you can't -you can't get a job.  It's impossible.  It's totally discriminatory.  You have to know somebody.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_F023.wav|you think that you're better than me because I don't have a car?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M018.wav|You know it's not only my business.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro02/Ses01F_impro02_M008.wav|I know.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M028.wav|See what I mean?  You can't even think of anything.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M011.wav|I thought you wanted to see it.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_F012.wav|If you hadn't been so nosey, you never would have known a thing about it.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_F026.wav|Uh, we can't--
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_M007.wav|I know, it gets long, but I can't do anything without your--do you have Social Security card, maybe?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M033.wav|No, no I'm just like you.  I thought it was going to be all peaches and roses and sand in our hair and wind in our
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F038.wav|I didn't say that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script01_2/Ses04M_script01_2_M015.wav|Calm yourself.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M030.wav|Okay.  And you're going to give me what for my inconvenience?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_F008.wav|I'm sorry.  You have to do things the way you have to do things here.  We have rules.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F030.wav|This? What is this?  This is nothing.  This isn't even anything.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M017.wav|Going out somewhere dear?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_M016.wav|That's all I- I just- That's all i want you to-
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M042.wav|I know.  I know, Mom.  Just help me stay here.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M040.wav|But I'm doomed.  Yeah I got so good I was over twenty one hundred.  Now what am I doing?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_M034.wav|All right.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_F016.wav|I'm there in front of them.  I'm telling them what I'm good at.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_F006.wav|I know.  I've been in line with these people.  I understand.  I understand what it's like.  Could you please like call over and-
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F024.wav|What?  No.  That's way too complicated.  Look--
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro02/Ses05F_impro02_F020.wav|You can't what?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro04/Ses01M_impro04_F024.wav|That's -.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_M022.wav|I'm so close.  Five more years and I retire-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_F014.wav|Well I can't very well do it today.  I still have to leave tomorrow.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1b/Ses05M_script01_1b_F027.wav|No I don't want a-  Your father thinks he's coming back, Chris.  If you marry that girl, you're pronouncing him dead.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_M020.wav|I need you to tell me because I really need to get the bag, okay?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F003.wav|It's a PR.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_F025.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_2/Ses05F_script01_2_M005.wav|Now, listen, Kate, just-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F042.wav|That I'm sorry?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_M009.wav|Look it's a nice day, what are we arguing for?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_F006.wav|I have a life.  I have things to do.  I have places to go.  Can you not just put this through please?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M017.wav|You know why.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F022.wav|Do you have a supervisor?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M025.wav|Right, probably not selling pot. I don't want to go to jail.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_F008.wav|You need to go back over there and fill it out again.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F001.wav|Look my, my phone isn't working.  I don't understand what's going on.  I am trying to call out.  I'm not receiving any calls
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_F014.wav|Believe with me, Joe.  I can't stand all alone.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M031.wav|No I'm just like you.  I thought it was going to be all roses and peaches and the bills would just pay themselves.  And we'll have three, fat rosy cheeked children.  Huh, baby, the joke's on us.  Because you know what you get?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro08/Ses05F_impro08_M009.wav|yeah
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_M007.wav|I don't know the meaning of this, mom.  But I know one thing you made a terrible mistake with dad.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_2/Ses04F_script01_2_M016.wav|Why me above all?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M032.wav|Where I'm going is not the safest place on the earth.  Okay.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M018.wav|uh, taking the car out of the gara- out of the garage.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M034.wav|We just weren't in a good spot, all right? This is a much better spot. I have a good instinct for these things. Look, is that-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M024.wav|What, you want me to breathe in your ear?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M007.wav|I have it right here, yes.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M024.wav|I don't know why, but, every time I reach out for something that I want, I have to pull back 'cause someone else will suffer.  My whole bloody life.  Time after time after time.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M006.wav|But, I don't know.  God, what am I going to do?  Should I go back to school?  I can't- I can't afford to go back to school.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_M012.wav|I can't-
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F028.wav|Yeah, I don't intend to stop trying.  I just--I don't when is when enough is enough.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_F010.wav|So let's go home.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M042.wav|Well I am thinking like that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_F027.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M031.wav|Yes, it is.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script02_2/Ses05M_script02_2_F006.wav|I just - We just have different ideas of what this night is suppose to look like.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_F022.wav|Please.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F026.wav|I just-- I
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M004.wav|Simply step to line two A, ma'am, I'm sorry.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_F003.wav|What, I mean what... what's the difference?  What do I need to do there that I can't do here?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_F011.wav|It's after eleven, let's go home.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_2/Ses04F_script01_2_M014.wav|Calm yourself.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F040.wav|Oh, yes.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M042.wav|I know that.  Just you help me stay here.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_2/Ses04F_script01_2_M015.wav|Alright.  Alright.  Calm yourself.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_F019.wav|Okay.  I'm not.  I'm sorry, I am being--
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro05/Ses02F_impro05_F020.wav|Well, can I at least have my fifty dollars, please?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_F005.wav|Okay. Oh, that would just make it so much better, 'cause I cannot handle it's just like oh, my God I can't sit here any longer and talk to this lady with this pleasant voice.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script01_2/Ses01M_script01_2_M002.wav|Don't look at me like that.  He didn't tell me anything he told you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_M008.wav|I mean -- I've been away for a while and- and now I've- I've gifts for- for you know friends and family I mean, I got stuff in the there
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M012.wav|I mean, maybe I'm not, you know. I don't have a job. Maybe - maybe I'm not as good as-as I thought I was and
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M028.wav|A vacation?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro05/Ses01F_impro05_F004.wav|I waited the entire baggage- I waited for the whole baggage carousel four times.  They told me to go to the next one.  I waited through that for three planes and now I'm here.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro05/Ses02F_impro05_F022.wav|Thank you very much.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M011.wav|And you couldn't find it?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script02_2/Ses05M_script02_2_F011.wav|You don't understand anything I am saying.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script02_1/Ses05M_script02_1_M025.wav|I don't get it.  I mean, the first time we came you said it was the best night of your life. And last year I remember distinctly you were so excited about coming that you stubbed your toe toe pushing me out the door and you didn't even notice until you got in the car.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro01/Ses03F_impro01_F007.wav|Look, I-- No, no, no, I--you don't understand. I have to go back to work.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_2/Ses01F_script01_2_M007.wav|You can't read her mind.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_M010.wav|but they said they'd increase my pay by triple-there promotion.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1b/Ses05M_script01_1b_M021.wav|I don't know why it is but every time I reach out for something that I want, I have to pull back because it might hurt somebody else, my whole bloody life, time after time, after time.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M025.wav|I'm not cut to be a receptionist.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_F009.wav|Nobody in this house dares take her faith away Joe. Strangers might, but not his father, not his brother.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M046.wav|Right, well, when you're at home and you lose something, do you guarantee that you're going to find it later on?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F009.wav|Nothing I'm trying seems to work. Just-
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_F039.wav|Uh- Because you guys lost it, so it should be your responsibility to find it, too.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F012.wav|Oh. Grow up Augie, the fish are not going to come.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M023.wav|Do you want to get married again? What? What? Do you want to get a divorce?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro04/Ses04M_impro04_M013.wav|This is stupid.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_F007.wav|It's past eleven, let's go.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M011.wav|They'll show up this time.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F020.wav|[LAUGHTER] Yeah.  Usually.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro05/Ses01M_impro05_M018.wav|Where is it?  Where did it go?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_F025.wav|Why?  What choice?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_M027.wav|Send me to whatever operator. I just- You know what?  I'm just done.  I'm just done.  I've lost all hope.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_M014.wav|Sit down mom.  I want to talk to you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_F006.wav|Nope, I don't. I don't have-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F041.wav|I'm sorry, really.  But--
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M041.wav|I know that.  Then just help me stay here.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M027.wav|Oh yeah.  I will be a full time receptionist.  Harvard degree, sixteen hundred on my S.A.T.--
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M013.wav|It's only going to be a year. I'm not going to miss my son's entire life.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M010.wav|fill out this form and wait
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_M010.wav|What do you want me to do about it?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_M033.wav|Because it is.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F029.wav|[BREATHING]
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_F011.wav|Because if he's not coming back, I'll kill myself. And laugh -- laugh at me but
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_M027.wav|A vacation?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_F015.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F005.wav|Well, for one thing, your mother so much has told me to go. [LAUGHTER].
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M022.wav|Ma'am you are testing my patience.  Do you understand me?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M031.wav|Look, I don't -- look, can we just not argue about this.  Like--
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_F005.wav|I have done everything everyone in this entire place has told me to do.  I've been here for over an hour.  They make me wait in line.  Every single time I start over again.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_M015.wav|All right. All right. Listen to me.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M002.wav|It certainly is not.  It's a slightly exaggerated scientific fact.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_F015.wav|This isn't a moon landing we're talking about.  It's fish.  It's fish nobody even eats.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_M024.wav|No, wait no, no that's not my point.  My point is there is no point and coming all the way down here if we just turn around and go home.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F022.wav|Yeah, we don't do that.  I can go ahead and send you--
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M022.wav|What? What? Do you want me to breathe in your ear?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_M021.wav|I put in fifteen years in this job.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F030.wav|I don't want a diagram.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script01_2/Ses04M_script01_2_M014.wav|Calm yourself.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1b/Ses05M_script01_1b_M026.wav|So what, I'm not fast with women?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_M013.wav|Calm yourself.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_M009.wav|You know that Larry is not coming back and I know it. Why do we allow him to go on thinking that we believe with him?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_F018.wav|I can't help it.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M020.wav|She's not Larry's girl.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_F004.wav|Well my phone isn't working and it hasn't been working for the last five days.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_F007.wav|I think you're being a little condescending.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_M011.wav|But Kate--
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_F007.wav|Yeah.  I saw a posting at the theatre.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro04/Ses03F_impro04_F021.wav|[BREATHING] Brian-
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_F021.wav|Adders don't snap, they sting.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_F034.wav|I just--give it some more thought.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M005.wav|But, I mean, I don't want to keep those jobs.  I don't want those jobs.It's not what I want to do.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_F024.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_F015.wav|Augie.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro04/Ses01M_impro04_M015.wav|Okay.  You're my friend you can tell me stuff.  You can tell me honestly stuff, okay?  Please.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_impro05/Ses01F_impro05_F000.wav|Hi.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F013.wav|Okay, no, look, I- I- I- I'm really -- I'm trying to be patient.  I know this isn't your fault.  I know that you didn't do it
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_F018.wav|Sir?  I'm going to ask you one more time and then I'm going to call my supervisor
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M011.wav|I don't where it is though, I don't have with me.  Can I get it from somewhere?  I mean...
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F013.wav|And I can tell you where I was born and what time and by who and what day.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1/Ses05M_script01_1_M040.wav|No, you don't.  I'm a pretty tough guy.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1b/Ses05M_script01_1b_M025.wav|I'll find out and then we'll thrash it out with dad, all right?  Mom, don't avoid me.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F033.wav|...and then what's that going to do to your father?  Do you know?  I don't.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1b/Ses05M_script01_1b_M012.wav|All right.  All right, just listen.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M037.wav|No, I just showed that for you [garbage].
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_M017.wav|Of course not.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F039.wav|And I'm looking forward to that.  However, I can't do that. I would lose my job.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro04/Ses04M_impro04_M000.wav|Oh, man, I just -- I don't know what to do.  I don't know what to do.  It's like every job, you know, I go to; every job I apply to,
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_F026.wav|I expect it's because you're drunk.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_M015.wav|Okay, I'm trying to work this backwards
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M030.wav|I've tried.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_F019.wav|No, three days, sir.  It's not three days. It's- It's only been about a day now. Let's not exaggerate.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M017.wav|Seems like the only option at this point because obviously the outer world has just rejected me of all possible employment.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_F029.wav|Do shut up. Shut up.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_M007.wav|You don't know! you can't write?  You don't know how to write?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro04/Ses02F_impro04_F008.wav|It's just so frustrating.  Like, I just--I just don't wanna do it anymore.  You know?  I just don't wanna like hit the pavement every single day with my resumes and going out there all the time.  You know, it's just like--
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F026.wav|Well maybe you could help.  I mean you've got a job.  I'm willing to look outside of my realm.  I could try something else.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_1/Ses05M_script01_1_F028.wav|Well, that's a good reason.  But that doesn't mean anything at all.  I mean, you haven't seen her in five years.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M024.wav|Do you want me to get some champagne?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_F008.wav|I'm bored of this conversation.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F004.wav|What are you... what's...What are you applying for?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script03_2/Ses05M_script03_2_F021.wav|They sting.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M016.wav|Do something that I don't have to go out and do something, stay at home, I don't know.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F031.wav|I work out of my home as a realtor and because I don't have a land line, I need a phone and because of now I don't have one I don't know what to do.  And you're not helping me at all.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_F012.wav|I don't know even how to use that stuff it's too complicated.  I just want my flip phone to work----that's all I need
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M012.wav|I got to.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F010.wav|Well you better.  You better give me a whole freaking new phone that's what you better do.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M020.wav|I can't do it.  I'd love to.  I mean, I don't - if you understand, I don't want to stay.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro01/Ses05M_impro01_F011.wav|You can waist as much as you want
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M030.wav|I've given it lots of thought.  And I keep coming back to the same thing.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F012.wav|You can't tell him that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_M018.wav|No, it's been--three days.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_M024.wav|I am the supervisor.  So--
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M004.wav|Are we talking about the same thing?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M043.wav|No.  You don't.  I'm a pretty tough guy.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_M022.wav|No, no.  Okay.  That's not my point.  My point is there is no point in coming down here if we just turn around and go home.  Don't you want to see it?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_F037.wav|Turn it on again, please.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_M002.wav|um and everything was pretty much uh- uh- just not done right. All the orders were messed up.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M005.wav|Now what are you going to do for me different? Hmm?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M003.wav|It's -- look, it's only a year.  It'll go by quickly.  Okay.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M016.wav|Nothing.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F010.wav|But, isn't there anything you can do.  Can't you make an exception this one time?  My picture is on both of those identifications.  It's not like you don't know that it's me.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F011.wav|And I can give you my social--
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_F013.wav|That's my point.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_F019.wav|Doesn't seem to have worked such wonders with you.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M024.wav|You- you- you- you're misunderstanding me.  You're going to do that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_F020.wav|That's the wind.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M034.wav|Well, I'm doing the best I can.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro01/Ses05M_impro01_F018.wav|Sir, don't patronize me.  I can't make an exception.  I don't- I don't have the power to do that.  It's a different form.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_M019.wav|Come on, you know that's not only my business.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F017.wav|How long does that take?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F037.wav|I mean, anything.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_2/Ses03F_script01_2_M005.wav|Listen, kid-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F021.wav|Yeah, I- I make my
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M008.wav|I don't know the meaning of it.  But I know we've made terrible mistake with father.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script01_2/Ses04M_script01_2_M013.wav|But, Kate--
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro04/Ses03F_impro04_F014.wav|Law school? Maybe.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_F016.wav|I do have to go. And I need to know that you're here waiting for me and that you believe that I'm coming back.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_M017.wav|This is unbelievable. I've got
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_M002.wav|What do you mean? He lived next door to the girl all his life, why wouldn't he want to see her again?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_F011.wav|No, it didn't turn up at the baggage claim.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M031.wav|All right, then, Mom. [BREATHING]
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F030.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro04/Ses05M_impro04_M012.wav|I go in for these interviews, and they're all cool and everything, you know.  Their nice and I'm nice to them, you know, give and take, back and forth, and whatever.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F013.wav|To you it is and to me. You can talk yourself blue in the face but there is no body and no grave so where are you?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script01_3/Ses05M_script01_3_M037.wav|It seemed to make suckers out of so many guys.  And I-I felt wrong to be alive; to to open that bank book, to to drive that car, the new car, and look at that new refrigerator. I mean,
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_2/Ses05F_script02_2_F012.wav|For heaven's sake, this is not about fish.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script01_2/Ses01M_script01_2_M005.wav|Okay, now listen, kids...
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M027.wav|I did not come in here to get in a yelling match with you, all right?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_M023.wav|She's not Larry's girl.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M006.wav|Well then what's bugging you?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_F007.wav|Did you try to take them back and get your order fixed, sir?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M029.wav|Because it is.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_1/Ses05F_script02_1_M017.wav|Why not?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_F010.wav|No.  I'm just going to check--
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F029.wav|There's other people waiting-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_M008.wav|or I can't go behind there- you can go behind this person's desk and just grab the form. So if you could just do that; that would help me out a lot.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_F028.wav|Well obviously it's not working.  Just cause you got sixteen hundred on your S.A.T. doesn't guarantee you a job.  I mean it should really but--
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script03_2/Ses04F_script03_2_M012.wav|You can hardly call three liquor glasses in the whole evening going on and on and on.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M013.wav|No, of course, not.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_F009.wav|Go get in that-- Sir-- Sir, there are people in line behind you. you need
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F013.wav|I don't know.  I feel like I've tried everything.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro04/Ses04M_impro04_M010.wav|I'm not choosing. I'm not-
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_F010.wav|I don't-
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script02_1/Ses02M_script02_1_F003.wav|It's ours; it's mine too.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M000.wav|Uh, lets- What do you need exactly?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro08/Ses02F_impro08_M001.wav|Ok.  I've- I've just been talking to this machine for the past half hour and I can't-can't get anything done.  I've been trying to book this vacation this entire time.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro08/Ses05F_impro08_M023.wav|Yeah, but if I call back, I'll have to go through this whole rigmarole again. and try to get a hole or someone.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_F003.wav|So is there any way to like bypass that because that is so, like I've been going around in circles
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M015.wav|I've been trying to work this backwards, but I can't seem to pinpoint the moment when we took a turn for the worse.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_F034.wav|Very well, if you insist on being boorish and idiotic.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro04/Ses02F_impro04_F002.wav|Oh, we're not hiring at this time or thank you, we already have your information on file--We'll call you when we're ready.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro05/Ses05M_impro05_M020.wav|I mean, some information here would be great.  Some help.  Can you, like, type something in and find out?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro08/Ses05F_impro08_M014.wav|It was one ninety eight sixty three. I paid the minimum.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_F024.wav|And you can go on from there if you know where to go, but I don't know where to go.  See, I don't know.  Now what can I do for you?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_M016.wav|No, no, no.  That's not my point.  My point is is that there's no point in coming down here if we just leave.  Don't you want to see it?
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_F014.wav|And you're gonna have to go wait again, because that's the line you need.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_2/Ses05F_script01_2_M014.wav|All right, all right.  Calm yourself.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_F011.wav|I have been waiting for over an hour.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_M014.wav|Well, the weekends are not as busy.  Maybe you can uh, come and try to get here early--
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_F042.wav|All right.  Just-- just don't go thinkin' that way, you hear me?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script01_2/Ses05F_script01_2_M003.wav|How do you know he is even thinking about it?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro02/Ses01M_impro02_M006.wav|I guess they can do it,
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F032.wav|No.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_script02_1/Ses05M_script02_1_F014.wav|What are you so excited about.  This isn't rocket science, this is just fish.  Fish nobody even eats.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M027.wav|What?  What do you want a divorce?
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M023.wav|I'm being very straight with you, ma'am.  There is nothing I can do for you.  You need to stand in line two A.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_M019.wav|Fine, it's been a day.  Okay?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_M006.wav|Okay, so what are you saying? What-
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro04/Ses04M_impro04_M012.wav|-- I mean, I don't understand.  It's like -- I mean, I feel like I'm qualified enough.  I just don't understand.  Like, I mean, it's just like a matter of circumstance, but it's been three years, you know, three years.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_M029.wav|Oh, very interesting.  How about a child of four?  A child of six?  Or a child of nine?
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F017.wav|You don't understand anything I'm saying.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_M006.wav|I
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M013.wav|No, of course not.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M006.wav|Okay, then what's bugging you?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_M027.wav|because this is ridiculous?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M006.wav|I don't know, I mean why - why
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_M012.wav|We got to tell him that.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M035.wav|[BREATHING]
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F000.wav|What's he going to say?
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_F016.wav|Don't stop believing.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro04/Ses01M_impro04_M002.wav|It's not fair.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_script02_2/Ses05F_script02_2_F010.wav|No, we won't.  Augie it's like waiting for Santa Claus to come.  I feel like I am going to spend my entire life standing on the beach with my eyes wide open and my hands clasp expectantly in front of me waiting for the fish to show up and the fish will not show up.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_M013.wav|Oh.  Don't be so grand.  Just because you don't happen to want one at the moment.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_F025.wav|Mind your business.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_M028.wav|All right. I'm sick- I'm sick of this all right. I'm sick of you and keep your fifty dollar.
+/scratch/speech/datasets/IEMOCAP_full_release/Session2/sentences/wav/Ses02F_impro04/Ses02F_impro04_F011.wav|It's just really hard.  I feel like their starting to get like a personal prejudice against me.  You know what I mean?  Like it's like suddenly it starts to feel like it's just you that they say no to and it's not that they're not taking applications and it's not that they're not hiring people, it's just you particularly they have some particular reason for just hating you.  You know?
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_F013.wav|I don't know why you're getting so excited. I mean, it's not like the landing of the moon or something. It's just fish. Fish that nobody eats.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M027.wav|There's nothing I can do.  I-- I
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05M_impro01/Ses05M_impro01_F019.wav|They're processed differently.
+/scratch/speech/datasets/IEMOCAP_full_release/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M013.wav|Don't ask me to have somebody else come over here and move you myself.  I can't come back over there.  I'll get security if you need me to.
+/scratch/speech/datasets/IEMOCAP_full_release/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M011.wav|We've missed them twice that's not ever.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_F017.wav|Sir, please calm down.
+/scratch/speech/datasets/IEMOCAP_full_release/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M005.wav|I'm just applying for another ID.
+/scratch/speech/datasets/IEMOCAP_full_release/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F011.wav|What, you're going to argue with him?
