@@ -19,7 +19,7 @@ def create_hparams(hparams_string=None, verbose=False):
         dist_url="tcp://localhost:54317",
         cudnn_enabled=True,
         cudnn_benchmark=True,
-        ignore_layers=['embedding.weight'],  #, 'decoder.attention_rnn.weight_ih'],
+        ignore_layers=['decoder.attention_rnn.weight_ih'], #'embedding.weight'],  #, 'decoder.attention_rnn.weight_ih'],
 
         ################################
         # Data Parameters             #

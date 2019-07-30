@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+import pdb
 
 
 class Tacotron2Loss(nn.Module):
@@ -40,13 +41,19 @@ class GMMVAELoss(nn.Module):
             nn.MSELoss()(mel_out_postnet, mel_target)
         gate_loss = nn.BCEWithLogitsLoss()(gate_out, gate_target)
 
-        if torch.equal(label, torch.tensor([1,0]).cuda()):
-            self.mu_happy = mu
-            self.var_happy = logvar
-            KLD = -0.5 * torch.sum(1 + self.var_happy - self.mu_happy.pow(2) - self.var_happy.exp())
-        else:
-            self.mu_sad = mu
-            self.var_sad = logvar
-            KLD = -0.5 * torch.sum(1 + self.var_sad - self.mu_sad.pow(2) - self.var_sad.exp())
+        loss = mel_loss + gate_loss
 
-        return mel_loss + gate_loss + KLD, KLD
+#        pdb.set_trace()
+        for emotion, mean, var in [(x, y, z) for x,y,z in zip(label, mu, logvar)]:
+            if torch.equal(emotion, torch.tensor([1,0]).cuda()):
+#                print('happy')
+                self.mu_happy = mean
+                self.var_happy = var
+                loss += -0.5 * torch.sum(1 + self.var_happy - self.mu_happy.pow(2) - self.var_happy.exp())
+            else:
+#                print('sad')
+                self.mu_sad = mu
+                self.var_sad = logvar
+                loss += -0.5 * torch.sum(1 + self.var_sad - self.mu_sad.pow(2) - self.var_sad.exp())
+
+        return loss

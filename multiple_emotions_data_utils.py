@@ -31,7 +31,7 @@ class TextMelLoader(torch.utils.data.Dataset):
     def get_mel_text_label(self, audiopath_and_text):
         # separate filename and text
 #        pdb.set_trace()
-        print(audiopath_and_text)
+#        print(audiopath_and_text)
         audiopath, text = audiopath_and_text[0], audiopath_and_text[1]
         text = self.get_text(text)
         mel = self.get_mel(audiopath)

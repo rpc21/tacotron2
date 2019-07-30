@@ -212,7 +212,7 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
         for i, batch in enumerate(val_loader):
             x, y, labels = model.parse_batch(batch)
             y_pred, mu, logvar = model(x)
-            loss, KLD = criterion(y_pred, y, mu, logvar, labels)
+            loss = criterion(y_pred, y, mu, logvar, labels)
             if distributed_run:
                 reduced_val_loss = reduce_tensor(loss.data, n_gpus).item()
             else:
@@ -220,15 +220,15 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
             val_loss += reduced_val_loss
         val_loss = val_loss / (i + 1)
 
-    if iteration % 10 == 0:
-        print('Making inferences')
-        make_inferences(model, iteration, hparams, output_directory)
+  #  if iteration % 10 == 0:
+ #       print('Making inferences')
+#        make_inferences(model, iteration, hparams, output_directory)
 
     model.train()
     if rank == 0:
         with open(output_directory + 'output_stats_epochs.txt','a+') as f:
-            f.write("Validation loss {}: {:9f}, KLD: {} \n".format(iteration, reduced_val_loss, KLD))
-        print("Validation loss {}: {:9f}, KLD: {} \n".format(iteration, reduced_val_loss, KLD))
+            f.write("Validation loss {}: {:9f}\n".format(iteration, reduced_val_loss))
+        print("Validation loss {}: {:9f},\n".format(iteration, reduced_val_loss))
 #        logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
 
 
@@ -309,7 +309,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
             x, y, labels = model.parse_batch(batch)
             y_pred, mu, logvar = model(x)
 
-            loss, KLD = criterion(y_pred, y, mu, logvar, labels)
+            loss = criterion(y_pred, y, mu, logvar, labels)
             if hparams.distributed_run:
                 reduced_loss = reduce_tensor(loss.data, n_gpus).item()
             else:
@@ -330,13 +330,13 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
             optimizer.step()
 
-            print("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} KLD {:.6f}".format(
-                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, KLD))
+            print("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f}".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm))
             if not is_overflow and rank == 0 and (iteration % 10 == 0):
                 duration = time.perf_counter() - start
                 with open(output_directory + 'output_stats_iterations.txt','a+') as f:
-                    f.write("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} KLD {:.6f} {:.2f}s/it\n".format(
-                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, KLD, duration))
+                    f.write("Epoch {}: Batch Size: {} Train loss {} {:.6f} Grad Norm {:.6f} {:.2f}s/it\n".format(
+                        epoch, hparams.batch_size, iteration, reduced_loss, grad_norm, duration))
 
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
