@@ -40,7 +40,7 @@ class GMMVAELoss(nn.Module):
             nn.MSELoss()(mel_out_postnet, mel_target)
         gate_loss = nn.BCEWithLogitsLoss()(gate_out, gate_target)
 
-        if label == torch.tensor([1,0]):
+        if torch.equal(label, torch.tensor([1,0]).cuda()):
             self.mu_happy = mu
             self.var_happy = logvar
             KLD = -0.5 * torch.sum(1 + self.var_happy - self.mu_happy.pow(2) - self.var_happy.exp())

@@ -6,6 +6,7 @@ import torch.utils.data
 import layers
 from utils import load_wav_to_torch, load_filepaths_and_text
 from text import text_to_sequence
+import pdb
 
 
 class TextMelLoader(torch.utils.data.Dataset):
@@ -29,6 +30,8 @@ class TextMelLoader(torch.utils.data.Dataset):
 
     def get_mel_text_label(self, audiopath_and_text):
         # separate filename and text
+#        pdb.set_trace()
+        print(audiopath_and_text)
         audiopath, text = audiopath_and_text[0], audiopath_and_text[1]
         text = self.get_text(text)
         mel = self.get_mel(audiopath)
@@ -91,8 +94,6 @@ class TextMelCollate():
         batch: [text_normalized, mel_normalized]
         """
         # Right zero-pad all one-hot text sequences to max input length
-        labels = batch[2]
-        batch = batch[:2]
         input_lengths, ids_sorted_decreasing = torch.sort(
             torch.LongTensor([len(x[0]) for x in batch]),
             dim=0, descending=True)
@@ -122,5 +123,7 @@ class TextMelCollate():
             mel_padded[i, :, :mel.size(1)] = mel
             gate_padded[i, mel.size(1)-1:] = 1
             output_lengths[i] = mel.size(1)
+
+        labels = [batch[ids_sorted_decreasing[x]][2] for x in range(len(ids_sorted_decreasing))]
 
         return text_padded, input_lengths, mel_padded, gate_padded, output_lengths, labels

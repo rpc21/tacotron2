@@ -318,4 +318,3 @@
 /scratch/speech/datasets/toronto/young/sad/YAF_bone_sad.wav|say the word bone
 /scratch/speech/datasets/toronto/young/sad/YAF_haze_sad.wav|say the word haze
 /scratch/speech/datasets/toronto/young/sad/YAF_talk_sad.wav|say the word talk
-

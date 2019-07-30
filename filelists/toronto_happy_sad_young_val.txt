@@ -78,4 +78,3 @@
 /scratch/speech/datasets/toronto/young/happy/YAF_deep_happy.wav|say the word deep
 /scratch/speech/datasets/toronto/young/happy/YAF_nice_happy.wav|say the word nice
 /scratch/speech/datasets/toronto/young/happy/YAF_youth_happy.wav|say the word youth
-

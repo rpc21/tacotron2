@@ -491,7 +491,7 @@ class Tacotron2(nn.Module):
         mel_padded = to_gpu(mel_padded).float()
         gate_padded = to_gpu(gate_padded).float()
         output_lengths = to_gpu(output_lengths).long()
-        labels = to_gpu(labels)
+        labels = to_gpu(torch.stack(labels))
 
         return (
             (text_padded, input_lengths, mel_padded, max_len, output_lengths),
@@ -510,7 +510,7 @@ class Tacotron2(nn.Module):
         return outputs
 
     def forward(self, inputs):
-        text_inputs, text_lengths, mels, max_len, output_lengths, labels = inputs
+        text_inputs, text_lengths, mels, max_len, output_lengths = inputs
         text_lengths, output_lengths = text_lengths.data, output_lengths.data
 
         embedded_inputs = self.embedding(text_inputs).transpose(1, 2)
