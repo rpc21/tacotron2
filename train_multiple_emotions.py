@@ -16,7 +16,7 @@ from torch.utils.data.distributed import DistributedSampler
 from torch.utils.data import DataLoader
 
 from model_concat import Tacotron2
-from data_utils import TextMelLoader, TextMelCollate
+from multiple_emotions_data_utils import TextMelLoader, TextMelCollate
 from loss_function import GMMVAELoss
 from logger import Tacotron2Logger
 from hparams import create_hparams

@@ -44,15 +44,15 @@ class GMVAE(nn.Module):
 
         self.fc4 = nn.Linear(int(hparams.latent_embedding_dim / 2), hparams.latent_embedding_dim)
 
-        self.happy_mean = nn.Parameter(torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
+#        self.happy_mean = nn.Parameter(torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
 
-        self.happy_var = nn.Parameter(torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
+#        self.happy_var = nn.Parameter(torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
 
-        self.sad_mean = nn.Parameter(
-            torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
+#        self.sad_mean = nn.Parameter(
+#            torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
 
-        self.sad_var = nn.Parameter(
-            torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
+#        self.sad_var = nn.Parameter(
+#            torch.randn(torch.zeros((self.latent_output_dim)).view(self.latent_output_dim, 1).size()))
 
     def vae_encode(self, inputs):
         _, _, x, _, _ = inputs
