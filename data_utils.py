@@ -38,21 +38,12 @@ class TextMelLoader(torch.utils.data.Dataset):
     def get_mel(self, filename):
         if not self.load_mel_from_disk:
             audio, _ = load_wav_to_torch(filename)
-#            print('max:', torch.max(audio))
-#            print('min:', torch.min(audio))
-#            audio = torch.from_numpy(resample(audio.numpy(), 16000, self.stft.sampling_rate))
-#            print('max:', torch.max(audio))
-#            print('min:', torch.min(audio))
-#            write('/scratch/speech/resampled_audio.wav', 22050, audio.numpy())
             sampling_rate = self.stft.sampling_rate
             if sampling_rate != self.stft.sampling_rate:
                 raise ValueError("{} SR doesn't match target {} SR".format(sampling_rate, self.stft.sampling_rate))
             audio_norm = audio / self.max_wav_value
             audio_norm = audio_norm.unsqueeze(0)
             audio_norm = torch.autograd.Variable(audio_norm, requires_grad=False)
- #           print('max:', torch.max(audio_norm))
-#            print('min:', torch.min(audio_norm))
- #           audio_norm = torch.clamp(audio_norm, min=-1, max=1)
             melspec = self.stft.mel_spectrogram(audio_norm)
             melspec = torch.squeeze(melspec, 0)
         else:
