@@ -57,11 +57,11 @@ class GMMVAELoss(nn.Module):
         return loss
 
     def get_mean_happy(self):
-        print("mu_happy", self.mu_happy)
+#        print("mu_happy", self.mu_happy)
         return self.mu_happy
 
     def get_mean_sad(self):
-        print("mu_sad", self.mu_sad)
+#        print("mu_sad", self.mu_sad)
         return self.mu_sad
 
     def get_var_happy(self):

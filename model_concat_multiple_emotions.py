@@ -538,7 +538,8 @@ class Tacotron2(nn.Module):
         std = d['std_' + emotion]
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
-        latent_output = Normal(mean, std).sample().cuda()
+#        latent_output = Normal(mean, std).sample().cuda()
+        latent_output = mean.cuda()
         mel_outputs, gate_outputs, alignments = self.decoder.inference(
             encoder_outputs, latent_output)
 
