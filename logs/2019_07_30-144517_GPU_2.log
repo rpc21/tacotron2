@@ -1,0 +1,12 @@
+FP16 Run: True
+Dynamic Loss Scaling: True
+Distributed Run: True
+cuDNN Enabled: True
+cuDNN Benchmark: True
+Initializing Distributed
+Done initializing distributed
+> /home/rpc21/tacotron2/model.py(227)__init__()
+-> print(self.lstm)
+(Pdb) --KeyboardInterrupt--
+(Pdb) --KeyboardInterrupt--
+(Pdb) 

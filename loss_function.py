@@ -52,8 +52,22 @@ class GMMVAELoss(nn.Module):
                 loss += -0.5 * torch.sum(1 + self.var_happy - self.mu_happy.pow(2) - self.var_happy.exp())
             else:
 #                print('sad')
-                self.mu_sad = mu
-                self.var_sad = logvar
+                self.mu_sad = mean
+                self.var_sad = var
                 loss += -0.5 * torch.sum(1 + self.var_sad - self.mu_sad.pow(2) - self.var_sad.exp())
 
         return loss
+
+    def get_mean_happy(self):
+        print("mu_happy", self.mu_happy)
+        return self.mu_happy
+
+    def get_mean_sad(self):
+        print("mu_sad", self.mu_sad)
+        return self.mu_sad
+
+    def get_var_happy(self):
+        return self.var_happy
+
+    def get_var_sad(self):
+        return self.var_sad

@@ -115,7 +115,12 @@ def load_checkpoint(checkpoint_path, model, optimizer):
     return model, optimizer, learning_rate, iteration
 
 
-def save_checkpoint(model, optimizer, learning_rate, iteration, filepath):
+def save_checkpoint(model, optimizer, learning_rate, iteration, filepath, criterion):
+    print("saving mu and sigma")
+    torch.save({'mean_happy': criterion.get_mean_happy(),
+                'std_happy': criterion.get_var_happy(),
+                'mean_sad': criterion.get_mean_sad(),
+                'std_happy': criterion.get_var_sad()}, filepath[:-3] + '_mean_and_variance.pt')
     print("Saving model and optimizer state at iteration {} to {}".format(
         iteration, filepath))
     torch.save({'iteration': iteration,
@@ -349,7 +354,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
                 checkpoint_path = os.path.join(
                     output_directory, "checkpoint_{}".format(epoch))
                 save_checkpoint(model, optimizer, learning_rate, epoch,
-                                checkpoint_path)
+                                checkpoint_path, criterion)
 
     #    scheduler.step()
 
