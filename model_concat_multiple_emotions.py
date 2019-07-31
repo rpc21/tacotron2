@@ -443,8 +443,8 @@ class Decoder(nn.Module):
         mel_outputs, gate_outputs, alignments = [], [], []
         while True:
             decoder_input = self.prenet(decoder_input)
-
-            decoder_input = torch.cat((decoder_input, latent_output), dim=-1)
+#            pdb.set_trace()
+            decoder_input = torch.cat((decoder_input, latent_output.view(1, -1)), dim=-1)
 
             mel_output, gate_output, alignment = self.decode(decoder_input)
 
@@ -538,7 +538,7 @@ class Tacotron2(nn.Module):
         std = d['std_' + emotion]
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
-        latent_output = Normal(mean, std).sample().cuda().half()
+        latent_output = Normal(mean, std).sample().cuda()
         mel_outputs, gate_outputs, alignments = self.decoder.inference(
             encoder_outputs, latent_output)
 
