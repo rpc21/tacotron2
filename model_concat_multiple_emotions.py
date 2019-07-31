@@ -2,6 +2,7 @@ from math import sqrt
 import torch
 from torch.autograd import Variable
 from torch import nn
+from torch.distributions import Normal
 from torch.nn import functional as F
 from layers import ConvNorm, LinearNorm
 from revised_latent_model import GMVAE
@@ -422,7 +423,7 @@ class Decoder(nn.Module):
 
         return mel_outputs, gate_outputs, alignments
 
-    def inference(self, memory):
+    def inference(self, memory, latent_output):
         """ Decoder inference
         PARAMS
         ------
@@ -438,7 +439,6 @@ class Decoder(nn.Module):
 
         self.initialize_decoder_states(memory, mask=None)
 
-        latent_output = torch.randn_like(torch.zeros((memory.size(0), self.latent_output_dim))).cuda().half()
 
         mel_outputs, gate_outputs, alignments = [], [], []
         while True:
@@ -529,11 +529,15 @@ class Tacotron2(nn.Module):
             [mel_outputs, mel_outputs_postnet, gate_outputs, alignments],
             output_lengths), mu, logvar
 
-    def inference(self, inputs):
+    def inference(self, inputs, emotion):
+        d = torch.load('/scratch/speech/output/ryan/latent_sad_happy_young/checkpoint__mean_and_variance.pt')
+        mean = d['mean_'+emotion]
+        std = d['std_'+emotion]
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
+        latent_output = Normal(mean, std).sample().cuda().half()
         mel_outputs, gate_outputs, alignments = self.decoder.inference(
-            encoder_outputs)
+            encoder_outputs, latent_output)
 
         mel_outputs_postnet = self.postnet(mel_outputs)
         mel_outputs_postnet = mel_outputs + mel_outputs_postnet

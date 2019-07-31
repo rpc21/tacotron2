@@ -178,24 +178,26 @@ def make_inferences(model, iteration, hparams, output_directory):
         "say the word week",
         "say the word wire",
         "say the word youth",
-        "say the word young"
+        "say the word young",
+        "say the word say the word",
+        "a young boy"
+        "completely different sentence"
     ]
     for i, text in enumerate(sentences):
-        #### Just for testing purposes
-#        text = "Waveglow is really awesome!"
-        sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
-        sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
-#        pdb.set_trace()
-        mel_outputs, mel_outputs_postnet, _, alignments = model.inference(sequence)
-        with torch.no_grad():
-            audio = waveglow.infer(mel_outputs_postnet.float(), sigma=0.666)
+        for emotion in ['happy', 'sad']:
+            sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
+            sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
+    #        pdb.set_trace()
+            mel_outputs, mel_outputs_postnet, _, alignments = model.inference(sequence, emotion)
+            with torch.no_grad():
+                audio = waveglow.infer(mel_outputs_postnet.float(), sigma=0.666)
 
-        torch.save(mel_outputs_postnet, output_directory+'sentence_{}_mel.pkl'.format(i))
-        # with torch.no_grad():
-        #     audio = waveglow.infer(mel_outputs_postnet.float(), sigma=0.666)
+            torch.save(mel_outputs_postnet, output_directory+'sentence_{}_{}_mel.pkl'.format(i, emotion))
+            # with torch.no_grad():
+            #     audio = waveglow.infer(mel_outputs_postnet.float(), sigma=0.666)
 
-        wavio.write(output_directory + 'sentence_{}.wav'.format(i), audio[0].data.cpu().numpy(), rate=float(hparams.sampling_rate), sampwidth=3)
-        ##########
+            wavio.write(output_directory + 'sentence_{}_{}.wav'.format(i, emotion), audio[0].data.cpu().numpy(), rate=float(hparams.sampling_rate), sampwidth=3)
+            ##########
 
     print('generated samples')
     model.train()
@@ -225,16 +227,15 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
             val_loss += reduced_val_loss
         val_loss = val_loss / (i + 1)
 
-  #  if iteration % 10 == 0:
- #       print('Making inferences')
-#        make_inferences(model, iteration, hparams, output_directory)
+    if iteration % 10 == 0:
+        print('Making inferences')
+        make_inferences(model, iteration, hparams, output_directory)
 
     model.train()
     if rank == 0:
         with open(output_directory + 'output_stats_epochs.txt','a+') as f:
             f.write("Validation loss {}: {:9f}\n".format(iteration, reduced_val_loss))
         print("Validation loss {}: {:9f},\n".format(iteration, reduced_val_loss))
-#        logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
 
 
 
@@ -346,7 +347,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
                 logger.log_training(
                     reduced_loss, grad_norm, learning_rate, duration, iteration)
 
-        if not is_overflow and iteration > 0:
+        if not is_overflow:
             validate(model, criterion, valset, epoch,
                      hparams.batch_size, n_gpus, collate_fn, logger,
                      hparams.distributed_run, rank, hparams=hparams, output_directory=output_directory)

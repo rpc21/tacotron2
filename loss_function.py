@@ -46,12 +46,10 @@ class GMMVAELoss(nn.Module):
 #        pdb.set_trace()
         for emotion, mean, var in [(x, y, z) for x,y,z in zip(label, mu, logvar)]:
             if torch.equal(emotion, torch.tensor([1,0]).cuda()):
-#                print('happy')
                 self.mu_happy = mean
                 self.var_happy = var
                 loss += -0.5 * torch.sum(1 + self.var_happy - self.mu_happy.pow(2) - self.var_happy.exp())
             else:
-#                print('sad')
                 self.mu_sad = mean
                 self.var_sad = var
                 loss += -0.5 * torch.sum(1 + self.var_sad - self.mu_sad.pow(2) - self.var_sad.exp())
