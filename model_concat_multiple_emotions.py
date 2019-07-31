@@ -139,7 +139,7 @@ class Postnet(nn.Module):
                          padding=int((hparams.postnet_kernel_size - 1) / 2),
                          dilation=1, w_init_gain='linear'),
                 nn.BatchNorm1d(hparams.n_mel_channels))
-            )
+        )
 
     def forward(self, x):
         for i in range(len(self.convolutions) - 1):
@@ -154,6 +154,7 @@ class Encoder(nn.Module):
         - Three 1-d convolution banks
         - Bidirectional LSTM
     """
+
     def __init__(self, hparams):
         super(Encoder, self).__init__()
 
@@ -307,7 +308,7 @@ class Decoder(nn.Module):
         decoder_inputs = decoder_inputs.transpose(1, 2)
         decoder_inputs = decoder_inputs.view(
             decoder_inputs.size(0),
-            int(decoder_inputs.size(1)/self.n_frames_per_step), -1)
+            int(decoder_inputs.size(1) / self.n_frames_per_step), -1)
         # (B, T_out, n_mel_channels) -> (T_out, B, n_mel_channels)
         decoder_inputs = decoder_inputs.transpose(0, 1)
         return decoder_inputs
@@ -329,7 +330,7 @@ class Decoder(nn.Module):
         # (T_out, B) -> (B, T_out)
         alignments = torch.stack(alignments).transpose(0, 1)
         # (T_out, B) -> (B, T_out)
-#        gate_outputs = torch.stack(gate_outputs).transpose(0, 1)
+        #        gate_outputs = torch.stack(gate_outputs).transpose(0, 1)
         gate_outputs = torch.stack(gate_outputs).view(len(gate_outputs), -1).transpose(0, -1).contiguous()
         gate_outputs = gate_outputs.contiguous()
         # (T_out, B, n_mel_channels) -> (B, T_out, n_mel_channels)
@@ -402,7 +403,7 @@ class Decoder(nn.Module):
         decoder_inputs = self.parse_decoder_inputs(decoder_inputs)
         decoder_inputs = torch.cat((decoder_input, decoder_inputs), dim=0)
         decoder_inputs = self.prenet(decoder_inputs)
-#        pdb.set_trace()
+        #        pdb.set_trace()
 
         self.initialize_decoder_states(
             memory, mask=~get_mask_from_lengths(memory_lengths))
@@ -411,7 +412,7 @@ class Decoder(nn.Module):
         while len(mel_outputs) < decoder_inputs.size(0) - 1:
             decoder_input = decoder_inputs[len(mel_outputs)]
             decoder_input = torch.cat((decoder_input, latent_outputs), dim=-1)
-#            pdb.set_trace()
+            #            pdb.set_trace()
             mel_output, gate_output, attention_weights = self.decode(
                 decoder_input)
             mel_outputs += [mel_output.squeeze(1)]
@@ -438,7 +439,6 @@ class Decoder(nn.Module):
         decoder_input = self.get_go_frame(memory)
 
         self.initialize_decoder_states(memory, mask=None)
-
 
         mel_outputs, gate_outputs, alignments = [], [], []
         while True:
@@ -529,10 +529,13 @@ class Tacotron2(nn.Module):
             [mel_outputs, mel_outputs_postnet, gate_outputs, alignments],
             output_lengths), mu, logvar
 
-    def inference(self, inputs, emotion):
-        d = torch.load('/scratch/speech/output/ryan/latent_sad_happy_young/checkpoint__mean_and_variance.pt')
-        mean = d['mean_'+emotion]
-        std = d['std_'+emotion]
+    def inference(self, inputs, emotion, criterion):
+        d = {'mean_happy': criterion.get_mean_happy(),
+             'std_happy': criterion.get_var_happy(),
+             'mean_sad': criterion.get_mean_sad(),
+             'std_sad': criterion.get_var_sad()}
+        mean = d['mean_' + emotion]
+        std = d['std_' + emotion]
         embedded_inputs = self.embedding(inputs).transpose(1, 2)
         encoder_outputs = self.encoder.inference(embedded_inputs)
         latent_output = Normal(mean, std).sample().cuda().half()

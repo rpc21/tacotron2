@@ -120,7 +120,7 @@ def save_checkpoint(model, optimizer, learning_rate, iteration, filepath, criter
     torch.save({'mean_happy': criterion.get_mean_happy(),
                 'std_happy': criterion.get_var_happy(),
                 'mean_sad': criterion.get_mean_sad(),
-                'std_happy': criterion.get_var_sad()}, filepath[:-3] + '_mean_and_variance.pt')
+                'std_sad': criterion.get_var_sad()}, filepath[:-3] + '_mean_and_variance.pt')
     print("Saving model and optimizer state at iteration {} to {}".format(
         iteration, filepath))
     torch.save({'iteration': iteration,
@@ -156,7 +156,7 @@ def save_checkpoint(model, optimizer, learning_rate, iteration, filepath, criter
    #     print("Validation loss {}: {:9f}  ".format(iteration, reduced_val_loss))
 #        logger.log_validation(reduced_val_loss, model, y, y_pred, iteration)
 
-def make_inferences(model, iteration, hparams, output_directory):
+def make_inferences(model, iteration, hparams, output_directory, criterion):
     output_directory = output_directory + 'checkpoint_{}_samples/'.format(iteration)
     if not os.path.exists(output_directory):
         os.mkdir(output_directory)
@@ -188,7 +188,7 @@ def make_inferences(model, iteration, hparams, output_directory):
             sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
             sequence = torch.autograd.Variable(torch.from_numpy(sequence)).cuda().long()
     #        pdb.set_trace()
-            mel_outputs, mel_outputs_postnet, _, alignments = model.inference(sequence, emotion)
+            mel_outputs, mel_outputs_postnet, _, alignments = model.inference(sequence, emotion, criterion)
             with torch.no_grad():
                 audio = waveglow.infer(mel_outputs_postnet.float(), sigma=0.666)
 
@@ -229,7 +229,7 @@ def validate(model, criterion, valset, iteration, batch_size, n_gpus,
 
     if iteration % 10 == 0:
         print('Making inferences')
-        make_inferences(model, iteration, hparams, output_directory)
+        make_inferences(model, iteration, hparams, output_directory, criterion)
 
     model.train()
     if rank == 0:

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5955da5e-4979-4601-bd57-c24427869ea3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loss_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/loss_function.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_concat_multiple_emotions.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_concat_multiple_emotions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_multiple_emotions.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_multiple_emotions.py" afterDir="false" />
     </list>
@@ -26,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model_concat_multiple_emotions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="537" column="64" selection-start-line="537" selection-start-column="64" selection-end-line="537" selection-end-column="64" />
+            <state relative-caret-position="248">
+              <caret line="534" column="50" lean-forward="true" selection-start-line="534" selection-start-column="50" selection-end-line="534" selection-end-column="50" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -50,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_multiple_emotions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="349" column="26" selection-start-line="349" selection-start-column="26" selection-end-line="349" selection-end-column="26" />
+            <state relative-caret-position="200">
+              <caret line="190" column="106" selection-start-line="190" selection-start-column="106" selection-end-line="190" selection-end-column="106" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -94,8 +92,8 @@
         <option value="$PROJECT_DIR$/multiple_emotions_data_utils.py" />
         <option value="$PROJECT_DIR$/data_utils.py" />
         <option value="$PROJECT_DIR$/loss_function.py" />
-        <option value="$PROJECT_DIR$/model_concat_multiple_emotions.py" />
         <option value="$PROJECT_DIR$/train_multiple_emotions.py" />
+        <option value="$PROJECT_DIR$/model_concat_multiple_emotions.py" />
       </list>
     </option>
   </component>
@@ -160,7 +158,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11927000" />
+    <option name="totallyTimeSpent" value="12686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -288,15 +286,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model_sum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7344">
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/revised_latent_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -324,10 +313,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model_concat_multiple_emotions.py">
+    <entry file="file://$PROJECT_DIR$/model_sum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="537" column="64" selection-start-line="537" selection-start-column="64" selection-end-line="537" selection-end-column="64" />
+        <state relative-caret-position="-7344">
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
@@ -336,10 +324,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/train_multiple_emotions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="349" column="26" selection-start-line="349" selection-start-column="26" selection-end-line="349" selection-end-column="26" />
+        <state relative-caret-position="200">
+          <caret line="190" column="106" selection-start-line="190" selection-start-column="106" selection-end-line="190" selection-end-column="106" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model_concat_multiple_emotions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="534" column="50" lean-forward="true" selection-start-line="534" selection-start-column="50" selection-end-line="534" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
